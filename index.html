@@ -179,11 +179,13 @@ svg { overflow: visible !important; }
 /* ── SHARED LEVEL SCREEN STYLES ── */
 #level1-screen,
 #level2-screen,
-#level3-screen { display:none; }
+#level3-screen,
+#level4-screen { display:none; }
 
 #level1-screen .app,
 #level2-screen .app,
-#level3-screen .app { width:480px; max-width:100vw; margin:0 auto; }
+#level3-screen .app,
+#level4-screen .app { width:480px; max-width:100vw; margin:0 auto; }
 
 .app {
   background:rgba(5,10,20,.96); border-radius:16px;
@@ -368,8 +370,9 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
     <h1 style="font-size:1.4rem;margin-bottom:.4rem;">📖 Learn the Notes</h1>
     <div class="subtitle" style="margin-bottom:1.2rem;">Choose a topic</div>
     <button class="level-btn" onclick="startLearn(1)">Level 1 — Notes &amp; Gracenotes</button>
-    <button class="level-btn" onclick="startLearn(2)">Level 2 — Beginner Embellishments</button>
-    <button class="level-btn" onclick="startLearn(3)">Level 3 — Advanced Embellishments</button>
+    <button class="level-btn" onclick="startLearn(2)">Level 2 — Strikes &amp; Tachums</button>
+    <button class="level-btn" onclick="startLearn(4)">Level 3 — Doublings</button>
+    <button class="level-btn" onclick="startLearn(3)">Level 4 — Advanced Embellishments</button>
     <button class="level-btn" style="background:#0c1522;margin-top:.4rem;" onclick="showModeScreen()">← Back</button>
   </div>
 </div>
@@ -379,8 +382,9 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
   <h1>🎯 Test My Knowledge</h1>
   <div class="subtitle">Choose your level</div>
   <button class="level-btn" onclick="startLevel(1)">Level 1 — Notes &amp; Gracenotes</button>
-  <button class="level-btn" onclick="startLevel(2)">Level 2 — Beginner Embellishments</button>
-  <button class="level-btn" onclick="startLevel(3)">Level 3 — Advanced Embellishments</button>
+  <button class="level-btn" onclick="startLevel(2)">Level 2 — Strikes &amp; Tachums</button>
+  <button class="level-btn" onclick="startLevel(4)">Level 3 — Doublings</button>
+  <button class="level-btn" onclick="startLevel(3)">Level 4 — Advanced Embellishments</button>
   <button class="level-btn" style="background:#0c1522;margin-top:.4rem;" onclick="showModeScreen()">← Back</button>
 </div>
 
@@ -1519,7 +1523,112 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
   </div>
 </div>
 
-<!-- ── LEVEL 1 ── -->
+<!-- ── LEARN 4: DOUBLINGS ── -->
+<div id="learn4-screen" style="display:none;">
+  <div class="tutorial-card">
+    <button class="back" onclick="showLearnScreen()" style="position:absolute;top:12px;right:12px;">🏠 Home</button>
+
+    <!-- Doublings Intro -->
+    <div id="l4t-page-intro" class="l4t-page">
+      <div class="page-indicator">Doublings · Introduction</div>
+      <h2>Doublings</h2>
+      <div class="tutorial-body">
+        <p>Doublings are exactly what the word implies — the note is <strong>doubled</strong>, but it is done rapidly and precedes the sounding of the note proper.</p>
+        <br>
+        <p>Your tutor will be able to give further guidance on how to play these on the practise chanter.</p>
+        <br>
+        <p>Click <strong>Next</strong> to learn the first doubling.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="showLearnScreen()">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('lowa-doubling')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Low A Doubling -->
+    <div id="l4t-page-lowa-doubling" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Doublings · Low A Doubling</div>
+      <h2>Low A Doubling</h2>
+      <div class="tutorial-body">
+        <p>A <strong>Low A Doubling</strong> is simply a <strong>G gracenote</strong> on Low A followed rapidly by a <strong>D gracenote</strong>.</p>
+        <br>
+        <p><strong>Note:</strong> If travelling to Low A from another note, the G gracenote of the doubling is played exactly on the Low A note during the transition, then the D gracenote will follow when on Low A.</p>
+        <br>
+        <p>Your tutor will give you further guidance on this.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-lowa-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('b-doubling')">Next →</button>
+      </div>
+    </div>
+
+    <!-- B Doubling -->
+    <div id="l4t-page-b-doubling" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Doublings · B Doubling</div>
+      <h2>B Doubling</h2>
+      <div class="tutorial-body">
+        <p>A <strong>B Doubling</strong> works in the same way as the Low A Doubling — a <strong>G gracenote</strong> on B followed rapidly by a <strong>D gracenote</strong>.</p>
+        <br>
+        <p>The same principle applies when travelling to B from another note. Your tutor will give you further guidance.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-b-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('lowa-doubling')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('c-doubling')">Next →</button>
+      </div>
+    </div>
+
+    <!-- C Doubling -->
+    <div id="l4t-page-c-doubling" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Doublings · C Doubling</div>
+      <h2>C Doubling</h2>
+      <div class="tutorial-body">
+        <p>A <strong>C Doubling</strong> works in the same way — a <strong>G gracenote</strong> on C followed rapidly by a <strong>D gracenote</strong>.</p>
+        <br>
+        <p>The same principle applies when travelling to C from another note. Your tutor will give you further guidance.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-c-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('b-doubling')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="showModeScreen()">🏠 Home</button>
+      </div>
+    </div>
+
+  </div><!-- end tutorial-card -->
+</div><!-- end learn4-screen -->
+
+
 <div id="level1-screen">
   <div class="app" style="position:relative;">
     <button class="back" onclick="goHome()">← Home</button>
@@ -1608,7 +1717,7 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
     </div>
     <div class="timed-result" id="l2-result">
       <h2>⏱ TIME'S UP!</h2>
-      <div style="font-size:.8rem;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Level 2 — Beginner Embellishments</div>
+      <div style="font-size:.8rem;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Level 2 — Strikes &amp; Tachums</div>
       <div class="big-score" id="l2-result-score">0</div>
       <div class="sub">correct in 30 seconds</div>
       <div class="result-btns">
@@ -1665,6 +1774,57 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
       <div class="result-btns">
         <button class="primary"   onclick="startTimed(st3)">Try Again</button>
         <button class="secondary" onclick="endTimed(st3)">Exit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LEVEL 4 — DOUBLINGS ── -->
+<div id="level4-screen" style="display:none;">
+  <div class="app" style="position:relative;">
+    <button class="back" onclick="goHome()">← Home</button>
+    <header>
+      <h1>Doublings</h1>
+      <div class="badge">Low A · B · C · D · E · F</div>
+    </header>
+    <div class="score-bar">
+      <span>Score: <strong id="l4-score">0</strong></span>
+      <span>Questions: <strong id="l4-q">0</strong></span>
+      <span>Streak: <strong id="l4-streak">0</strong> 🔥</span>
+    </div>
+    <div class="staff-container">
+      <div class="staff" id="l4-staff">
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div>
+        <div class="clef">𝄞</div>
+        <svg id="l4-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        <div class="waiting-msg" id="l4-waiting">Press Start</div>
+        <div class="correct-reveal" id="l4-correct-reveal">
+          <span class="it-was">IT WAS</span>
+          <span class="answer-label" id="l4-correct-label"></span>
+        </div>
+      </div>
+      <div id="l4-prompt" style="text-align:center;font-size:.82rem;opacity:.7;margin-top:.2rem;">Press Start to begin</div>
+    </div>
+    <div class="timer-bar-wrap" id="l4-timer-wrap">
+      <div class="timer-bar-fill" id="l4-timer-fill"></div>
+    </div>
+    <div class="answers" id="l4-answers"></div>
+    <div class="feedback" id="l4-feedback"></div>
+    <div class="controls">
+      <button class="secondary" id="l4-reset">Reset</button>
+      <button class="primary"   id="l4-start">Start</button>
+      <button class="secondary" id="l4-timed">⏱ Timed</button>
+    </div>
+    <div class="timed-result" id="l4-result">
+      <h2>⏱ TIME'S UP!</h2>
+      <div style="font-size:.8rem;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Level 3 — Doublings</div>
+      <div class="big-score" id="l4-result-score">0</div>
+      <div class="sub">correct in 30 seconds</div>
+      <div class="result-btns">
+        <button class="primary"   onclick="startTimed(st4)">Try Again</button>
+        <button class="secondary" onclick="endTimed(st4)">Exit</button>
       </div>
     </div>
   </div>
@@ -2954,13 +3114,42 @@ const st3 = makeState({
   resultScoreEl:  document.getElementById('l3-result-score')
 });
 
+/* Level 4 — Doublings (same draw functions as L2 doublings) */
+const L4_ALL=[
+  { id:'lowa_doubling', label:'Low A Doubling', drawFn: drawLowADoubling },
+  { id:'b_doubling',    label:'B Doubling',     drawFn: drawBDoubling    },
+  { id:'c_doubling',    label:'C Doubling',     drawFn: drawCDoubling    },
+  { id:'d_doubling',    label:'D Doubling',     drawFn: drawDDoubling    },
+  { id:'e_doubling',    label:'E Doubling',     drawFn: drawEDoubling    },
+  { id:'f_doubling',    label:'F Doubling',     drawFn: drawFDoubling    }
+];
+
+const st4 = makeState({
+  all:            L4_ALL,
+  renderFn:       (note, svg) => note.drawFn(svg),
+  svg:            document.getElementById('l4-svg'),
+  answersEl:      document.getElementById('l4-answers'),
+  feedbackEl:     document.getElementById('l4-feedback'),
+  promptEl:       document.getElementById('l4-prompt'),
+  waitingEl:      document.getElementById('l4-waiting'),
+  scoreEl:        document.getElementById('l4-score'),
+  qEl:            document.getElementById('l4-q'),
+  streakEl:       document.getElementById('l4-streak'),
+  correctRevealEl:document.getElementById('l4-correct-reveal'),
+  correctLabelEl: document.getElementById('l4-correct-label'),
+  timerWrapEl:    document.getElementById('l4-timer-wrap'),
+  timerFillEl:    document.getElementById('l4-timer-fill'),
+  resultEl:       document.getElementById('l4-result'),
+  resultScoreEl:  document.getElementById('l4-result-score')
+});
+
 /* ════════════════════════════════════════════
    NAVIGATION
    ════════════════════════════════════════════ */
 let activeLevel = 0;
 
 function showModeScreen(){
-  ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen'].forEach(id=>{
+  ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen'].forEach(id=>{
     document.getElementById(id).style.display='none';
   });
   document.getElementById('mode-screen').style.display='block';
@@ -2976,7 +3165,7 @@ function selectMode(mode){
 }
 
 function showLearnScreen(){
-  ['learn1-screen','learn2-screen','learn3-screen'].forEach(id=>{
+  ['learn1-screen','learn2-screen','learn3-screen','learn4-screen'].forEach(id=>{
     document.getElementById(id).style.display='none';
   });
   document.getElementById('learn-screen').style.display='block';
@@ -2987,12 +3176,23 @@ function startLearn(n){
   document.getElementById(`learn${n}-screen`).style.display='block';
   if(n===1) l1tGoTo('intro');
   if(n===2) l2tGoTo('strikes-intro');
+  if(n===4) l4tGoTo('intro');
 }
 
 function l1tGoTo(pageId){
   document.querySelectorAll('.l1t-page').forEach(p => p.style.display='none');
   const el = document.getElementById('l1t-page-' + pageId);
   if(el) el.style.display='block';
+}
+
+function l4tGoTo(pageId){
+  document.querySelectorAll('.l4t-page').forEach(p => p.style.display='none');
+  const el = document.getElementById('l4t-page-' + pageId);
+  if(el) el.style.display='block';
+  // Draw diagrams when page shown
+  if(pageId==='lowa-doubling') drawLowADoubling(document.getElementById('l4t-lowa-svg'));
+  if(pageId==='b-doubling')    drawBDoubling(document.getElementById('l4t-b-svg'));
+  if(pageId==='c-doubling')    drawCDoubling(document.getElementById('l4t-c-svg'));
 }
 
 function l2tGoTo(pageId){
@@ -3008,16 +3208,10 @@ function startLevel(n){
 }
 
 function goHome(){
-  if(activeLevel===1){
-    document.getElementById('level1-screen').style.display='none';
-    resetState(st1, false);
-  } else if(activeLevel===2){
-    document.getElementById('level2-screen').style.display='none';
-    resetState(st2, false);
-  } else if(activeLevel===3){
-    document.getElementById('level3-screen').style.display='none';
-    resetState(st3, false);
-  }
+  if(activeLevel===1){ document.getElementById('level1-screen').style.display='none'; resetState(st1, false); }
+  else if(activeLevel===2){ document.getElementById('level2-screen').style.display='none'; resetState(st2, false); }
+  else if(activeLevel===3){ document.getElementById('level3-screen').style.display='none'; resetState(st3, false); }
+  else if(activeLevel===4){ document.getElementById('level4-screen').style.display='none'; resetState(st4, false); }
   document.getElementById('home-screen').style.display='block';
   activeLevel=0;
 }
@@ -3037,6 +3231,11 @@ document.getElementById('l3-start').onclick=()=>{ resetState(st3,false); nextQue
 document.getElementById('l3-reset').onclick=()=>resetState(st3,true);
 document.getElementById('l3-timed').onclick=()=>startTimed(st3);
 
+/* ── LEVEL 4 BUTTONS ── */
+document.getElementById('l4-start').onclick=()=>{ resetState(st4,false); nextQuestion(st4); };
+document.getElementById('l4-reset').onclick=()=>resetState(st4,true);
+document.getElementById('l4-timed').onclick=()=>startTimed(st4);
+
 /* ── iOS TOUCH FIX — touchend fallback for all buttons ── */
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('button').forEach(function(btn){
@@ -3052,8 +3251,8 @@ document.addEventListener('DOMContentLoaded', function(){
 window.addEventListener('load', () => {
   // Hide all screens
   ['mode-screen','home-screen','learn-screen',
-   'learn1-screen','learn2-screen','learn3-screen',
-   'level1-screen','level2-screen','level3-screen'].forEach(id => {
+   'learn1-screen','learn2-screen','learn3-screen','learn4-screen',
+   'level1-screen','level2-screen','level3-screen','level4-screen'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.style.display = 'none';
   });
