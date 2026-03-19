@@ -149,6 +149,8 @@ svg { overflow: visible !important; }
   transition:background .2s, border-color .2s;
   width:100%; margin-bottom:.8rem;
   touch-action:manipulation; -webkit-appearance:none;
+  -webkit-user-select:none; user-select:none;
+  position:relative; z-index:1;
 }
 .mode-btn:hover { background:var(--accent-soft); border-color:var(--accent); }
 .mode-btn .mode-icon { font-size:1.6rem; display:block; margin-bottom:.3rem; }
@@ -169,6 +171,8 @@ svg { overflow: visible !important; }
   font-weight:600; letter-spacing:.05em; cursor:pointer;
   transition:background .2s; width:100%; margin-bottom:.8rem;
   touch-action:manipulation; -webkit-appearance:none;
+  -webkit-user-select:none; user-select:none;
+  position:relative; z-index:1;
 }
 .level-btn:hover { background:var(--accent-soft); }
 
@@ -3032,6 +3036,17 @@ document.getElementById('l2-timed').onclick=()=>startTimed(st2);
 document.getElementById('l3-start').onclick=()=>{ resetState(st3,false); nextQuestion(st3); };
 document.getElementById('l3-reset').onclick=()=>resetState(st3,true);
 document.getElementById('l3-timed').onclick=()=>startTimed(st3);
+
+/* ── iOS TOUCH FIX — touchend fallback for all buttons ── */
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('touchend', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      btn.click();
+    }, { passive: false });
+  });
+});
 
 /* ── APP INITIALISATION — always start from mode screen ── */
 window.addEventListener('load', () => {
