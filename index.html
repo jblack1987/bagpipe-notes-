@@ -1,0 +1,3059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Bagpipe Trainer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Bagpipe Trainer" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#050910" />
+
+<!-- App icons -->
+<link rel="apple-touch-icon" href="data:image/png;base64,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" />
+<link rel="manifest" href="data:application/manifest+json,{
+  &quot;name&quot;: &quot;Bagpipe Trainer&quot;,
+  &quot;short_name&quot;: &quot;Bagpipe&quot;,
+  &quot;start_url&quot;: &quot;/&quot;,
+  &quot;display&quot;: &quot;standalone&quot;,
+  &quot;background_color&quot;: &quot;%23050910&quot;,
+  &quot;theme_color&quot;: &quot;%23050910&quot;,
+  &quot;orientation&quot;: &quot;portrait&quot;,
+  &quot;icons&quot;: [{
+    &quot;src&quot;: &quot;data:image/png;base64,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&quot;,
+    &quot;sizes&quot;: &quot;512x512&quot;,
+    &quot;type&quot;: &quot;image/png&quot;,
+    &quot;purpose&quot;: &quot;any maskable&quot;
+  }]
+}" />
+<style>
+:root {
+  --accent: #3ecf8e;
+  --accent-soft: #1f3048;
+  --text: #f5f5f5;
+  --wrong: #ff5c5c;
+}
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+body {
+  font-family:system-ui,sans-serif;
+  background:radial-gradient(circle at top,#1b3553,#050910);
+  background-attachment: fixed;
+  color:var(--text);
+  min-height:100vh;
+  min-height: -webkit-fill-available;
+  padding:1rem;
+  padding-top: max(1rem, env(safe-area-inset-top));
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  -webkit-text-size-adjust: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  cursor:pointer;
+}
+
+/* All top-level screens stack in normal flow — only visible one shown */
+#mode-screen,
+#home-screen,
+#learn-screen,
+#learn1-screen,
+#learn2-screen,
+#learn3-screen,
+#level1-screen,
+#level2-screen,
+#level3-screen {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Screens hidden with display:none don't block taps */
+
+/* ── STANDALONE / INSTALLED APP MODE ── */
+@media (display-mode: standalone) {
+  body {
+    padding-top: max(1.5rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* ── iOS TOUCH FIX — all buttons ── */
+button {
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+svg { overflow: visible !important; }
+.note-svg { overflow: visible !important; }
+
+/* ── WRONG ANSWER FLASH OVERLAY ── */
+#wrong-flash {
+  position:fixed; inset:0;
+  background:rgba(255,60,60,0.35);
+  pointer-events:none;
+  opacity:0;
+  z-index:9999;
+  transition:opacity 0.08s ease-in;
+}
+#wrong-flash.flash {
+  opacity:1;
+  transition:opacity 0s;
+}
+
+/* ── TUTORIAL PAGES ── */
+.tutorial-card {
+  width:100%; max-width:480px;
+  background:rgba(5,10,20,.96); border-radius:16px;
+  padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
+  text-align:center;
+}
+.tutorial-card h2 {
+  font-size:1.1rem; letter-spacing:.05em;
+  margin-bottom:1rem; color:var(--accent);
+  text-transform:uppercase;
+}
+.tutorial-body {
+  font-size:.95rem; line-height:1.7;
+  opacity:.88; margin-bottom:1.4rem;
+  text-align:left;
+}
+.tutorial-staff-wrap {
+  background:#0c1522; border-radius:12px;
+  padding:.7rem .6rem .9rem; margin-bottom:1.2rem;
+  position:relative;
+}
+.tutorial-nav {
+  display:flex; gap:.6rem; margin-top:.4rem;
+}
+.tutorial-nav button { flex:1; }
+.page-indicator {
+  font-size:.75rem; opacity:.5;
+  letter-spacing:.08em; margin-bottom:.8rem;
+  text-transform:uppercase;
+}
+
+
+#mode-screen {
+  background:rgba(5,10,20,.96); border-radius:16px;
+  padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
+  text-align:center;
+}
+#mode-screen h1 { font-size:1.4rem; margin-bottom:.4rem; letter-spacing:.04em; }
+
+.mode-btn {
+  padding:1.1rem; border-radius:12px; border:2px solid transparent;
+  background:#111b2a; color:var(--text); font-size:1rem;
+  font-weight:700; letter-spacing:.04em; cursor:pointer;
+  transition:background .2s, border-color .2s;
+  width:100%; margin-bottom:.8rem;
+  touch-action:manipulation; -webkit-appearance:none;
+}
+.mode-btn:hover { background:var(--accent-soft); border-color:var(--accent); }
+.mode-btn .mode-icon { font-size:1.6rem; display:block; margin-bottom:.3rem; }
+.mode-btn .mode-desc { font-size:.78rem; opacity:.65; font-weight:400;
+  display:block; margin-top:.2rem; }
+
+
+#home-screen {
+  background:rgba(5,10,20,.96); border-radius:16px;
+  padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
+  text-align:center;
+}
+#home-screen h1 { font-size:1.4rem; margin-bottom:.4rem; letter-spacing:.04em; }
+.subtitle { opacity:.8; font-size:.9rem; margin-bottom:1.2rem; }
+.level-btn {
+  padding:.9rem; border-radius:12px; border:none;
+  background:#111b2a; color:var(--text); font-size:1rem;
+  font-weight:600; letter-spacing:.05em; cursor:pointer;
+  transition:background .2s; width:100%; margin-bottom:.8rem;
+  touch-action:manipulation; -webkit-appearance:none;
+}
+.level-btn:hover { background:var(--accent-soft); }
+
+/* ── SHARED LEVEL SCREEN STYLES ── */
+#level1-screen,
+#level2-screen,
+#level3-screen { display:none; }
+
+#level1-screen .app,
+#level2-screen .app,
+#level3-screen .app { width:480px; max-width:100vw; margin:0 auto; }
+
+.app {
+  background:rgba(5,10,20,.96); border-radius:16px;
+  padding:1.1rem; box-shadow:0 18px 40px rgba(0,0,0,.6); position:relative;
+}
+.back {
+  position:absolute; top:12px; right:12px; background:#111b2a;
+  color:var(--text); padding:.4rem .7rem; border-radius:8px;
+  font-size:.75rem; border:none; cursor:pointer;
+}
+.back:hover { background:var(--accent-soft); }
+
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:.7rem; padding-right:4rem;
+}
+header h1 { font-size:1.05rem; letter-spacing:.04em; }
+.badge {
+  font-size:.7rem; padding:.2rem .5rem; border-radius:999px;
+  background:var(--accent-soft); text-transform:uppercase;
+  letter-spacing:.08em; white-space:nowrap;
+}
+
+/* ── SCORE BAR ── */
+.score-bar {
+  display:flex; justify-content:space-between; align-items:center;
+  background:#0c1522; border-radius:8px; padding:.4rem .8rem;
+  margin-bottom:.7rem; font-size:.82rem;
+}
+.score-bar span { opacity:.75; }
+.score-bar strong { color:var(--accent); font-size:1rem; }
+#streak-val { color:#f5c842; }
+
+/* ── STAFF ── */
+.staff-container {
+  background:#0c1522; border-radius:12px;
+  padding:.7rem .6rem .9rem; margin-bottom:.8rem;
+  position:relative;
+}
+.staff { position:relative; height:140px; margin:.2rem 0 .4rem; }
+
+.staff-line { position:absolute; left:8%; right:8%; height:2px; background:#2b3b55; }
+.staff-line:nth-child(1){top:85%;}
+.staff-line:nth-child(2){top:70%;}
+.staff-line:nth-child(3){top:55%;}
+.staff-line:nth-child(4){top:40%;}
+.staff-line:nth-child(5){top:25%;}
+
+.clef { position:absolute; left:6px; top:10px; font-size:2.2rem; opacity:.9; }
+
+.note-svg {
+  position:absolute; left:0; top:0;
+  width:100%; height:100%;
+  overflow:visible; pointer-events:none; z-index:5;
+}
+
+/* ── ANSWERS ── */
+.answers {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:.5rem; margin-top:.6rem; margin-bottom:.5rem;
+}
+.answers button {
+  padding:.65rem .4rem; border-radius:10px; border:none;
+  background:#111b2a; color:var(--text); font-size:.95rem;
+  font-weight:600; cursor:pointer; transition:background .15s;
+  touch-action:manipulation; -webkit-appearance:none;
+}
+.answers button:hover:not(:disabled){ background:#1c2e45; }
+.answers button:disabled{ cursor:default; opacity:.7; }
+.answers button.correct{ background:var(--accent); color:#021012; }
+.answers button.wrong  { background:var(--wrong); }
+
+.feedback{ text-align:center; min-height:1.2rem; font-size:.85rem; margin-top:.1rem; }
+.feedback.ok { color:var(--accent); }
+.feedback.bad{ color:var(--wrong); }
+
+.controls{ display:flex; gap:.5rem; margin-top:.6rem; }
+.controls button{
+  flex:1; padding:.6rem; border-radius:999px; border:none;
+  font-size:.85rem; font-weight:600; text-transform:uppercase;
+  letter-spacing:.08em; cursor:pointer;
+  touch-action:manipulation; -webkit-appearance:none;
+}
+.primary  { background:var(--accent); color:#021012; }
+.secondary{ background:#111b2a; color:var(--text); }
+.secondary:hover{ background:#1c2e45; }
+
+/* ── TIMER BAR ── */
+.timer-bar-wrap {
+  display:none; height:6px; background:#0c1522;
+  border-radius:999px; margin-bottom:.6rem; overflow:hidden;
+}
+.timer-bar-fill {
+  height:100%; width:100%; background:var(--accent);
+  border-radius:999px; transition:background .3s;
+}
+
+/* ── TIMED RESULT OVERLAY ── */
+.timed-result {
+  display:none; position:absolute; inset:0;
+  background:rgba(5,10,20,.96); border-radius:16px;
+  flex-direction:column; align-items:center; justify-content:center;
+  z-index:100; text-align:center; gap:.5rem;
+}
+.timed-result h2 { font-size:1.3rem; letter-spacing:.06em; color:var(--accent); }
+.timed-result .big-score {
+  font-size:4rem; font-weight:800; color:var(--accent);
+  text-shadow:0 0 24px rgba(62,207,142,.5); line-height:1;
+}
+.timed-result .sub { opacity:.7; font-size:.9rem; margin-bottom:.5rem; }
+.timed-result .result-btns { display:flex; gap:.6rem; }
+.timed-result .result-btns button {
+  padding:.6rem 1.2rem; border-radius:999px; border:none;
+  font-size:.85rem; font-weight:600; text-transform:uppercase;
+  letter-spacing:.08em; cursor:pointer;
+}
+
+.waiting-msg{
+  position:absolute; inset:0; display:flex;
+  align-items:center; justify-content:center;
+  font-size:.85rem; opacity:.4; pointer-events:none; z-index:10;
+}
+
+/* ── CORRECT ANSWER REVEAL (wrong answer) — left side of staff ── */
+.correct-reveal {
+  display:none;
+  position:absolute;
+  top: 2%;
+  left: auto;
+  right: 2%;
+  width: 18%;
+  z-index: 20;
+  text-align: center;
+  pointer-events: none;
+  line-height: 1.15;
+}
+.correct-reveal .it-was {
+  font-size:.6rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#3ecf8e;
+  font-weight:700;
+  opacity:.85;
+  display:block;
+}
+.correct-reveal .answer-label {
+  display:block;
+  font-size:1.1rem;
+  font-weight:800;
+  letter-spacing:.04em;
+  color:#3ecf8e;
+  text-transform:uppercase;
+  text-shadow:0 0 14px rgba(62,207,142,.6);
+}
+</style>
+</head>
+<body>
+
+<!-- RED FLASH OVERLAY -->
+<div id="wrong-flash"></div>
+
+<!-- ── HOME ── -->
+<!-- ── MODE SELECT (first screen) ── -->
+<div id="mode-screen">
+  <h1>🎵 Bagpipe Music Trainer</h1>
+  <div class="subtitle" style="margin-bottom:1.4rem;">What would you like to do?</div>
+  <button class="mode-btn" onclick="selectMode('learn')">
+    <span class="mode-icon">📖</span>
+    Learn the Notes
+    <span class="mode-desc">Tutorials and diagrams to study each note and embellishment</span>
+  </button>
+  <button class="mode-btn" onclick="selectMode('test')">
+    <span class="mode-icon">🎯</span>
+    Test My Knowledge
+    <span class="mode-desc">Quiz yourself — identify notes and embellishments on the staff</span>
+  </button>
+</div>
+
+<!-- ── LEARN LEVEL SELECT ── -->
+<div id="learn-screen" style="display:none;">
+  <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.4rem;box-shadow:0 18px 40px rgba(0,0,0,.6);text-align:center;">
+    <h1 style="font-size:1.4rem;margin-bottom:.4rem;">📖 Learn the Notes</h1>
+    <div class="subtitle" style="margin-bottom:1.2rem;">Choose a topic</div>
+    <button class="level-btn" onclick="startLearn(1)">Level 1 — Notes &amp; Gracenotes</button>
+    <button class="level-btn" onclick="startLearn(2)">Level 2 — Beginner Embellishments</button>
+    <button class="level-btn" onclick="startLearn(3)">Level 3 — Advanced Embellishments</button>
+    <button class="level-btn" style="background:#0c1522;margin-top:.4rem;" onclick="showModeScreen()">← Back</button>
+  </div>
+</div>
+
+<!-- ── TEST LEVEL SELECT (was home-screen) ── -->
+<div id="home-screen" style="display:none;">
+  <h1>🎯 Test My Knowledge</h1>
+  <div class="subtitle">Choose your level</div>
+  <button class="level-btn" onclick="startLevel(1)">Level 1 — Notes &amp; Gracenotes</button>
+  <button class="level-btn" onclick="startLevel(2)">Level 2 — Beginner Embellishments</button>
+  <button class="level-btn" onclick="startLevel(3)">Level 3 — Advanced Embellishments</button>
+  <button class="level-btn" style="background:#0c1522;margin-top:.4rem;" onclick="showModeScreen()">← Back</button>
+</div>
+
+<!-- ── LEARN 1: NOTES & GRACENOTES TUTORIAL ── -->
+<div id="learn1-screen" style="display:none;">
+  <div class="tutorial-card">
+    <button class="back" onclick="showModeScreen()" style="position:absolute;top:12px;right:12px;">🏠 Home</button>
+
+    <!-- Page 1: Introduction -->
+    <div id="l1t-page-intro" class="l1t-page">
+      <div class="page-indicator">Notes &amp; Gracenotes · Introduction</div>
+      <h2>The GHB Scale</h2>
+      <div class="tutorial-body">
+        <p>The Great Highland Bagpipe (GHB) scale has <strong>9 notes</strong> spanning from <strong>Low G</strong> to <strong>High A</strong>, placed on 5 lines called a <strong>staff</strong> or <strong>stave</strong>.</p>
+        <br>
+        <p>During this tutorial we will cover each note individually so we can learn its position on the staff.</p>
+        <br>
+        <p>This tutorial is designed to be used alongside the guidance of a <strong>competent bagpipe tutor</strong> who can direct you on how to play these notes on your practise chanter. The guidance of a tutor will be essential to complete the more advanced levels of this tutorial.</p>
+        <br>
+        <p>Click <strong>Next</strong> to learn the first note.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="showLearnScreen()">← Back</button>
+        <button class="primary controls" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('low-g')">Next →</button>
+      </div>
+    </div>
+
+    <!-- More note pages will be added here -->
+
+    <!-- Page 2: Low G -->
+    <div id="l1t-page-low-g" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 1 of 9</div>
+      <h2>Low G</h2>
+      <div class="tutorial-body">
+        <p>Low G is the <strong>lowest pitched note</strong>, positioned on the <strong>2nd line up</strong> from the bottom of the staff.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+
+      <!-- Staff diagram -->
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <!-- Staff lines -->
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <!-- Treble clef -->
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <!-- SVG note -->
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- Low G note head at y=71.5% of 120 = 85.8px, x=240 centre -->
+            <!-- Line-gap cover for Low G (on a line) -->
+            <rect x="214" y="82" width="30" height="5" fill="#0c1522"/>
+            <!-- Notehead -->
+            <g transform="rotate(-20,240,85.8)">
+              <ellipse cx="240" cy="85.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <!-- Stem down -->
+            <line x1="227" y1="85.8" x2="227" y2="142" stroke="white" stroke-width="2"/>
+            <!-- Label -->
+            <text x="240" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">LOW G</text>
+            <line x1="240" y1="-3" x2="240" y2="80" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('low-a')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 3: Low A -->
+    <div id="l1t-page-low-a" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 2 of 9</div>
+      <h2>Low A</h2>
+      <div class="tutorial-body">
+        <p>Low A is positioned in the <strong>2nd space up</strong> from the bottom of the staff. Keep the note head precisely <strong>between the lines</strong> — not touching either line above or below it.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+
+      <!-- Staff diagram -->
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- Low A at y=63.5% of 120 = 76.2px (space between 2nd and 3rd lines) -->
+            <g transform="rotate(-20,240,76.2)">
+              <ellipse cx="240" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="76.2" x2="227" y2="133" stroke="white" stroke-width="2"/>
+            <text x="240" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">LOW A</text>
+            <line x1="240" y1="-3" x2="240" y2="70" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('low-g')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('b')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 4: B -->
+    <div id="l1t-page-b" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 3 of 9</div>
+      <h2>B</h2>
+      <div class="tutorial-body">
+        <p>B is positioned on the <strong>3rd line</strong> from the bottom of the staff — the middle line. The note head sits directly on this line.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- B at y=56.5% of 120 = 67.8px (3rd line) -->
+            <rect x="214" y="65" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,240,67.8)">
+              <ellipse cx="240" cy="67.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="67.8" x2="227" y2="124" stroke="white" stroke-width="2"/>
+            <text x="240" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">B</text>
+            <line x1="240" y1="-3" x2="240" y2="62" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('low-a')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('c')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 5: C -->
+    <div id="l1t-page-c" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 4 of 9</div>
+      <h2>C</h2>
+      <div class="tutorial-body">
+        <p>C is positioned in the <strong>3rd space up</strong> from the bottom of the staff. Keep the note head precisely between the 3rd and 4th lines — not touching either.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- C at y=48.5% of 120 = 58.2px (3rd space) -->
+            <g transform="rotate(-20,240,58.2)">
+              <ellipse cx="240" cy="58.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="58.2" x2="227" y2="115" stroke="white" stroke-width="2"/>
+            <text x="240" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">C</text>
+            <line x1="240" y1="-3" x2="240" y2="52" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('b')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('d')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 6: D -->
+    <div id="l1t-page-d" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 5 of 9</div>
+      <h2>D</h2>
+      <div class="tutorial-body">
+        <p>D is positioned on the <strong>4th line</strong> from the bottom of the staff. The note head sits directly on this line.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- D at y=41.5% of 120 = 49.8px (4th line) -->
+            <rect x="214" y="47" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,240,49.8)">
+              <ellipse cx="240" cy="49.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="49.8" x2="227" y2="106" stroke="white" stroke-width="2"/>
+            <text x="240" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">D</text>
+            <line x1="240" y1="-3" x2="240" y2="44" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('c')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('e')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 7: E -->
+    <div id="l1t-page-e" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 6 of 9</div>
+      <h2>E</h2>
+      <div class="tutorial-body">
+        <p>E is positioned in the <strong>4th space up</strong> from the bottom of the staff. Keep the note head precisely between the 4th and 5th lines — not touching either.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- E at y=33.5% of 120 = 40.2px (4th space) -->
+            <g transform="rotate(-20,240,40.2)">
+              <ellipse cx="240" cy="40.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="40.2" x2="227" y2="97" stroke="white" stroke-width="2"/>
+            <text x="240" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">E</text>
+            <line x1="240" y1="-3" x2="240" y2="34" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('d')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('f')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 8: F -->
+    <div id="l1t-page-f" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 7 of 9</div>
+      <h2>F</h2>
+      <div class="tutorial-body">
+        <p>F is positioned on the <strong>top (5th) line</strong> of the staff. The note head sits directly on this line.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- F at y=26.5% of 120 = 31.8px (5th line) -->
+            <rect x="214" y="29" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,240,31.8)">
+              <ellipse cx="240" cy="31.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="31.8" x2="227" y2="88" stroke="white" stroke-width="2"/>
+            <text x="320" y="32" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">F</text>
+            <line x1="315" y1="31" x2="260" y2="31.8" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('e')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('high-g')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 9: High G -->
+    <div id="l1t-page-high-g" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 8 of 9</div>
+      <h2>High G</h2>
+      <div class="tutorial-body">
+        <p>High G is positioned in the <strong>space above the top (5th) line</strong> of the staff. Keep the note head precisely above the top line — not touching it.</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- High G at y=19.5% of 120 = 23.4px (space above top line) -->
+            <g transform="rotate(-20,240,23.4)">
+              <ellipse cx="240" cy="23.4" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="23.4" x2="227" y2="80" stroke="white" stroke-width="2"/>
+            <text x="340" y="24" fill="#3ecf8e" font-size="13" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="1">HIGH G</text>
+            <line x1="336" y1="22" x2="260" y2="22" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('f')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('high-a')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Page 10: High A -->
+    <div id="l1t-page-high-a" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Note 9 of 9</div>
+      <h2>High A</h2>
+      <div class="tutorial-body">
+        <p>High A is a little different from the other notes — it sits <strong>above the staff</strong> with no line to rest on. Instead, a short line called a <strong>ledger line</strong> is placed through the note head to imitate a 6th line.</p>
+        <br>
+        <p>Because of this unique feature, High A is the <strong>easiest note to identify</strong> on the staff!</p>
+        <br>
+        <p>To practise identifying and writing the notes, get some <strong>manuscript paper</strong> and get a friend or family member to call out the notes for you to write. They can check your work by referring to the diagram below.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- Left High A (clean, no label) -->
+            <line x1="100" y1="13.8" x2="142" y2="13.8" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,120,13.8)">
+              <ellipse cx="120" cy="13.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="107" y1="13.8" x2="107" y2="70" stroke="white" stroke-width="2"/>
+
+            <!-- Centre High A (labelled) -->
+            <line x1="220" y1="13.8" x2="262" y2="13.8" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,240,13.8)">
+              <ellipse cx="240" cy="13.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="227" y1="13.8" x2="227" y2="70" stroke="white" stroke-width="2"/>
+            <text x="240" y="60" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="0.5">HIGH A</text>
+            <line x1="240" y1="54" x2="240" y2="24" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <!-- Ledger line label — above staff -->
+            <text x="108" y="-8" text-anchor="middle" fill="#f5c842" font-size="11" font-family="system-ui,sans-serif" font-weight="600" letter-spacing="0.5">LEDGER LINE</text>
+            <line x1="155" y1="-4" x2="218" y2="13.8" stroke="#f5c842" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- Right High A (clean, no label) -->
+            <line x1="340" y1="13.8" x2="382" y2="13.8" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,360,13.8)">
+              <ellipse cx="360" cy="13.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="347" y1="13.8" x2="347" y2="70" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('high-g')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('finish')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Finish page -->
+    <div id="l1t-page-finish" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Notes &amp; Gracenotes · Complete</div>
+      <h2>🎉 Well Done!</h2>
+      <div class="tutorial-body">
+        <p>You should now be confident <strong>writing and identifying all the notes</strong> on the GHB scale.</p>
+        <br>
+        <p>There is no quick fix to learning these notes — <strong>repetition will be key</strong>. Keep returning to this tutorial and practising on manuscript paper until each note becomes second nature.</p>
+        <br>
+        <p>Click below to progress to <strong>Gracenotes</strong>.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('high-a')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('grace-intro')">Gracenotes →</button>
+      </div>
+      <button class="level-btn" style="background:#0c1522;width:100%;margin-top:.6rem;" onclick="showModeScreen()">🏠 Home</button>
+    </div>
+
+    <!-- Gracenote Intro page -->
+    <div id="l1t-page-grace-intro" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Gracenotes · Introduction</div>
+      <h2>Welcome to Gracenotes</h2>
+      <div class="tutorial-body">
+        <p>A gracenote is one of the first <strong>embellishments or movements</strong> you will learn. It is simply played by lifting the corresponding finger and returning it sharply to the chanter. A gracenote should make a <strong>quick chirp sound</strong>. Consult your tutor for further guidance.</p>
+        <br>
+        <p>As you will see, it is written by placing a <strong>small note head</strong> at the desired pitch, with the note stem travelling <strong>upward</strong> with <strong>3 flags</strong> placed on the stem.</p>
+        <br>
+        <p>We will now cover the common gracenotes.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('finish')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('grace-g')">Next →</button>
+      </div>
+    </div>
+
+    <!-- G Gracenote page -->
+    <div id="l1t-page-grace-g" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Gracenotes · High G Gracenote</div>
+      <h2>High G Gracenote</h2>
+      <div class="tutorial-body">
+        <p>Commonly called just the <strong>"G Gracenote"</strong>. It is written with the small note head placed in the <strong>same position as the standard High G</strong> note — in the space above the top line.</p>
+        <br>
+        <p>Be aware the gracenote note head is <strong>considerably smaller</strong> than a main note. All gracenotes are written <strong>just before</strong> the note they are played on. For the purpose of this tutorial all gracenotes are shown before a Low A.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+
+            <!-- G Gracenote (High G position y=19.5% of 120=23.4px) -->
+            <!-- Stem upward from right side -->
+            <line x1="213" y1="23.4" x2="213" y2="-14" stroke="white" stroke-width="1.5"/>
+            <!-- 3 flags -->
+            <path d="M 213 -14 Q 220 -16 226 -10" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 213 -9  Q 220 -11 226 -5"  fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 213 -4  Q 220 -6  226  0"  fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Small gracenote head -->
+            <g transform="rotate(-20,206,23.4)">
+              <ellipse cx="206" cy="23.4" rx="7" ry="5" fill="white"/>
+            </g>
+
+            <!-- Low A main note (y=63.5% of 120=76.2px) -->
+            <g transform="rotate(-20,260,76.2)">
+              <ellipse cx="260" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="247" y1="76.2" x2="247" y2="133" stroke="white" stroke-width="2"/>
+
+            <!-- Label to the left, above staff -->
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">HIGH G GRACENOTE</text>
+            <line x1="130" y1="-3" x2="200" y2="20" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('grace-intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('grace-e')">Next →</button>
+      </div>
+    </div>
+
+    <!-- E Gracenote page -->
+    <div id="l1t-page-grace-e" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Gracenotes · E Gracenote</div>
+      <h2>E Gracenote</h2>
+      <div class="tutorial-body">
+        <p>The <strong>E Gracenote</strong> is written with the small note head placed in the <strong>same position as the standard E note</strong> — in the 4th space up from the bottom of the staff, between the 4th and 5th lines.</p>
+        <br>
+        <p>As with all gracenotes, it is written <strong>just before</strong> the note it is played on. Here it is shown before a Low A.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+
+            <!-- E Gracenote (E position y=33.5% of 120=40.2px) -->
+            <!-- Stem upward from right side -->
+            <line x1="213" y1="40.2" x2="213" y2="2" stroke="white" stroke-width="1.5"/>
+            <!-- 3 flags -->
+            <path d="M 213 2  Q 220 0  226 6"  fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 213 7  Q 220 5  226 11" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 213 12 Q 220 10 226 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Small gracenote head -->
+            <g transform="rotate(-20,206,40.2)">
+              <ellipse cx="206" cy="40.2" rx="7" ry="5" fill="white"/>
+            </g>
+
+            <!-- Low A main note (y=63.5% of 120=76.2px) -->
+            <g transform="rotate(-20,260,76.2)">
+              <ellipse cx="260" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="247" y1="76.2" x2="247" y2="133" stroke="white" stroke-width="2"/>
+
+            <!-- Label to the left, above staff -->
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">E GRACENOTE</text>
+            <line x1="130" y1="-3" x2="200" y2="36" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('grace-g')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('grace-d')">Next →</button>
+      </div>
+    </div>
+
+    <div id="l1t-page-grace-d" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Gracenotes · D Gracenote</div>
+      <h2>D Gracenote</h2>
+      <div class="tutorial-body">
+        <p>The <strong>D Gracenote</strong> is written with the small note head placed in the <strong>same position as the standard D note</strong> — on the 4th line from the bottom of the staff.</p>
+        <br>
+        <p>As with all gracenotes, it is written <strong>just before</strong> the note it is played on. Here it is shown before a Low A.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+
+            <!-- D Gracenote (D position y=41.5% of 120=49.8px, on 4th line) -->
+            <!-- Stem upward from right side -->
+            <line x1="213" y1="49.8" x2="213" y2="12" stroke="white" stroke-width="1.5"/>
+            <!-- 3 flags -->
+            <path d="M 213 12 Q 220 10 226 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 213 17 Q 220 15 226 21" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 213 22 Q 220 20 226 26" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Small gracenote head (line note — cover line) -->
+            <rect x="198" y="47" width="18" height="4" fill="#0c1522"/>
+            <g transform="rotate(-20,206,49.8)">
+              <ellipse cx="206" cy="49.8" rx="7" ry="5" fill="white"/>
+            </g>
+
+            <!-- Low A main note (y=63.5% of 120=76.2px) -->
+            <g transform="rotate(-20,260,76.2)">
+              <ellipse cx="260" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/>
+            </g>
+            <line x1="247" y1="76.2" x2="247" y2="133" stroke="white" stroke-width="2"/>
+
+            <!-- Label to the left, above staff -->
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">D GRACENOTE</text>
+            <line x1="130" y1="-3" x2="200" y2="46" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('grace-e')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l1tGoTo('grace-finish')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Gracenote finish page -->
+    <div id="l1t-page-grace-finish" class="l1t-page" style="display:none;">
+      <div class="page-indicator">Gracenotes · Complete</div>
+      <h2>🎉 Well Done!</h2>
+      <div class="tutorial-body">
+        <p>You have now covered the <strong>three common gracenotes</strong> — High G, E and D.</p>
+        <br>
+        <p>Gracenotes are fundamental to bagpipe music and will appear constantly throughout all levels of playing. <strong>Repetition and practise</strong> with your tutor will be key to mastering them.</p>
+        <br>
+        <p>Head to <strong>"Test My Knowledge"</strong> to start identifying gracenotes on the staff.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l1tGoTo('grace-d')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="showModeScreen()">🏠 Home</button>
+      </div>
+    </div>
+
+  </div><!-- end tutorial-card -->
+</div><!-- end learn1-screen -->
+
+<div id="learn2-screen" style="display:none;">
+  <div class="tutorial-card">
+    <button class="back" onclick="showModeScreen()" style="position:absolute;top:12px;right:12px;">🏠 Home</button>
+
+    <!-- Strikes Intro -->
+    <div id="l2t-page-strikes-intro" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Beginner Embellishments · Strikes</div>
+      <h2>Strikes</h2>
+      <div class="tutorial-body">
+        <p>Strikes are used as a means of <strong>separating two notes of the same pitch</strong>. They are made by striking the chanter with one, two or three fingers simultaneously in order to momentarily cover the holes necessary for the sounding of the note which appears as a <strong>gracenote between them</strong>.</p>
+        <br>
+        <p>Your tutor will be able to give further guidance.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="showLearnScreen()">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('lowa-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Low A Strike -->
+    <div id="l2t-page-lowa-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · Low A Strike</div>
+      <h2>Low A Strike</h2>
+      <div class="tutorial-body">
+        <p>The <strong>Low A Strike</strong> consists of two main Low A notes with a <strong>Low G gracenote</strong> between them.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this embellishment on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <g transform="rotate(-20,180,76.2)"><ellipse cx="180" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="76.2" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,300,76.2)"><ellipse cx="300" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="76.2" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="85.8" x2="246" y2="48" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 48 Q 253 46 259 52" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 53 Q 253 51 259 57" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 58 Q 253 56 259 62" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,85.8)"><ellipse cx="239" cy="85.8" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">LOW A STRIKE</text>
+            <line x1="143" y1="-3" x2="167" y2="72" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('strikes-intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('b-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- B Strike (two variants) -->
+    <div id="l2t-page-b-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · B Strike</div>
+      <h2>B Strike</h2>
+      <div class="tutorial-body">
+        <p>The B Strike has <strong>two variants</strong>:</p>
+        <br>
+        <p><strong>Open B Strike</strong> — uses a <strong>Low A gracenote</strong> in the middle, closing briefly to Low A for a more open sound.</p>
+        <br>
+        <p><strong>Closed B Strike</strong> — uses a <strong>Low G gracenote</strong> in the middle, closing down to Low G for a slightly darker, more closed sound. Your tutor will guide you on when to use each variant.</p>
+      </div>
+      <div style="font-size:.75rem;opacity:.6;text-align:center;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.08em;">Open B Strike</div>
+      <div class="tutorial-staff-wrap" style="margin-bottom:.6rem;">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <rect x="165" y="65" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,180,67.8)"><ellipse cx="180" cy="67.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="67.8" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <rect x="285" y="65" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,300,67.8)"><ellipse cx="300" cy="67.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="67.8" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="76.2" x2="246" y2="38" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 38 Q 253 36 259 42" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 43 Q 253 41 259 47" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 48 Q 253 46 259 52" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,76.2)"><ellipse cx="239" cy="76.2" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">OPEN B STRIKE</text>
+            <line x1="143" y1="-3" x2="167" y2="63" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div style="font-size:.75rem;opacity:.6;text-align:center;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.08em;">Closed B Strike</div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <rect x="165" y="65" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,180,67.8)"><ellipse cx="180" cy="67.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="67.8" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <rect x="285" y="65" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,300,67.8)"><ellipse cx="300" cy="67.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="67.8" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="85.8" x2="246" y2="48" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 48 Q 253 46 259 52" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 53 Q 253 51 259 57" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 58 Q 253 56 259 62" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,85.8)"><ellipse cx="239" cy="85.8" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">CLOSED B STRIKE</text>
+            <line x1="150" y1="-3" x2="167" y2="63" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('lowa-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('c-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- C Strike -->
+    <div id="l2t-page-c-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · C Strike</div>
+      <h2>C Strike</h2>
+      <div class="tutorial-body">
+        <p>The <strong>C Strike</strong> consists of two main C notes with a <strong>Low G gracenote</strong> between them.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this embellishment on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <g transform="rotate(-20,180,58.2)"><ellipse cx="180" cy="58.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="58.2" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,300,58.2)"><ellipse cx="300" cy="58.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="58.2" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="85.8" x2="246" y2="48" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 48 Q 253 46 259 52" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 53 Q 253 51 259 57" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 58 Q 253 56 259 62" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,85.8)"><ellipse cx="239" cy="85.8" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">C STRIKE</text>
+            <line x1="120" y1="-3" x2="167" y2="54" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('b-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('d-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- D Strike (two variants) -->
+    <div id="l2t-page-d-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · D Strike</div>
+      <h2>D Strike</h2>
+      <div class="tutorial-body">
+        <p>The D Strike also has <strong>two variants</strong>:</p>
+        <br>
+        <p><strong>Open D Strike</strong> — uses a <strong>C gracenote</strong> in the middle, closing briefly to C for a brighter, more open sound.</p>
+        <br>
+        <p><strong>Closed D Strike</strong> — uses a <strong>Low G gracenote</strong> in the middle, closing all the way down to Low G for a heavier, more closed sound. Your tutor will guide you on when to use each variant.</p>
+      </div>
+      <div style="font-size:.75rem;opacity:.6;text-align:center;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.08em;">Open D Strike</div>
+      <div class="tutorial-staff-wrap" style="margin-bottom:.6rem;">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <rect x="165" y="47" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,180,49.8)"><ellipse cx="180" cy="49.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="49.8" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <rect x="285" y="47" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,300,49.8)"><ellipse cx="300" cy="49.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="49.8" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="58.2" x2="246" y2="20" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 20 Q 253 18 259 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 25 Q 253 23 259 29" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 30 Q 253 28 259 34" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,58.2)"><ellipse cx="239" cy="58.2" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">OPEN D STRIKE</text>
+            <line x1="143" y1="-3" x2="167" y2="45" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div style="font-size:.75rem;opacity:.6;text-align:center;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.08em;">Closed D Strike</div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <rect x="165" y="47" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,180,49.8)"><ellipse cx="180" cy="49.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="49.8" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <rect x="285" y="47" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,300,49.8)"><ellipse cx="300" cy="49.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="49.8" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="85.8" x2="246" y2="48" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 48 Q 253 46 259 52" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 53 Q 253 51 259 57" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 58 Q 253 56 259 62" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,85.8)"><ellipse cx="239" cy="85.8" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">CLOSED D STRIKE</text>
+            <line x1="150" y1="-3" x2="167" y2="45" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('c-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('e-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- E Strike -->
+    <div id="l2t-page-e-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · E Strike</div>
+      <h2>E Strike</h2>
+      <div class="tutorial-body">
+        <p>The <strong>E Strike</strong> consists of two main E notes with a <strong>Low A gracenote</strong> between them.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this embellishment on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <g transform="rotate(-20,180,40.2)"><ellipse cx="180" cy="40.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="40.2" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,300,40.2)"><ellipse cx="300" cy="40.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="40.2" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="76.2" x2="246" y2="38" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 38 Q 253 36 259 42" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 43 Q 253 41 259 47" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 48 Q 253 46 259 52" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,76.2)"><ellipse cx="239" cy="76.2" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">E STRIKE</text>
+            <line x1="120" y1="-3" x2="167" y2="36" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('d-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('f-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- F Strike -->
+    <div id="l2t-page-f-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · F Strike</div>
+      <h2>F Strike</h2>
+      <div class="tutorial-body">
+        <p>The <strong>F Strike</strong> consists of two main F notes with an <strong>E gracenote</strong> between them.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this embellishment on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <rect x="165" y="29" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,180,31.8)"><ellipse cx="180" cy="31.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="31.8" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <rect x="285" y="29" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,300,31.8)"><ellipse cx="300" cy="31.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="31.8" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="40.2" x2="246" y2="2" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 2  Q 253 0  259 6"  fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 7  Q 253 5  259 11" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 12 Q 253 10 259 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,40.2)"><ellipse cx="239" cy="40.2" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">F STRIKE</text>
+            <line x1="120" y1="-3" x2="167" y2="27" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('e-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('high-g-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- High G Strike -->
+    <div id="l2t-page-high-g-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · High G Strike</div>
+      <h2>High G Strike</h2>
+      <div class="tutorial-body">
+        <p>The <strong>High G Strike</strong> consists of two main High G notes with an <strong>F gracenote</strong> between them.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this embellishment on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <g transform="rotate(-20,180,23.4)"><ellipse cx="180" cy="23.4" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="23.4" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,300,23.4)"><ellipse cx="300" cy="23.4" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="23.4" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="31.8" x2="246" y2="-6" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 -6 Q 253 -8 259 -2" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246 -1 Q 253 -3 259  3" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246  4 Q 253  2 259  8" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,31.8)"><ellipse cx="239" cy="31.8" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">HIGH G STRIKE</text>
+            <line x1="143" y1="-3" x2="167" y2="19" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('f-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('high-a-strike')">Next →</button>
+      </div>
+    </div>
+
+    <!-- High A Strike -->
+    <div id="l2t-page-high-a-strike" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · High A Strike</div>
+      <h2>High A Strike</h2>
+      <div class="tutorial-body">
+        <p>The <strong>High A Strike</strong> consists of two main High A notes with a <strong>High G gracenote</strong> between them. Note the <strong>ledger lines</strong> through both main note heads.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this embellishment on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <line x1="160" y1="13.8" x2="202" y2="13.8" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,180,13.8)"><ellipse cx="180" cy="13.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="167" y1="13.8" x2="167" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="280" y1="13.8" x2="322" y2="13.8" stroke="white" stroke-width="2"/>
+            <g transform="rotate(-20,300,13.8)"><ellipse cx="300" cy="13.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="287" y1="13.8" x2="287" y2="114" stroke="white" stroke-width="2"/>
+            <line x1="167" y1="114" x2="287" y2="114" stroke="white" stroke-width="3"/>
+            <line x1="246" y1="23.4" x2="246" y2="-14" stroke="white" stroke-width="1.5"/>
+            <path d="M 246 -14 Q 253 -16 259 -10" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246  -9 Q 253 -11 259  -5" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 246  -4 Q 253  -6 259   0" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,239,23.4)"><ellipse cx="239" cy="23.4" rx="7" ry="5" fill="white"/></g>
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="11" font-family="system-ui,sans-serif" font-weight="700">HIGH A STRIKE</text>
+            <line x1="143" y1="-3" x2="167" y2="9" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('high-g-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('strikes-finish')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Strikes Finish -->
+    <div id="l2t-page-strikes-finish" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Strikes · Complete</div>
+      <h2>&#127881; Well Done!</h2>
+      <div class="tutorial-body">
+        <p>You have now covered all the strikes in the beginner embellishments level.</p>
+        <br>
+        <p>Repetition and practise with your tutor will be essential to mastering these embellishments on the chanter.</p>
+        <br>
+        <p>Click below to continue to <strong>Tachums</strong>.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('high-a-strike')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('tachum-intro')">Tachums →</button>
+      </div>
+      <button class="level-btn" style="background:#0c1522;width:100%;margin-top:.6rem;" onclick="showModeScreen()">&#127968; Home</button>
+    </div>
+
+    <!-- Tachum Intro -->
+    <div id="l2t-page-tachum-intro" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Beginner Embellishments · Tachums</div>
+      <h2>Tachums</h2>
+      <div class="tutorial-body">
+        <p>A Tachum is an embellishment used to move between two notes of <strong>different pitch</strong>. It consists of a <strong>gracenote before each main note</strong>, creating a smooth decorative movement between them.</p>
+        <br>
+        <p>There are two common Tachums — <strong>B to Low G</strong> and <strong>C to Low A</strong>. Each uses a <strong>G gracenote</strong> before the first note and a <strong>D gracenote</strong> before the second.</p>
+        <br>
+        <p>Your tutor will be able to give further guidance on how to play these.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('strikes-finish')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('bg-tachum')">Next →</button>
+      </div>
+    </div>
+
+    <!-- B to G Tachum -->
+    <div id="l2t-page-bg-tachum" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Tachums · B to Low G</div>
+      <h2>B to Low G Tachum</h2>
+      <div class="tutorial-body">
+        <p>This Tachum moves from <strong>B down to Low G</strong>. A <strong>G gracenote</strong> is placed before the main B note, followed by a <strong>D gracenote</strong> before the main Low G note.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- G gracenote (High G y=23.4) before B -->
+            <line x1="149" y1="23.4" x2="149" y2="-10" stroke="white" stroke-width="1.5"/>
+            <path d="M 149 -10 Q 156 -12 162 -6" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149 -5  Q 156 -7  162 -1" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149  0  Q 156 -2  162  4" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,142,23.4)"><ellipse cx="142" cy="23.4" rx="7" ry="5" fill="white"/></g>
+            <!-- Main B note (y=67.8) -->
+            <rect x="155" y="65" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,170,67.8)"><ellipse cx="170" cy="67.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="157" y1="67.8" x2="157" y2="114" stroke="white" stroke-width="2"/>
+            <!-- D gracenote (D y=49.8) before Low G -->
+            <line x1="221" y1="49.8" x2="221" y2="12" stroke="white" stroke-width="1.5"/>
+            <path d="M 221 12 Q 228 10 234 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 17 Q 228 15 234 21" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 22 Q 228 20 234 26" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,214,49.8)"><ellipse cx="214" cy="49.8" rx="7" ry="5" fill="white"/></g>
+            <!-- Main Low G note (y=85.8) -->
+            <rect x="227" y="83" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,242,85.8)"><ellipse cx="242" cy="85.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="229" y1="85.8" x2="229" y2="114" stroke="white" stroke-width="2"/>
+            <!-- Beam connecting B and Low G stems -->
+            <line x1="157" y1="114" x2="229" y2="114" stroke="white" stroke-width="3"/>
+            <!-- Labels -->
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="10" font-family="system-ui,sans-serif" font-weight="700">B TO LOW G TACHUM</text>
+            <line x1="130" y1="-3" x2="157" y2="63" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('tachum-intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('ca-tachum')">Next →</button>
+      </div>
+    </div>
+
+    <!-- C to Low A Tachum -->
+    <div id="l2t-page-ca-tachum" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Tachums · C to Low A</div>
+      <h2>C to Low A Tachum</h2>
+      <div class="tutorial-body">
+        <p>This Tachum moves from <strong>C down to Low A</strong>. A <strong>G gracenote</strong> is placed before the main C note, followed by a <strong>D gracenote</strong> before the main Low A note.</p>
+        <br>
+        <p>Consult your tutor for guidance on how to play this on the practise chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">&#119070;</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- G gracenote (High G y=23.4) before C -->
+            <line x1="149" y1="23.4" x2="149" y2="-10" stroke="white" stroke-width="1.5"/>
+            <path d="M 149 -10 Q 156 -12 162 -6" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149 -5  Q 156 -7  162 -1" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149  0  Q 156 -2  162  4" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,142,23.4)"><ellipse cx="142" cy="23.4" rx="7" ry="5" fill="white"/></g>
+            <!-- Main C note (y=58.2) -->
+            <g transform="rotate(-20,170,58.2)"><ellipse cx="170" cy="58.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="157" y1="58.2" x2="157" y2="114" stroke="white" stroke-width="2"/>
+            <!-- D gracenote (D y=49.8) before Low A -->
+            <line x1="221" y1="49.8" x2="221" y2="12" stroke="white" stroke-width="1.5"/>
+            <path d="M 221 12 Q 228 10 234 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 17 Q 228 15 234 21" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 22 Q 228 20 234 26" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,214,49.8)"><ellipse cx="214" cy="49.8" rx="7" ry="5" fill="white"/></g>
+            <!-- Main Low A note (y=76.2) -->
+            <g transform="rotate(-20,242,76.2)"><ellipse cx="242" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="229" y1="76.2" x2="229" y2="114" stroke="white" stroke-width="2"/>
+            <!-- Beam connecting C and Low A stems -->
+            <line x1="157" y1="114" x2="229" y2="114" stroke="white" stroke-width="3"/>
+            <!-- Labels -->
+            <text x="90" y="-8" text-anchor="middle" fill="#3ecf8e" font-size="10" font-family="system-ui,sans-serif" font-weight="700">C TO LOW A TACHUM</text>
+            <line x1="132" y1="-3" x2="157" y2="54" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('bg-tachum')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('tachum-finish')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Tachum Finish -->
+    <div id="l2t-page-tachum-finish" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Tachums · Complete</div>
+      <h2>&#127881; Well Done!</h2>
+      <div class="tutorial-body">
+        <p>You have now covered both Tachums in the beginner embellishments level.</p>
+        <br>
+        <p>Repetition and practise with your tutor will be essential to mastering these on the chanter.</p>
+        <br>
+        <p>Head to <strong>"Test My Knowledge"</strong> to identify Tachums on the staff.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('ca-tachum')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="showModeScreen()">&#127968; Home</button>
+      </div>
+    </div>
+
+  </div><!-- end tutorial-card -->
+</div><!-- end learn2-screen -->
+
+<div id="learn3-screen" style="display:none;">
+  <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.4rem;box-shadow:0 18px 40px rgba(0,0,0,.6);text-align:center;">
+    <h1 style="font-size:1.2rem;margin-bottom:.8rem;">Level 3 — Advanced Embellishments</h1>
+    <p style="opacity:.7;font-size:.9rem;margin-bottom:1.2rem;">Tutorial coming soon — diagrams and descriptions will appear here.</p>
+    <button class="level-btn" style="background:#0c1522;" onclick="showLearnScreen()">← Back</button>
+  </div>
+</div>
+
+<!-- ── LEVEL 1 ── -->
+<div id="level1-screen">
+  <div class="app" style="position:relative;">
+    <button class="back" onclick="goHome()">← Home</button>
+    <header>
+      <h1>Bagpipe Note Trainer</h1>
+      <div class="badge">Low G – High A + Gracenotes</div>
+    </header>
+    <div class="score-bar">
+      <span>Score: <strong id="l1-score">0</strong></span>
+      <span>Questions: <strong id="l1-q">0</strong></span>
+      <span>Streak: <strong id="l1-streak">0</strong> 🔥</span>
+    </div>
+    <div class="staff-container">
+      <div class="staff" id="l1-staff">
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div>
+        <div class="clef">𝄞</div>
+        <svg id="l1-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        <div class="waiting-msg" id="l1-waiting">Press Start</div>
+        <div class="correct-reveal" id="l1-correct-reveal">
+          <span class="it-was">IT WAS</span>
+          <span class="answer-label" id="l1-correct-label"></span>
+        </div>
+      </div>
+      <div id="l1-prompt" style="text-align:center;font-size:.82rem;opacity:.7;margin-top:.2rem;">Press Start to begin</div>
+    </div>
+    <div class="timer-bar-wrap" id="l1-timer-wrap">
+      <div class="timer-bar-fill" id="l1-timer-fill"></div>
+    </div>
+    <div class="answers" id="l1-answers"></div>
+    <div class="feedback" id="l1-feedback"></div>
+    <div class="controls">
+      <button class="secondary" id="l1-reset">Reset</button>
+      <button class="primary"   id="l1-start">Start</button>
+      <button class="secondary" id="l1-timed">⏱ Timed</button>
+    </div>
+    <div class="timed-result" id="l1-result">
+      <h2>⏱ TIME'S UP!</h2>
+      <div style="font-size:.8rem;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Level 1 — Notes &amp; Gracenotes</div>
+      <div class="big-score" id="l1-result-score">0</div>
+      <div class="sub">correct in 30 seconds</div>
+      <div class="result-btns">
+        <button class="primary"   onclick="startTimed(st1)">Try Again</button>
+        <button class="secondary" onclick="endTimed(st1)">Exit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="level2-screen">
+  <div class="app" style="position:relative;">
+    <button class="back" onclick="goHome()">← Home</button>
+    <header>
+      <h1>Beginner Embellishments</h1>
+      <div class="badge">Doublings</div>
+    </header>
+    <div class="score-bar">
+      <span>Score: <strong id="l2-score">0</strong></span>
+      <span>Questions: <strong id="l2-q">0</strong></span>
+      <span>Streak: <strong id="l2-streak">0</strong> 🔥</span>
+    </div>
+    <div class="staff-container">
+      <div class="staff" id="l2-staff">
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div>
+        <div class="clef">𝄞</div>
+        <svg id="l2-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        <div class="waiting-msg" id="l2-waiting">Press Start</div>
+        <div class="correct-reveal" id="l2-correct-reveal">
+          <span class="it-was">IT WAS</span>
+          <span class="answer-label" id="l2-correct-label"></span>
+        </div>
+      </div>
+      <div id="l2-prompt" style="text-align:center;font-size:.82rem;opacity:.7;margin-top:.2rem;">Press Start to begin</div>
+    </div>
+    <div class="timer-bar-wrap" id="l2-timer-wrap">
+      <div class="timer-bar-fill" id="l2-timer-fill"></div>
+    </div>
+    <div class="answers" id="l2-answers"></div>
+    <div class="feedback" id="l2-feedback"></div>
+    <div class="controls">
+      <button class="secondary" id="l2-reset">Reset</button>
+      <button class="primary"   id="l2-start">Start</button>
+      <button class="secondary" id="l2-timed">⏱ Timed</button>
+    </div>
+    <div class="timed-result" id="l2-result">
+      <h2>⏱ TIME'S UP!</h2>
+      <div style="font-size:.8rem;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Level 2 — Beginner Embellishments</div>
+      <div class="big-score" id="l2-result-score">0</div>
+      <div class="sub">correct in 30 seconds</div>
+      <div class="result-btns">
+        <button class="primary"   onclick="startTimed(st2)">Try Again</button>
+        <button class="secondary" onclick="endTimed(st2)">Exit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LEVEL 3 ── -->
+<div id="level3-screen">
+  <div class="app" style="position:relative;">
+    <button class="back" onclick="goHome()">← Home</button>
+    <header>
+      <h1>Advanced Embellishments</h1>
+      <div class="badge">Taorluath &amp; More</div>
+    </header>
+    <div class="score-bar">
+      <span>Score: <strong id="l3-score">0</strong></span>
+      <span>Questions: <strong id="l3-q">0</strong></span>
+      <span>Streak: <strong id="l3-streak">0</strong> 🔥</span>
+    </div>
+    <div class="staff-container">
+      <div class="staff" id="l3-staff">
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div>
+        <div class="clef">𝄞</div>
+        <svg id="l3-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        <div class="waiting-msg" id="l3-waiting">Press Start</div>
+        <div class="correct-reveal" id="l3-correct-reveal">
+          <span class="it-was">IT WAS</span>
+          <span class="answer-label" id="l3-correct-label"></span>
+        </div>
+      </div>
+      <div id="l3-prompt" style="text-align:center;font-size:.82rem;opacity:.7;margin-top:.2rem;">Press Start to begin</div>
+    </div>
+    <div class="timer-bar-wrap" id="l3-timer-wrap">
+      <div class="timer-bar-fill" id="l3-timer-fill"></div>
+    </div>
+    <div class="answers" id="l3-answers"></div>
+    <div class="feedback" id="l3-feedback"></div>
+    <div class="controls">
+      <button class="secondary" id="l3-reset">Reset</button>
+      <button class="primary"   id="l3-start">Start</button>
+      <button class="secondary" id="l3-timed">⏱ Timed</button>
+    </div>
+    <div class="timed-result" id="l3-result">
+      <h2>⏱ TIME'S UP!</h2>
+      <div style="font-size:.8rem;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Level 3 — Advanced Embellishments</div>
+      <div class="big-score" id="l3-result-score">0</div>
+      <div class="sub">correct in 30 seconds</div>
+      <div class="result-btns">
+        <button class="primary"   onclick="startTimed(st3)">Try Again</button>
+        <button class="secondary" onclick="endTimed(st3)">Exit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   SHARED SVG DRAWING UTILITIES
+   viewBox 480×140 for both levels
+   ════════════════════════════════════════════ */
+const SVG_W = 480, SVG_H = 140;
+
+function svgEl(tag, attrs){
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for(const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+  return el;
+}
+function clearSVG(svg){ while(svg.firstChild) svg.removeChild(svg.firstChild); }
+function yPx(pct){ return pct / 100 * SVG_H; }
+
+// Right-side note position (right:14%)
+const NOTE_X  = SVG_W * 0.50;   // centre of stave
+const LINE_NOTES = new Set(['low_g','b','d','f']);
+
+/* ── Draw a gracenote (small head + upward stem + 3 flags) ──
+   x      : centre x of the gracehead
+   notePct: y% position of the gracehead
+   svg    : which SVG element to draw into               */
+function drawGraceUnit(svg, x, notePct){
+  const cy     = yPx(notePct);
+  const rx = 6, ry = 4;
+  const STEM_H = 38;
+  const stemX  = x + rx;   // RIGHT edge of head
+  const stemTop= cy - STEM_H;
+
+  // Gracehead
+  const g = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+  g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+  svg.appendChild(g);
+
+  // Stem upward from right side
+  svg.appendChild(svgEl('line',{
+    x1:stemX, y1:cy, x2:stemX, y2:stemTop,
+    stroke:'white','stroke-width':'2'
+  }));
+
+  // 3 flags — short diagonal ticks to the right
+  for(let i=0; i<3; i++){
+    const fy = stemTop + i*5;
+    const d  = `M ${stemX} ${fy} Q ${stemX+7} ${fy-2} ${stemX+13} ${fy+4}`;
+    svg.appendChild(svgEl('path',{
+      d, fill:'none', stroke:'white',
+      'stroke-width':'2','stroke-linecap':'round'
+    }));
+  }
+}
+
+/* ── Draw a main note head + downward stem ── */
+function drawMainNoteUnit(svg, x, notePct, noteId){
+  const cy = yPx(notePct);
+  const rx = 13, ry = 9;
+
+  // Line-gap cover
+  if(LINE_NOTES.has(noteId)){
+    svg.appendChild(svgEl('rect',{
+      x:x-rx-2, y:cy-2, width:rx*2+4, height:4, fill:'#0c1522'
+    }));
+  }
+
+  // Notehead
+  const g = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+  g.appendChild(svgEl('ellipse',{
+    cx:x, cy, rx, ry, fill:'black', stroke:'white','stroke-width':'2'
+  }));
+  svg.appendChild(g);
+
+  // Stem downward
+  svg.appendChild(svgEl('line',{
+    x1:x-rx, y1:cy, x2:x-rx, y2:cy+55,
+    stroke:'white','stroke-width':'2'
+  }));
+
+  // Ledger line for High A
+  if(noteId==='high_a'){
+    svg.appendChild(svgEl('line',{
+      x1:x-rx-6, y1:cy, x2:x+rx+6, y2:cy,
+      stroke:'white','stroke-width':'2'
+    }));
+  }
+}
+
+/* ════════════════════════════════════════════
+   LEVEL 1 — NOTES & GRACENOTES
+   ════════════════════════════════════════════ */
+const L1_NOTES=[
+  {id:'low_g', label:'Low G',  y:71.5},
+  {id:'low_a', label:'Low A',  y:63.5},
+  {id:'b',     label:'B',      y:56.5},
+  {id:'c',     label:'C',      y:48.5},
+  {id:'d',     label:'D',      y:41.5},
+  {id:'e',     label:'E',      y:33.5},
+  {id:'f',     label:'F',      y:26.5},
+  {id:'high_g',label:'High G', y:19.5},
+  {id:'high_a',label:'High A', y:11.5}
+];
+const L1_GRACE=[
+  {id:'g_grace',label:'G Gracenote',y:19.5},
+  {id:'d_grace',label:'D Gracenote',y:41.5},
+  {id:'e_grace',label:'E Gracenote',y:33.5}
+];
+const L1_ALL=[...L1_NOTES,...L1_GRACE];
+
+function l1Render(note, svg){
+  clearSVG(svg);
+  if(note.id.includes('grace')){
+    drawGraceUnit(svg, NOTE_X, note.y);
+  } else {
+    drawMainNoteUnit(svg, NOTE_X, note.y, note.id);
+  }
+}
+
+/* ════════════════════════════════════════════
+   LEVEL 2 — BEGINNER EMBELLISHMENTS
+   Each embellishment entry has:
+     id, label, drawFn(svg)
+   ════════════════════════════════════════════ */
+
+/*  C DOUBLING
+    3 gracenotes: High G (y=19.5), C (y=48.5), D (y=41.5)
+    - Small filled heads, stems rise from RIGHT side of each head
+    - Stems all reach a common beam top two staff spaces above the stave
+    - 3 tight horizontal beams connect all three stems at the top
+    - Main note C sits one note head-width to the right of the group  */
+function drawCDoubling(svg){
+  clearSVG(svg);
+
+  // Total group width: graces span ~68px + 26px gap + 26px main head = ~120px
+  // Centre of stave = SVG_W/2 = 240. So anchor left of group at 240 - 60 = 180.
+  const GROUP_LEFT = SVG_W / 2 - 60;  // leftmost gracehead centre
+  const GX  = [GROUP_LEFT, GROUP_LEFT + 18, GROUP_LEFT + 36];
+  const MAIN_X = GROUP_LEFT + 36 + 30; // main note: one gap right of last grace
+  const GPY = [19.5, 48.5, 41.5]; // High G, C, D
+
+  const BEAM_TOP = yPx(25) - 42;  // two staff spaces above top line
+  const rx = 6, ry = 4;
+
+  // Stems on the RIGHT side of each gracehead (x + rx)
+  GX.forEach((x, i) => {
+    const cy    = yPx(GPY[i]);
+    const stemX = x + rx;          // RIGHT edge of head
+    svg.appendChild(svgEl('line',{
+      x1:stemX, y1:cy,
+      x2:stemX, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  // 3 tight horizontal beams spanning all stems
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+
+  for(let b = 0; b < 3; b++){
+    const by = BEAM_TOP + b * 4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by,
+      x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  // Graceheads drawn on top of stems
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+
+  // Main note — C, sitting right of the grace group
+  drawMainNoteUnit(svg, MAIN_X, 48.5, 'c');
+}
+
+/*  B DOUBLING — identical to C Doubling but:
+    middle gracenote = B (y=56.5), main note = B (y=56.5)  */
+function drawBDoubling(svg){
+  clearSVG(svg);
+
+  const GROUP_LEFT = SVG_W / 2 - 60;
+  const GX  = [GROUP_LEFT, GROUP_LEFT + 18, GROUP_LEFT + 36];
+  const GPY = [19.5, 56.5, 41.5]; // High G, B, D
+  const MAIN_X = GROUP_LEFT + 36 + 30;
+
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b=0; b<3; b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+
+  drawMainNoteUnit(svg, MAIN_X, 56.5, 'b');
+}
+
+/*  LOW A DOUBLING — identical structure, centre gracenote = Low A (y=63.5),
+    main note = Low A (y=63.5)  */
+function drawLowADoubling(svg){
+  clearSVG(svg);
+
+  const GROUP_LEFT = SVG_W / 2 - 60;
+  const GX  = [GROUP_LEFT, GROUP_LEFT + 18, GROUP_LEFT + 36];
+  const GPY = [19.5, 63.5, 41.5]; // High G, Low A, D
+  const MAIN_X = GROUP_LEFT + 36 + 30;
+
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b=0; b<3; b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+
+  drawMainNoteUnit(svg, MAIN_X, 63.5, 'low_a');
+}
+
+/* ── Shared helper — draws just the beamed gracenote group, no main note ──
+   gpY: array of 3 y% values for the three graceheads [High G, middle, D]  */
+function drawBeamedGroup(svg, gpY){
+  const GROUP_LEFT = SVG_W / 2 - 27; // centred when no main note follows
+  const GX  = [GROUP_LEFT, GROUP_LEFT + 18, GROUP_LEFT + 36];
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  GX.forEach((x, i) => {
+    const cy = yPx(gpY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b=0; b<3; b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  GX.forEach((x, i) => {
+    const cy = yPx(gpY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+}
+
+/* Bare doublings — grace group only, no following main note */
+function drawCDoublingBare(svg){
+  clearSVG(svg);
+  drawBeamedGroup(svg, [19.5, 48.5, 41.5]);
+}
+function drawBDoublingBare(svg){
+  clearSVG(svg);
+  drawBeamedGroup(svg, [19.5, 56.5, 41.5]);
+}
+function drawLowADoublingBare(svg){
+  clearSVG(svg);
+  drawBeamedGroup(svg, [19.5, 63.5, 41.5]);
+}
+
+/*  D DOUBLING — gracenotes: High G (y=19.5), D (y=41.5), E (y=33.5)
+    main note: D (y=41.5)  */
+function drawDDoubling(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 60;
+  const GX  = [GROUP_LEFT, GROUP_LEFT + 18, GROUP_LEFT + 36];
+  const GPY = [19.5, 41.5, 33.5]; // High G, D, E
+  const MAIN_X = GROUP_LEFT + 36 + 30;
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b=0; b<3; b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  drawMainNoteUnit(svg, MAIN_X, 41.5, 'd');
+}
+
+function drawDDoublingBare(svg){
+  clearSVG(svg);
+  drawBeamedGroup(svg, [19.5, 41.5, 33.5]);
+}
+
+/*  E DOUBLING — gracenotes: High G (y=19.5), E (y=33.5), F (y=26.5)
+    main note: E (y=33.5)  */
+function drawEDoubling(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 60;
+  const GX  = [GROUP_LEFT, GROUP_LEFT + 18, GROUP_LEFT + 36];
+  const GPY = [19.5, 33.5, 26.5];
+  const MAIN_X = GROUP_LEFT + 36 + 30;
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{ x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP, stroke:'white','stroke-width':'2' }));
+  });
+  const lx = GX[0]+rx, rx2 = GX[2]+rx;
+  for(let b=0;b<3;b++){
+    const by=BEAM_TOP+b*4;
+    svg.appendChild(svgEl('line',{ x1:lx, y1:by, x2:rx2, y2:by, stroke:'white','stroke-width':'2.5' }));
+  }
+  GX.forEach((x, i) => {
+    const cy=yPx(GPY[i]);
+    const g=svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  drawMainNoteUnit(svg, MAIN_X, 33.5, 'e');
+}
+function drawEDoublingBare(svg){ clearSVG(svg); drawBeamedGroup(svg,[19.5,33.5,26.5]); }
+
+/*  F DOUBLING — gracenotes: High G (y=19.5), F (y=26.5), High G (y=19.5)
+    main note: F (y=26.5)  */
+function drawFDoubling(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 60;
+  const GX  = [GROUP_LEFT, GROUP_LEFT + 18, GROUP_LEFT + 36];
+  const GPY = [19.5, 26.5, 19.5];
+  const MAIN_X = GROUP_LEFT + 36 + 30;
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{ x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP, stroke:'white','stroke-width':'2' }));
+  });
+  const lx = GX[0]+rx, rx2 = GX[2]+rx;
+  for(let b=0;b<3;b++){
+    const by=BEAM_TOP+b*4;
+    svg.appendChild(svgEl('line',{ x1:lx, y1:by, x2:rx2, y2:by, stroke:'white','stroke-width':'2.5' }));
+  }
+  GX.forEach((x, i) => {
+    const cy=yPx(GPY[i]);
+    const g=svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  drawMainNoteUnit(svg, MAIN_X, 26.5, 'f');
+}
+function drawFDoublingBare(svg){ clearSVG(svg); drawBeamedGroup(svg,[19.5,26.5,19.5]); }
+
+/*  E STRIKE
+    - Main note E (y=33.5) on the left
+    - Single gracenote High G (y=19.5) in the centre
+    - Main note E (y=33.5) on the right
+    All three centred on the stave                    */
+/* LOW A STRIKE — two Low A main notes flanking a Low G gracenote */
+function drawLowAStrike(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 63.5, 'low_a');
+  drawMainNoteUnit(svg, C+38, 63.5, 'low_a');
+  drawGraceUnit(svg, C, 71.5);
+  const stemY = yPx(63.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+function drawEStrike(svg){
+  clearSVG(svg);
+  const CENTRE   = SVG_W / 2;
+  const GRACE_X  = CENTRE;
+  const LEFT_X   = CENTRE - 38;
+  const RIGHT_X  = CENTRE + 38;
+  drawMainNoteUnit(svg, LEFT_X,  33.5, 'e');
+  drawMainNoteUnit(svg, RIGHT_X, 33.5, 'e');
+  drawGraceUnit(svg, GRACE_X, 63.5);
+  // Quaver beam joining bottom of both stems
+  const stemY = yPx(33.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:LEFT_X-13, y1:stemY, x2:RIGHT_X-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* B STRIKE CLOSED — two B main notes flanking a Low G gracenote */
+function drawBStrike(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 56.5, 'b');
+  drawMainNoteUnit(svg, C+38, 56.5, 'b');
+  drawGraceUnit(svg, C, 71.5);
+  const stemY = yPx(56.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* B STRIKE OPEN — two B main notes flanking a Low A gracenote */
+function drawBStrikeOpen(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 56.5, 'b');
+  drawMainNoteUnit(svg, C+38, 56.5, 'b');
+  drawGraceUnit(svg, C, 63.5);
+  const stemY = yPx(56.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* C STRIKE — two C main notes flanking a Low G gracenote */
+function drawCStrike(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 48.5, 'c');
+  drawMainNoteUnit(svg, C+38, 48.5, 'c');
+  drawGraceUnit(svg, C, 71.5);
+  const stemY = yPx(48.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* D STRIKE OPEN — two D main notes flanking a C gracenote */
+function drawDStrike(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 41.5, 'd');
+  drawMainNoteUnit(svg, C+38, 41.5, 'd');
+  drawGraceUnit(svg, C, 48.5);
+  const stemY = yPx(41.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* D STRIKE CLOSED — two D main notes flanking a Low G gracenote */
+function drawDStrikeClosed(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 41.5, 'd');
+  drawMainNoteUnit(svg, C+38, 41.5, 'd');
+  drawGraceUnit(svg, C, 71.5);
+  const stemY = yPx(41.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* F STRIKE — two F main notes flanking an E gracenote */
+function drawFStrike(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 26.5, 'f');
+  drawMainNoteUnit(svg, C+38, 26.5, 'f');
+  drawGraceUnit(svg, C, 33.5);
+  const stemY = yPx(26.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* HIGH G STRIKE — two High G main notes flanking an F gracenote */
+function drawHighGStrike(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 19.5, 'high_g');
+  drawMainNoteUnit(svg, C+38, 19.5, 'high_g');
+  drawGraceUnit(svg, C, 26.5);
+  const stemY = yPx(19.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* HIGH A STRIKE — two High A main notes flanking a High G gracenote */
+function drawHighAStrike(svg){
+  clearSVG(svg);
+  const C=SVG_W/2;
+  drawMainNoteUnit(svg, C-38, 11.5, 'high_a');
+  drawMainNoteUnit(svg, C+38, 11.5, 'high_a');
+  drawGraceUnit(svg, C, 19.5);
+  const stemY = yPx(11.5) + 55;
+  svg.appendChild(svgEl('line',{
+    x1:C-38-13, y1:stemY, x2:C+38-13, y2:stemY,
+    stroke:'white','stroke-width':'3'
+  }));
+}
+
+/* B TO LOW G TACHUM
+   G gracenote before B, then D gracenote before Low G */
+function drawBGTachum(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 80;
+  const B_X    = GROUP_LEFT + 40;
+  const LOWG_X = GROUP_LEFT + 110;
+  const rx = 6, ry = 4;
+  const BEAM_TOP = yPx(19.5) - 38;  // same stem height as drawGraceUnit
+  const STEM_BOT = 155; // common beam y below both notes
+
+  // G gracenote (High G y=19.5)
+  const g1cy = yPx(19.5);
+  const g1sx = GROUP_LEFT + rx;
+  svg.appendChild(svgEl('line',{ x1:g1sx, y1:g1cy, x2:g1sx, y2:BEAM_TOP, stroke:'white','stroke-width':'1.5' }));
+  for(let i=0;i<3;i++){ const fy=BEAM_TOP+i*5; svg.appendChild(svgEl('path',{ d:`M ${g1sx} ${fy} Q ${g1sx+7} ${fy-2} ${g1sx+13} ${fy+4}`, fill:'none', stroke:'white','stroke-width':'1.5','stroke-linecap':'round' })); }
+  const g1=svgEl('g',{transform:`rotate(-20,${GROUP_LEFT},${g1cy})`}); g1.appendChild(svgEl('ellipse',{cx:GROUP_LEFT,cy:g1cy,rx,ry,fill:'white'})); svg.appendChild(g1);
+
+  // Main B notehead (y=56.5) — manual draw, stem to STEM_BOT
+  const bcy = yPx(56.5);
+  const bsx  = B_X - 13; // stem x
+  // line-gap cover (B is on a line)
+  svg.appendChild(svgEl('rect',{x:B_X-15,y:bcy-2,width:30,height:4,fill:'#0c1522'}));
+  const bg=svgEl('g',{transform:`rotate(-20,${B_X},${bcy})`}); bg.appendChild(svgEl('ellipse',{cx:B_X,cy:bcy,rx:13,ry:9,fill:'black',stroke:'white','stroke-width':'2'})); svg.appendChild(bg);
+  svg.appendChild(svgEl('line',{x1:bsx,y1:bcy,x2:bsx,y2:STEM_BOT,stroke:'white','stroke-width':'2'}));
+
+  // D gracenote (D y=41.5)
+  const g2cy = yPx(41.5);
+  const g2x  = B_X + 30;
+  const g2sx = g2x + rx;
+  const D_BEAM_TOP = g2cy - 38;
+  svg.appendChild(svgEl('line',{ x1:g2sx, y1:g2cy, x2:g2sx, y2:D_BEAM_TOP, stroke:'white','stroke-width':'1.5' }));
+  for(let i=0;i<3;i++){ const fy=D_BEAM_TOP+i*5; svg.appendChild(svgEl('path',{ d:`M ${g2sx} ${fy} Q ${g2sx+7} ${fy-2} ${g2sx+13} ${fy+4}`, fill:'none', stroke:'white','stroke-width':'1.5','stroke-linecap':'round' })); }
+  const g2=svgEl('g',{transform:`rotate(-20,${g2x},${g2cy})`}); g2.appendChild(svgEl('ellipse',{cx:g2x,cy:g2cy,rx,ry,fill:'white'})); svg.appendChild(g2);
+
+  // Main Low G notehead (y=71.5) — manual draw, stem to STEM_BOT
+  const lgcy = yPx(71.5);
+  const lgsx = LOWG_X - 13;
+  // line-gap cover (Low G is on a line)
+  svg.appendChild(svgEl('rect',{x:LOWG_X-15,y:lgcy-2,width:30,height:4,fill:'#0c1522'}));
+  const lgg=svgEl('g',{transform:`rotate(-20,${LOWG_X},${lgcy})`}); lgg.appendChild(svgEl('ellipse',{cx:LOWG_X,cy:lgcy,rx:13,ry:9,fill:'black',stroke:'white','stroke-width':'2'})); svg.appendChild(lgg);
+  svg.appendChild(svgEl('line',{x1:lgsx,y1:lgcy,x2:lgsx,y2:STEM_BOT,stroke:'white','stroke-width':'2'}));
+
+  // Horizontal beam connecting both stems at STEM_BOT
+  svg.appendChild(svgEl('line',{x1:bsx,y1:STEM_BOT,x2:lgsx,y2:STEM_BOT,stroke:'white','stroke-width':'3'}));
+}
+
+/* C TO LOW A TACHUM
+   G gracenote before C, then D gracenote before Low A */
+function drawCALowATachum(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 80;
+  const C_X    = GROUP_LEFT + 40;
+  const LOWA_X = GROUP_LEFT + 110;
+  const rx = 6, ry = 4;
+  const BEAM_TOP = yPx(19.5) - 38;  // same stem height as drawGraceUnit
+  const STEM_BOT = 145; // common beam y below both notes
+
+  // G gracenote (High G y=19.5)
+  const g1cy = yPx(19.5);
+  const g1sx = GROUP_LEFT + rx;
+  svg.appendChild(svgEl('line',{ x1:g1sx, y1:g1cy, x2:g1sx, y2:BEAM_TOP, stroke:'white','stroke-width':'1.5' }));
+  for(let i=0;i<3;i++){ const fy=BEAM_TOP+i*5; svg.appendChild(svgEl('path',{ d:`M ${g1sx} ${fy} Q ${g1sx+7} ${fy-2} ${g1sx+13} ${fy+4}`, fill:'none', stroke:'white','stroke-width':'1.5','stroke-linecap':'round' })); }
+  const g1=svgEl('g',{transform:`rotate(-20,${GROUP_LEFT},${g1cy})`}); g1.appendChild(svgEl('ellipse',{cx:GROUP_LEFT,cy:g1cy,rx,ry,fill:'white'})); svg.appendChild(g1);
+
+  // Main C notehead (y=48.5) — manual draw, stem to STEM_BOT
+  const ccy = yPx(48.5);
+  const csx  = C_X - 13;
+  const cg=svgEl('g',{transform:`rotate(-20,${C_X},${ccy})`}); cg.appendChild(svgEl('ellipse',{cx:C_X,cy:ccy,rx:13,ry:9,fill:'black',stroke:'white','stroke-width':'2'})); svg.appendChild(cg);
+  svg.appendChild(svgEl('line',{x1:csx,y1:ccy,x2:csx,y2:STEM_BOT,stroke:'white','stroke-width':'2'}));
+
+  // D gracenote (D y=41.5)
+  const g2cy = yPx(41.5);
+  const g2x  = C_X + 30;
+  const g2sx = g2x + rx;
+  const D_BEAM_TOP = g2cy - 38;
+  svg.appendChild(svgEl('line',{ x1:g2sx, y1:g2cy, x2:g2sx, y2:D_BEAM_TOP, stroke:'white','stroke-width':'1.5' }));
+  for(let i=0;i<3;i++){ const fy=D_BEAM_TOP+i*5; svg.appendChild(svgEl('path',{ d:`M ${g2sx} ${fy} Q ${g2sx+7} ${fy-2} ${g2sx+13} ${fy+4}`, fill:'none', stroke:'white','stroke-width':'1.5','stroke-linecap':'round' })); }
+  const g2=svgEl('g',{transform:`rotate(-20,${g2x},${g2cy})`}); g2.appendChild(svgEl('ellipse',{cx:g2x,cy:g2cy,rx,ry,fill:'white'})); svg.appendChild(g2);
+
+  // Main Low A notehead (y=63.5) — manual draw, stem to STEM_BOT
+  const lacy = yPx(63.5);
+  const lasx = LOWA_X - 13;
+  const lag=svgEl('g',{transform:`rotate(-20,${LOWA_X},${lacy})`}); lag.appendChild(svgEl('ellipse',{cx:LOWA_X,cy:lacy,rx:13,ry:9,fill:'black',stroke:'white','stroke-width':'2'})); svg.appendChild(lag);
+  svg.appendChild(svgEl('line',{x1:lasx,y1:lacy,x2:lasx,y2:STEM_BOT,stroke:'white','stroke-width':'2'}));
+
+  // Horizontal beam connecting both stems at STEM_BOT
+  svg.appendChild(svgEl('line',{x1:csx,y1:STEM_BOT,x2:lasx,y2:STEM_BOT,stroke:'white','stroke-width':'3'}));
+}
+
+const L2_ALL=[
+  { id:'c_doubling',        label:'C Doubling',     drawFn: drawCDoubling      },
+  { id:'b_doubling',        label:'B Doubling',     drawFn: drawBDoubling      },
+  { id:'lowa_doubling',     label:'Low A Doubling', drawFn: drawLowADoubling   },
+  { id:'d_doubling',        label:'D Doubling',     drawFn: drawDDoubling      },
+  { id:'e_doubling',        label:'E Doubling',     drawFn: drawEDoubling      },
+  { id:'f_doubling',        label:'F Doubling',     drawFn: drawFDoubling      },
+  { id:'lowa_strike',       label:'Low A Strike',   drawFn: drawLowAStrike     },
+  { id:'b_strike',          label:'Closed B Strike', drawFn: drawBStrike        },
+  { id:'b_strike_open',     label:'Open B Strike',   drawFn: drawBStrikeOpen    },
+  { id:'c_strike',          label:'C Strike',        drawFn: drawCStrike        },
+  { id:'d_strike',          label:'Open D Strike',   drawFn: drawDStrike        },
+  { id:'d_strike_closed',   label:'Closed D Strike', drawFn: drawDStrikeClosed  },
+  { id:'e_strike',          label:'E Strike',       drawFn: drawEStrike        },
+  { id:'f_strike',          label:'F Strike',       drawFn: drawFStrike        },
+  { id:'high_g_strike',     label:'High G Strike',  drawFn: drawHighGStrike    },
+  { id:'high_a_strike',     label:'High A Strike',  drawFn: drawHighAStrike    },
+  { id:'bg_tachum',         label:'B Tachum',       drawFn: drawBGTachum       },
+  { id:'ca_tachum',         label:'C Tachum',       drawFn: drawCALowATachum   }
+  // More embellishments added here as uploads arrive
+];
+
+/* ════════════════════════════════════════════
+   LEVEL 3 — ADVANCED EMBELLISHMENTS
+   ════════════════════════════════════════════ */
+
+/* TAORLUATH
+   4 gracenotes: Low G (y=71.5), D (y=41.5), Low G (y=71.5), E (y=33.5)
+   All stems rise to a common beam top, joined by 3 horizontal beams.
+   Main note E sits to the right of the group. */
+function drawTaorluath(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 70;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36, GROUP_LEFT+54];
+  const GPY = [71.5, 41.5, 71.5, 33.5];
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  // Stems (right side of each gracehead)
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  // 3 horizontal beams
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b = 0; b < 3; b++){
+    const by = BEAM_TOP + b * 4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  // Graceheads
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+
+}
+
+/* GRIP
+   3 gracenotes all on Low G (y=71.5), stems up, bound by 3 horizontal beams.
+   One main Low G note sits beneath the grace group. */
+function drawGrip(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 28;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36];
+  const GPY = [71.5, 41.5, 71.5];
+  const MAIN_X = GROUP_LEFT + 18; // centred under the group
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  // Stems
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  // 3 horizontal beams
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b = 0; b < 3; b++){
+    const by = BEAM_TOP + b * 4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  // Graceheads
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+}
+
+/* D THROW
+   2 gracenotes: Low G (y=71.5), D (y=41.5), bound by 2 beams at top.
+   Main D note sits to the right of the group. */
+function drawDThrow(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 50;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36];
+  const GPY = [71.5, 41.5, 48.5];
+  const MAIN_X = GROUP_LEFT + 36 + 32;
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  // Stems
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  // 3 horizontal beams
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b = 0; b < 3; b++){
+    const by = BEAM_TOP + b * 4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  // Graceheads
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+
+  // Main D note
+  drawMainNoteUnit(svg, MAIN_X, 41.5, 'd');
+}
+
+/* D THROW (BARE) — same 3 gracenotes as D Throw but no main D note */
+function drawDThrowBare(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 28;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36];
+  const GPY = [71.5, 41.5, 48.5];
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  // Stems
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  // 3 horizontal beams
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b = 0; b < 3; b++){
+    const by = BEAM_TOP + b * 4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  // Graceheads
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+}
+
+/* BIRL
+   Main Low A, then 3 gracenotes: Low G (y=71.5), Low A (y=63.5), Low G (y=71.5)
+   bound by 3 beams, then main Low A note to the right. */
+function drawBirl(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 50;
+  const FIRST_X = GROUP_LEFT - 36;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36];
+  const GPY = [71.5, 63.5, 71.5];
+  const MAIN_X = GROUP_LEFT + 36 + 32;
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  // First main Low A note
+  drawMainNoteUnit(svg, FIRST_X, 63.5, 'low_a');
+
+  // Stems
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  // 3 horizontal beams
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b = 0; b < 3; b++){
+    const by = BEAM_TOP + b * 4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  // Graceheads
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+
+  // Final main Low A note
+  drawMainNoteUnit(svg, MAIN_X, 63.5, 'low_a');
+}
+
+/* HALF DOUBLING TO B
+   Main High A, then 2 gracenotes: B (y=56.5), D (y=41.5) bound by 3 beams,
+   then main B note to the right. */
+function drawHalfDoublingB(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 40;
+  const FIRST_X = GROUP_LEFT - 38;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18];
+  const GPY = [56.5, 41.5];
+  const MAIN_X = GROUP_LEFT + 18 + 32;
+  const BEAM_TOP = yPx(25) - 42;
+  const rx = 6, ry = 4;
+
+  // First main High A note
+  drawMainNoteUnit(svg, FIRST_X, 11.5, 'high_a');
+
+  // Stems
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{
+      x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP,
+      stroke:'white','stroke-width':'2'
+    }));
+  });
+
+  // 3 horizontal beams
+  const leftStemX  = GX[0] + rx;
+  const rightStemX = GX[GX.length-1] + rx;
+  for(let b = 0; b < 3; b++){
+    const by = BEAM_TOP + b * 4;
+    svg.appendChild(svgEl('line',{
+      x1:leftStemX, y1:by, x2:rightStemX, y2:by,
+      stroke:'white','stroke-width':'2.5'
+    }));
+  }
+
+  // Graceheads
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g  = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+
+  // Final main B note
+  drawMainNoteUnit(svg, MAIN_X, 56.5, 'b');
+}
+
+const L3_ALL=[
+  { id:'taorluath',        label:'Taorluath',        drawFn: drawTaorluath     },
+  { id:'grip',             label:'Grip',             drawFn: drawGrip          },
+  { id:'d_throw',          label:'D Throw',          drawFn: drawDThrow        },
+  { id:'d_throw_bare',     label:'D Throw',          drawFn: drawDThrowBare    },
+  { id:'birl',             label:'Birl',             drawFn: drawBirl          },
+  { id:'half_doubling_b',  label:'Half Doubling B',  drawFn: drawHalfDoublingB }
+  // More advanced embellishments added here
+];
+
+/* ════════════════════════════════════════════
+   AUDIO — Web Audio API (no external files)
+   ════════════════════════════════════════════ */
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+function getAudioCtx(){
+  if(!audioCtx) audioCtx = new AudioCtx();
+  // iOS requires resume() after context is created
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+// iOS unlock — play a silent buffer on first user tap to unblock audio
+function unlockAudio(){
+  if(!audioCtx) audioCtx = new AudioCtx();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  const buf = audioCtx.createBuffer(1,1,22050);
+  const src = audioCtx.createBufferSource();
+  src.buffer = buf;
+  src.connect(audioCtx.destination);
+  src.start(0);
+  document.removeEventListener('touchstart', unlockAudio);
+  document.removeEventListener('touchend', unlockAudio);
+  document.removeEventListener('click', unlockAudio);
+}
+document.addEventListener('touchstart', unlockAudio, { once:true });
+document.addEventListener('touchend',   unlockAudio, { once:true });
+document.addEventListener('click',      unlockAudio, { once:true });
+
+function playWrong(){
+  const ctx = getAudioCtx();
+
+  // Family Fortunes buzzer: deep harsh mechanical "RRRNNT RRRNNT"
+  // Each blast uses a low square wave with noise-like detuning and a hard cut
+  [0, 0.38].forEach(offset => {
+    const t = ctx.currentTime + offset;
+
+    // Primary oscillator — low square wave
+    const osc1 = ctx.createOscillator();
+    osc1.type = 'square';
+    osc1.frequency.setValueAtTime(120, t);
+    osc1.frequency.setValueAtTime(110, t + 0.05);
+    osc1.frequency.setValueAtTime(100, t + 0.10);
+    osc1.frequency.setValueAtTime(90,  t + 0.20);
+
+    // Second oscillator slightly detuned for that harsh buzz texture
+    const osc2 = ctx.createOscillator();
+    osc2.type = 'sawtooth';
+    osc2.frequency.setValueAtTime(118, t);
+    osc2.frequency.setValueAtTime(95,  t + 0.20);
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0,    t);
+    gain.gain.linearRampToValueAtTime(0.45, t + 0.01); // hard attack
+    gain.gain.setValueAtTime(0.42, t + 0.22);
+    gain.gain.linearRampToValueAtTime(0,    t + 0.28); // hard cut off
+
+    osc1.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
+    osc1.start(t); osc1.stop(t + 0.3);
+    osc2.start(t); osc2.stop(t + 0.3);
+  });
+}
+
+function playCorrect(){
+  const ctx = getAudioCtx();
+  // Rising chime — two sine tones
+  [523, 784].forEach((freq, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.28, ctx.currentTime + i * 0.15);
+    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + i * 0.15 + 0.4);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(ctx.currentTime + i * 0.15);
+    osc.stop(ctx.currentTime + i * 0.15 + 0.4);
+  });
+}
+
+/* ════════════════════════════════════════════
+   SHARED GAME ENGINE
+   Each level gets its own state object so
+   score/streak/questions are tracked per level
+   but displayed in the level's own score bar.
+   ════════════════════════════════════════════ */
+function makeState(cfg){
+  return {
+    all:            cfg.all,
+    renderFn:       cfg.renderFn,
+    svg:            cfg.svg,
+    answersEl:      cfg.answersEl,
+    feedbackEl:     cfg.feedbackEl,
+    promptEl:       cfg.promptEl,
+    waitingEl:      cfg.waitingEl,
+    scoreEl:        cfg.scoreEl,
+    qEl:            cfg.qEl,
+    streakEl:       cfg.streakEl,
+    correctRevealEl:cfg.correctRevealEl,
+    correctLabelEl: cfg.correctLabelEl,
+    timerWrapEl:    cfg.timerWrapEl,
+    timerFillEl:    cfg.timerFillEl,
+    resultEl:       cfg.resultEl,
+    resultScoreEl:  cfg.resultScoreEl,
+    current:null, lastId:null,
+    score:0, questions:0, streak:0,
+    locked:false, timedMode:false, timerInterval:null
+  };
+}
+
+function updateBar(st){
+  st.scoreEl.textContent  = st.score;
+  st.qEl.textContent      = st.questions;
+  st.streakEl.textContent = st.streak;
+}
+
+function pickItem(st){
+  let n;
+  do{ n=st.all[Math.floor(Math.random()*st.all.length)]; }
+  while(n.id===st.lastId);
+  st.lastId=n.id;
+  return n;
+}
+
+function buildChoices(correct, all){
+  // Deduplicate pool by label so we never show two buttons with the same text.
+  // Prefer entries whose label differs from correct, pick one per unique label.
+  const seen = new Set([correct.label]);
+  const pool = [];
+  // Shuffle all first
+  const shuffled = [...all].filter(n=>n.id!==correct.id);
+  for(let i=shuffled.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
+  }
+  for(const n of shuffled){
+    if(!seen.has(n.label)){ seen.add(n.label); pool.push(n); }
+    if(pool.length===3) break;
+  }
+  const choices=[correct,...pool];
+  for(let i=choices.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [choices[i],choices[j]]=[choices[j],choices[i]];
+  }
+  return choices;
+}
+
+function renderAnswers(st, choices){
+  st.answersEl.innerHTML='';
+  choices.forEach(n=>{
+    const btn=document.createElement('button');
+    btn.textContent=n.label;
+    btn.dataset.id=n.id;   // store id so checkAnswer can find correct btn by id
+    btn.onclick=()=>checkAnswer(st, n.id, btn);
+    st.answersEl.appendChild(btn);
+  });
+}
+
+function nextQuestion(st){
+  st.correctRevealEl.style.display='none';
+  st.current = pickItem(st);
+  st.renderFn(st.current, st.svg);
+  renderAnswers(st, buildChoices(st.current, st.all));
+  st.promptEl.textContent='Tap the correct name.';
+}
+
+function checkAnswer(st, id, btn){
+  if(st.locked) return;
+  st.locked=true;
+
+  const btns=st.answersEl.querySelectorAll('button');
+  btns.forEach(b=>{ b.disabled=true; b.style.pointerEvents='none'; });
+
+  st.questions++;
+
+  if(id===st.current.id){
+    st.score++; st.streak++;
+    btn.classList.add('correct');
+    st.feedbackEl.textContent='✓ Correct!';
+    st.feedbackEl.className='feedback ok';
+    st.correctRevealEl.style.display='none';
+    playCorrect();
+  } else {
+    st.streak=0;
+    btn.classList.add('wrong');
+    btns.forEach(b=>{ if(b.dataset.id===st.current.id) b.classList.add('correct'); });
+    st.feedbackEl.textContent=`✗ Wrong — it was ${st.current.label}`;
+    st.feedbackEl.className='feedback bad';
+    // Show the green "IT WAS …" banner above the staff
+    st.correctLabelEl.textContent = st.current.label;
+    st.correctRevealEl.style.display = 'block';
+    playWrong();
+    // Flash the screen red for 500ms
+    const flash = document.getElementById('wrong-flash');
+    flash.classList.add('flash');
+    setTimeout(()=>{ flash.classList.remove('flash'); }, 500);
+  }
+  updateBar(st);
+
+  const delay = (id === st.current.id) ? 0 : (st.timedMode ? 0 : 3600);
+  setTimeout(()=>{
+    nextQuestion(st);
+    st.locked=false;
+    st.feedbackEl.textContent='';
+    st.feedbackEl.className='feedback';
+  }, delay);
+}
+
+function resetState(st, showWaiting=true){
+  st.score=0; st.questions=0; st.streak=0;
+  st.current=null; st.lastId=null; st.locked=false;
+  st.timedMode=false;
+  if(st.timerInterval){ clearInterval(st.timerInterval); st.timerInterval=null; }
+  st.timerWrapEl.style.display='none';
+  st.timerFillEl.style.width='100%';
+  st.timerFillEl.style.background='var(--accent)';
+  updateBar(st);
+  st.feedbackEl.textContent='';
+  st.feedbackEl.className='feedback';
+  st.answersEl.innerHTML='';
+  st.correctRevealEl.style.display='none';
+  clearSVG(st.svg);
+  if(showWaiting){
+    st.waitingEl.style.display='flex';
+    st.promptEl.textContent='Press Start to begin';
+  } else {
+    st.waitingEl.style.display='none';
+  }
+}
+
+/* ════════════════════════════════════════════
+   TIMED MODE — 30 second challenge
+   ════════════════════════════════════════════ */
+const TIMED_SECONDS = 30;
+
+function startTimed(st){
+  // Hide result overlay if showing
+  st.resultEl.style.display='none';
+  resetState(st, false);
+  st.timedMode = true;
+
+  // Show and reset timer bar
+  st.timerWrapEl.style.display='block';
+  st.timerFillEl.style.width='100%';
+  st.timerFillEl.style.background='var(--accent)';
+
+  nextQuestion(st);
+
+  let elapsed = 0;
+  const INTERVAL = 100; // ms
+  const TOTAL = TIMED_SECONDS * 1000;
+
+  if(st.timerInterval) clearInterval(st.timerInterval);
+  st.timerInterval = setInterval(()=>{
+    elapsed += INTERVAL;
+    const pct = Math.max(0, 100 - (elapsed / TOTAL * 100));
+    st.timerFillEl.style.width = pct + '%';
+    // Turn bar orange then red as time runs out
+    if(pct < 20) st.timerFillEl.style.background = '#ff5c5c';
+    else if(pct < 50) st.timerFillEl.style.background = '#f5c842';
+
+    if(elapsed >= TOTAL){
+      clearInterval(st.timerInterval);
+      st.timerInterval = null;
+      finishTimed(st);
+    }
+  }, INTERVAL);
+}
+
+function finishTimed(st){
+  st.timedMode = false;
+  st.locked = true;
+  st.timerWrapEl.style.display='none';
+  st.resultScoreEl.textContent = st.score;
+  st.resultEl.style.display='flex';
+}
+
+function endTimed(st){
+  st.resultEl.style.display='none';
+  if(st.timerInterval){ clearInterval(st.timerInterval); st.timerInterval=null; }
+  resetState(st, true);
+}
+
+/* ════════════════════════════════════════════
+   INSTANTIATE STATES
+   ════════════════════════════════════════════ */
+const st1 = makeState({
+  all:            L1_ALL,
+  renderFn:       l1Render,
+  svg:            document.getElementById('l1-svg'),
+  answersEl:      document.getElementById('l1-answers'),
+  feedbackEl:     document.getElementById('l1-feedback'),
+  promptEl:       document.getElementById('l1-prompt'),
+  waitingEl:      document.getElementById('l1-waiting'),
+  scoreEl:        document.getElementById('l1-score'),
+  qEl:            document.getElementById('l1-q'),
+  streakEl:       document.getElementById('l1-streak'),
+  correctRevealEl:document.getElementById('l1-correct-reveal'),
+  correctLabelEl: document.getElementById('l1-correct-label'),
+  timerWrapEl:    document.getElementById('l1-timer-wrap'),
+  timerFillEl:    document.getElementById('l1-timer-fill'),
+  resultEl:       document.getElementById('l1-result'),
+  resultScoreEl:  document.getElementById('l1-result-score')
+});
+
+const st2 = makeState({
+  all:            L2_ALL,
+  renderFn:       (note, svg) => note.drawFn(svg),
+  svg:            document.getElementById('l2-svg'),
+  answersEl:      document.getElementById('l2-answers'),
+  feedbackEl:     document.getElementById('l2-feedback'),
+  promptEl:       document.getElementById('l2-prompt'),
+  waitingEl:      document.getElementById('l2-waiting'),
+  scoreEl:        document.getElementById('l2-score'),
+  qEl:            document.getElementById('l2-q'),
+  streakEl:       document.getElementById('l2-streak'),
+  correctRevealEl:document.getElementById('l2-correct-reveal'),
+  correctLabelEl: document.getElementById('l2-correct-label'),
+  timerWrapEl:    document.getElementById('l2-timer-wrap'),
+  timerFillEl:    document.getElementById('l2-timer-fill'),
+  resultEl:       document.getElementById('l2-result'),
+  resultScoreEl:  document.getElementById('l2-result-score')
+});
+
+const st3 = makeState({
+  all:            L3_ALL,
+  renderFn:       (note, svg) => note.drawFn(svg),
+  svg:            document.getElementById('l3-svg'),
+  answersEl:      document.getElementById('l3-answers'),
+  feedbackEl:     document.getElementById('l3-feedback'),
+  promptEl:       document.getElementById('l3-prompt'),
+  waitingEl:      document.getElementById('l3-waiting'),
+  scoreEl:        document.getElementById('l3-score'),
+  qEl:            document.getElementById('l3-q'),
+  streakEl:       document.getElementById('l3-streak'),
+  correctRevealEl:document.getElementById('l3-correct-reveal'),
+  correctLabelEl: document.getElementById('l3-correct-label'),
+  timerWrapEl:    document.getElementById('l3-timer-wrap'),
+  timerFillEl:    document.getElementById('l3-timer-fill'),
+  resultEl:       document.getElementById('l3-result'),
+  resultScoreEl:  document.getElementById('l3-result-score')
+});
+
+/* ════════════════════════════════════════════
+   NAVIGATION
+   ════════════════════════════════════════════ */
+let activeLevel = 0;
+
+function showModeScreen(){
+  ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+  document.getElementById('mode-screen').style.display='block';
+}
+
+function selectMode(mode){
+  document.getElementById('mode-screen').style.display='none';
+  if(mode==='learn'){
+    document.getElementById('learn-screen').style.display='block';
+  } else {
+    document.getElementById('home-screen').style.display='block';
+  }
+}
+
+function showLearnScreen(){
+  ['learn1-screen','learn2-screen','learn3-screen'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+  document.getElementById('learn-screen').style.display='block';
+}
+
+function startLearn(n){
+  document.getElementById('learn-screen').style.display='none';
+  document.getElementById(`learn${n}-screen`).style.display='block';
+  if(n===1) l1tGoTo('intro');
+  if(n===2) l2tGoTo('strikes-intro');
+}
+
+function l1tGoTo(pageId){
+  document.querySelectorAll('.l1t-page').forEach(p => p.style.display='none');
+  const el = document.getElementById('l1t-page-' + pageId);
+  if(el) el.style.display='block';
+}
+
+function l2tGoTo(pageId){
+  document.querySelectorAll('.l2t-page').forEach(p => p.style.display='none');
+  const el = document.getElementById('l2t-page-' + pageId);
+  if(el) el.style.display='block';
+}
+
+function startLevel(n){
+  document.getElementById('home-screen').style.display='none';
+  document.getElementById(`level${n}-screen`).style.display='block';
+  activeLevel=n;
+}
+
+function goHome(){
+  if(activeLevel===1){
+    document.getElementById('level1-screen').style.display='none';
+    resetState(st1, false);
+  } else if(activeLevel===2){
+    document.getElementById('level2-screen').style.display='none';
+    resetState(st2, false);
+  } else if(activeLevel===3){
+    document.getElementById('level3-screen').style.display='none';
+    resetState(st3, false);
+  }
+  document.getElementById('home-screen').style.display='block';
+  activeLevel=0;
+}
+
+/* ── LEVEL 1 BUTTONS ── */
+document.getElementById('l1-start').onclick=()=>{ resetState(st1,false); nextQuestion(st1); };
+document.getElementById('l1-reset').onclick=()=>resetState(st1,true);
+document.getElementById('l1-timed').onclick=()=>startTimed(st1);
+
+/* ── LEVEL 2 BUTTONS ── */
+document.getElementById('l2-start').onclick=()=>{ resetState(st2,false); nextQuestion(st2); };
+document.getElementById('l2-reset').onclick=()=>resetState(st2,true);
+document.getElementById('l2-timed').onclick=()=>startTimed(st2);
+
+/* ── LEVEL 3 BUTTONS ── */
+document.getElementById('l3-start').onclick=()=>{ resetState(st3,false); nextQuestion(st3); };
+document.getElementById('l3-reset').onclick=()=>resetState(st3,true);
+document.getElementById('l3-timed').onclick=()=>startTimed(st3);
+
+/* ── APP INITIALISATION — always start from mode screen ── */
+window.addEventListener('load', () => {
+  // Hide all screens
+  ['mode-screen','home-screen','learn-screen',
+   'learn1-screen','learn2-screen','learn3-screen',
+   'level1-screen','level2-screen','level3-screen'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.style.display = 'none';
+  });
+  // Always start at mode select
+  document.getElementById('mode-screen').style.display = 'block';
+});
+
+/* ── SERVICE WORKER REGISTRATION ── */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Bagpipe Trainer: offline ready'))
+      .catch(err => console.log('SW failed:', err));
+  });
+}
+</script>
+</body>
+</html>
