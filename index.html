@@ -1504,10 +1504,120 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
         <br>
         <p>Repetition and practise with your tutor will be essential to mastering these on the chanter.</p>
         <br>
-        <p>Head to <strong>"Test My Knowledge"</strong> to identify Tachums on the staff.</p>
+        <p>Click below to learn about <strong>Closed Tachums</strong>.</p>
       </div>
       <div class="tutorial-nav">
         <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('ca-tachum')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l2tGoTo('closed-tachum')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Closed Tachum page -->
+    <div id="l2t-page-closed-tachum" class="l2t-page" style="display:none;">
+      <div class="page-indicator">Tachums · Closed Tachum</div>
+      <h2>Closed Tachum</h2>
+      <div class="tutorial-body">
+        <p>A Closed Tachum is virtually the same as the ones you have just learnt with a <strong>slight difference in the note values and lengths</strong>.</p>
+        <br>
+        <p>Tachums are commonly played with the <strong>first note cut/shorter</strong> and the <strong>second note held/longer</strong>. This is displayed in the notation by a <strong>short bar at the bottom of the stem</strong> for the cut note, and a <strong>dot after the second held note</strong>.</p>
+        <br>
+        <p>When played the movement sounds <strong>snappy and rigid</strong>.</p>
+        <br>
+        <p>Your tutor will be able to elaborate further on cut and held notes as these will appear in many aspects of GHB music.</p>
+      </div>
+
+      <!-- Closed B Tachum diagram -->
+      <div style="font-size:.75rem;opacity:.6;text-align:center;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.08em;">Closed B Tachum</div>
+      <div class="tutorial-staff-wrap" style="margin-bottom:.6rem;">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- G gracenote before B -->
+            <line x1="149" y1="23.4" x2="149" y2="-10" stroke="white" stroke-width="1.5"/>
+            <path d="M 149 -10 Q 156 -12 162 -6" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149 -5  Q 156 -7  162 -1" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149  0  Q 156 -2  162  4" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,142,23.4)"><ellipse cx="142" cy="23.4" rx="7" ry="5" fill="white"/></g>
+            <!-- Main B (cut note) — notehead + short stem + cut mark -->
+            <rect x="155" y="65" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,170,67.8)"><ellipse cx="170" cy="67.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="157" y1="67.8" x2="157" y2="114" stroke="white" stroke-width="2"/>
+            <!-- Cut mark on B stem — right side only -->
+            <line x1="157" y1="100" x2="172" y2="100" stroke="white" stroke-width="2.5"/>
+            <!-- Low G gracenote -->
+            <line x1="221" y1="85.8" x2="221" y2="48" stroke="white" stroke-width="1.5"/>
+            <path d="M 221 48 Q 228 46 234 52" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 53 Q 228 51 234 57" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 58 Q 228 56 234 62" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,214,85.8)"><ellipse cx="214" cy="85.8" rx="7" ry="5" fill="white"/></g>
+            <!-- Main Low G (held note) — notehead + stem + dot -->
+            <rect x="227" y="83" width="30" height="5" fill="#0c1522"/>
+            <g transform="rotate(-20,242,85.8)"><ellipse cx="242" cy="85.8" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="229" y1="85.8" x2="229" y2="114" stroke="white" stroke-width="2"/>
+            <!-- Dot after Low G — moved further right -->
+            <circle cx="272" cy="83" r="4" fill="white"/>
+            <!-- Beam -->
+            <line x1="157" y1="114" x2="229" y2="114" stroke="white" stroke-width="3"/>
+            <!-- Labels — left side for CUT, right side for HELD -->
+            <text x="80" y="105" text-anchor="middle" fill="#3ecf8e" font-size="10" font-family="system-ui,sans-serif" font-weight="700">CUT</text>
+            <line x1="103" y1="103" x2="154" y2="100" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="380" y="80" text-anchor="middle" fill="#f5c842" font-size="10" font-family="system-ui,sans-serif" font-weight="700">HELD</text>
+            <line x1="353" y1="80" x2="288" y2="83" stroke="#f5c842" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Closed C Tachum diagram -->
+      <div style="font-size:.75rem;opacity:.6;text-align:center;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.08em;">Closed C Tachum</div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:120px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:8px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg viewBox="0 0 480 120" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+            <!-- G gracenote before C -->
+            <line x1="149" y1="23.4" x2="149" y2="-10" stroke="white" stroke-width="1.5"/>
+            <path d="M 149 -10 Q 156 -12 162 -6" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149 -5  Q 156 -7  162 -1" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 149  0  Q 156 -2  162  4" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,142,23.4)"><ellipse cx="142" cy="23.4" rx="7" ry="5" fill="white"/></g>
+            <!-- Main C (cut note) -->
+            <g transform="rotate(-20,170,58.2)"><ellipse cx="170" cy="58.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="157" y1="58.2" x2="157" y2="114" stroke="white" stroke-width="2"/>
+            <!-- Cut mark on C stem — right side only -->
+            <line x1="157" y1="100" x2="172" y2="100" stroke="white" stroke-width="2.5"/>
+            <!-- D gracenote before Low A -->
+            <line x1="221" y1="49.8" x2="221" y2="12" stroke="white" stroke-width="1.5"/>
+            <path d="M 221 12 Q 228 10 234 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 17 Q 228 15 234 21" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 221 22 Q 228 20 234 26" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <g transform="rotate(-20,214,49.8)"><ellipse cx="214" cy="49.8" rx="7" ry="5" fill="white"/></g>
+            <!-- Main Low A (held note) -->
+            <g transform="rotate(-20,242,76.2)"><ellipse cx="242" cy="76.2" rx="13" ry="9" fill="black" stroke="white" stroke-width="2"/></g>
+            <line x1="229" y1="76.2" x2="229" y2="114" stroke="white" stroke-width="2"/>
+            <!-- Dot after Low A — moved further right -->
+            <circle cx="272" cy="73" r="4" fill="white"/>
+            <!-- Beam -->
+            <line x1="157" y1="114" x2="229" y2="114" stroke="white" stroke-width="3"/>
+            <!-- Labels — left side for CUT, right side for HELD -->
+            <text x="80" y="105" text-anchor="middle" fill="#3ecf8e" font-size="10" font-family="system-ui,sans-serif" font-weight="700">CUT</text>
+            <line x1="103" y1="103" x2="154" y2="100" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="380" y="70" text-anchor="middle" fill="#f5c842" font-size="10" font-family="system-ui,sans-serif" font-weight="700">HELD</text>
+            <line x1="353" y1="70" x2="288" y2="73" stroke="#f5c842" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l2tGoTo('tachum-finish')">← Back</button>
         <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="showModeScreen()">&#127968; Home</button>
       </div>
     </div>
