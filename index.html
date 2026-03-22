@@ -425,7 +425,7 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
 <!-- ── LEADERBOARD SCREEN ── -->
 <div id="leaderboard-screen" style="display:none;">
   <h1>🏆 Leaderboard</h1>
-  <div class="lb-subtitle">Level 1 — Notes &amp; Gracenotes</div>
+  <div class="lb-subtitle">Level 1 — Notes &amp; Gracenotes · Timed Test</div>
   <div class="user-chip">Playing as <strong id="lb-username-chip">—</strong></div>
   <table class="lb-table">
     <thead>
@@ -3924,14 +3924,12 @@ async function sbFetch(path, opts={}){
 
 /* ── Submit or update a score for the current user ── */
 async function submitScore(username, score, questions){
-  if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return; // not configured yet
-  if(!username || questions < 5) return;            // ignore tiny sessions
-  const pct = Math.round((score / questions) * 100);
-  // Upsert — updates if username exists, inserts if new
+  if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return;
+  if(!username || questions < 5) return;
   await sbFetch(SCORES_TABLE + '?on_conflict=username', {
     method: 'POST',
     prefer: 'resolution=merge-duplicates',
-    body: JSON.stringify({ username, best_score: pct, questions_played: questions })
+    body: JSON.stringify({ username, best_score: score, questions_played: questions })
   });
 }
 
@@ -3963,7 +3961,7 @@ async function renderLeaderboard(){
   const medals = ['🥇','🥈','🥉'];
   tbody.innerHTML = rows.map((r,i) => {
     const medal = medals[i] ? `<span class="lb-medal">${medals[i]}</span>` : '';
-    const score = r.best_score === '—' ? '—' : r.best_score + '%';
+    const score = r.best_score === '—' ? '—' : r.best_score;
     return `<tr>
       <td class="lb-rank">${medal}${i>=3 ? i+1 : ''}</td>
       <td class="lb-name">${escHtml(String(r.username))}</td>
