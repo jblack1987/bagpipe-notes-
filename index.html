@@ -3618,7 +3618,7 @@ function checkAnswer(st, id, btn){
 function resetState(st, showWaiting=true){
   st.score=0; st.questions=0; st.streak=0;
   st.current=null; st.lastId=null; st.locked=false;
-  st.timedMode=false;
+  st.timedMode=false; st.wasTimedSession=false;
   if(st.timerInterval){ clearInterval(st.timerInterval); st.timerInterval=null; }
   st.timerWrapEl.style.display='none';
   st.timerFillEl.style.width='100%';
@@ -3647,6 +3647,7 @@ function startTimed(st){
   st.resultEl.style.display='none';
   resetState(st, false);
   st.timedMode = true;
+  st.wasTimedSession = true;
 
   // Show and reset timer bar
   st.timerWrapEl.style.display='block';
@@ -3682,8 +3683,8 @@ function finishTimed(st){
   st.timerWrapEl.style.display='none';
   st.resultScoreEl.textContent = st.score;
   st.resultEl.style.display='flex';
-  // Submit to leaderboard if this is Level 1
-  if(st === st1 && currentUser){
+  // Only submit to leaderboard if this was a genuine timed session on Level 1
+  if(st === st1 && currentUser && st.wasTimedSession){
     submitScore(currentUser, st.score, st.questions);
   }
 }
@@ -3856,7 +3857,7 @@ function startLevel(n){
 
 function goHome(){
   if(activeLevel===1){
-    if(currentUser && st1.questions >= 5) submitScore(currentUser, st1.score, st1.questions);
+    if(currentUser && st1.wasTimedSession && st1.questions >= 5) submitScore(currentUser, st1.score, st1.questions);
     document.getElementById('level1-screen').style.display='none'; resetState(st1, false);
   }
   else if(activeLevel===2){ document.getElementById('level2-screen').style.display='none'; resetState(st2, false); }
