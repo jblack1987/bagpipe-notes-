@@ -135,7 +135,68 @@ svg { overflow: visible !important; }
 }
 
 
-#mode-screen {
+/* ── LOGIN SCREEN ── */
+#login-screen {
+  width:100%; max-width:480px;
+  background:rgba(5,10,20,.96); border-radius:16px;
+  padding:1.8rem 1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
+  text-align:center;
+}
+#login-screen h1 { font-size:1.4rem; margin-bottom:.3rem; letter-spacing:.04em; }
+#login-screen .subtitle { opacity:.7; font-size:.9rem; margin-bottom:1.6rem; }
+.login-input {
+  width:100%; padding:.8rem 1rem; border-radius:10px;
+  border:2px solid #1f3048; background:#0c1522;
+  color:var(--text); font-size:1rem; font-weight:600;
+  text-align:center; margin-bottom:1rem; outline:none;
+  transition:border-color .2s;
+}
+.login-input:focus { border-color:var(--accent); }
+.login-input::placeholder { opacity:.4; font-weight:400; }
+.login-error { color:var(--wrong); font-size:.82rem; margin-bottom:.8rem; min-height:1rem; }
+
+/* ── LEADERBOARD SCREEN ── */
+#leaderboard-screen {
+  width:100%; max-width:480px;
+  background:rgba(5,10,20,.96); border-radius:16px;
+  padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
+  text-align:center;
+}
+#leaderboard-screen h1 { font-size:1.3rem; margin-bottom:.3rem; letter-spacing:.04em; }
+.lb-subtitle { opacity:.6; font-size:.82rem; margin-bottom:1.2rem; text-transform:uppercase; letter-spacing:.08em; }
+.lb-table { width:100%; border-collapse:collapse; margin-bottom:1rem; }
+.lb-table th {
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.1em;
+  opacity:.5; padding:.4rem .5rem; border-bottom:1px solid #1f3048;
+}
+.lb-table td { padding:.55rem .5rem; font-size:.92rem; border-bottom:1px solid #0c1522; }
+.lb-table tr:first-child td { color:#f5c842; font-weight:700; }
+.lb-table tr:nth-child(2) td { color:#c0c0c0; font-weight:600; }
+.lb-table tr:nth-child(3) td { color:#cd7f32; font-weight:600; }
+.lb-rank { opacity:.5; font-size:.82rem; }
+.lb-name { text-align:left; font-weight:600; }
+.lb-score { color:var(--accent); font-weight:700; text-align:right; }
+.lb-loading { opacity:.5; font-size:.88rem; padding:1.5rem 0; }
+.lb-medal { margin-right:.3rem; }
+.user-chip {
+  display:inline-flex; align-items:center; gap:.4rem;
+  background:#111b2a; border-radius:999px;
+  padding:.3rem .8rem; font-size:.8rem;
+  margin-bottom:1.2rem; opacity:.8;
+}
+.user-chip strong { color:var(--accent); }
+
+/* ── MODE SCREEN LEADERBOARD BUTTON ── */
+.lb-btn {
+  display:flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.6rem; border-radius:10px; border:1px solid #1f3048;
+  background:transparent; color:var(--text); font-size:.82rem;
+  font-weight:600; letter-spacing:.05em; cursor:pointer;
+  width:100%; margin-top:.8rem; opacity:.75; transition:opacity .2s;
+}
+.lb-btn:hover { opacity:1; }
+
+
   background:rgba(5,10,20,.96); border-radius:16px;
   padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
   text-align:center;
@@ -349,6 +410,38 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
 
 <!-- ── HOME ── -->
 <!-- ── MODE SELECT (first screen) ── -->
+<!-- ── LOGIN SCREEN ── -->
+<div id="login-screen" style="display:none;">
+  <h1>🎵 Bagpipe Trainer</h1>
+  <div class="subtitle">Enter your name to get started</div>
+  <input id="username-input" class="login-input" type="text"
+    placeholder="Your name" maxlength="20"
+    onkeydown="if(event.key==='Enter') submitLogin()" />
+  <div class="login-error" id="login-error"></div>
+  <button class="primary" style="width:100%;padding:.8rem;border-radius:999px;border:none;font-size:1rem;font-weight:700;letter-spacing:.06em;"
+    onclick="submitLogin()">Let's Go →</button>
+</div>
+
+<!-- ── LEADERBOARD SCREEN ── -->
+<div id="leaderboard-screen" style="display:none;">
+  <h1>🏆 Leaderboard</h1>
+  <div class="lb-subtitle">Level 1 — Notes &amp; Gracenotes</div>
+  <div class="user-chip">Playing as <strong id="lb-username-chip">—</strong></div>
+  <table class="lb-table">
+    <thead>
+      <tr>
+        <th style="width:2rem;">#</th>
+        <th style="text-align:left;">Name</th>
+        <th style="text-align:right;">Best Score</th>
+      </tr>
+    </thead>
+    <tbody id="lb-body">
+      <tr><td colspan="3" class="lb-loading">Loading scores…</td></tr>
+    </tbody>
+  </table>
+  <button class="level-btn" style="background:#0c1522;margin-top:.2rem;" onclick="showModeScreen()">← Back</button>
+</div>
+
 <div id="mode-screen">
   <h1>🎵 Bagpipe Music Trainer</h1>
   <div class="subtitle" style="margin-bottom:1.4rem;">What would you like to do?</div>
@@ -362,6 +455,7 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
     Test My Knowledge
     <span class="mode-desc">Quiz yourself — identify notes and embellishments on the staff</span>
   </button>
+  <button class="lb-btn" onclick="showLeaderboard()">🏆 Leaderboard</button>
 </div>
 
 <!-- ── LEARN LEVEL SELECT ── -->
@@ -3588,6 +3682,10 @@ function finishTimed(st){
   st.timerWrapEl.style.display='none';
   st.resultScoreEl.textContent = st.score;
   st.resultEl.style.display='flex';
+  // Submit to leaderboard if this is Level 1
+  if(st === st1 && currentUser){
+    submitScore(currentUser, st.score, st.questions);
+  }
 }
 
 function endTimed(st){
@@ -3693,9 +3791,7 @@ const st4 = makeState({
 let activeLevel = 0;
 
 function showModeScreen(){
-  ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen'].forEach(id=>{
-    document.getElementById(id).style.display='none';
-  });
+  hideAllScreens();
   document.getElementById('mode-screen').style.display='block';
 }
 
@@ -3759,7 +3855,10 @@ function startLevel(n){
 }
 
 function goHome(){
-  if(activeLevel===1){ document.getElementById('level1-screen').style.display='none'; resetState(st1, false); }
+  if(activeLevel===1){
+    if(currentUser && st1.questions >= 5) submitScore(currentUser, st1.score, st1.questions);
+    document.getElementById('level1-screen').style.display='none'; resetState(st1, false);
+  }
   else if(activeLevel===2){ document.getElementById('level2-screen').style.display='none'; resetState(st2, false); }
   else if(activeLevel===3){ document.getElementById('level3-screen').style.display='none'; resetState(st3, false); }
   else if(activeLevel===4){ document.getElementById('level4-screen').style.display='none'; resetState(st4, false); }
@@ -3798,17 +3897,144 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-/* ── APP INITIALISATION — always start from mode screen ── */
-window.addEventListener('load', () => {
-  // Hide all screens
-  ['mode-screen','home-screen','learn-screen',
-   'learn1-screen','learn2-screen','learn3-screen','learn4-screen',
-   'level1-screen','level2-screen','level3-screen','level4-screen'].forEach(id => {
+/* ════════════════════════════════════════════
+   SUPABASE CONFIG
+   Replace the two values below with your own
+   from supabase.com → Project Settings → API
+   ════════════════════════════════════════════ */
+const SUPABASE_URL    = 'https://ojqkpymnuesghibvhytx.supabase.co';
+const SUPABASE_ANON   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qcWtweW1udWVzZ2hpYnZoeXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDQzNjYsImV4cCI6MjA4OTc4MDM2Nn0.C7ruzo17dBzQ64qEncepQ12o56P3uxhrPM2Nt81-1T4';
+const SCORES_TABLE    = 'leaderboard';
+
+/* ── Supabase helper ── */
+async function sbFetch(path, opts={}){
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    headers:{
+      'apikey': SUPABASE_ANON,
+      'Authorization': 'Bearer ' + SUPABASE_ANON,
+      'Content-Type': 'application/json',
+      'Prefer': opts.prefer || ''
+    },
+    ...opts
+  });
+  if(!res.ok){ console.error('Supabase error', res.status, await res.text()); return null; }
+  const txt = await res.text();
+  return txt ? JSON.parse(txt) : null;
+}
+
+/* ── Submit or update a score for the current user ── */
+async function submitScore(username, score, questions){
+  if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return; // not configured yet
+  if(!username || questions < 5) return;            // ignore tiny sessions
+  const pct = Math.round((score / questions) * 100);
+  // Upsert — updates if username exists, inserts if new
+  await sbFetch(SCORES_TABLE + '?on_conflict=username', {
+    method: 'POST',
+    prefer: 'resolution=merge-duplicates',
+    body: JSON.stringify({ username, best_score: pct, questions_played: questions })
+  });
+}
+
+/* ── Fetch top 10 scores ── */
+async function fetchLeaderboard(){
+  if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return getDemoScores();
+  const data = await sbFetch(
+    SCORES_TABLE + '?select=username,best_score,questions_played&order=best_score.desc&limit=10'
+  );
+  return data || getDemoScores();
+}
+
+/* Demo scores shown before Supabase is configured */
+function getDemoScores(){
+  return [
+    {username:'—', best_score:'—', questions_played:'—'},
+  ];
+}
+
+/* ── Render leaderboard table ── */
+async function renderLeaderboard(){
+  const tbody = document.getElementById('lb-body');
+  tbody.innerHTML = '<tr><td colspan="3" class="lb-loading">Loading…</td></tr>';
+  const rows = await fetchLeaderboard();
+  if(!rows || rows.length === 0){
+    tbody.innerHTML = '<tr><td colspan="3" class="lb-loading">No scores yet — be the first!</td></tr>';
+    return;
+  }
+  const medals = ['🥇','🥈','🥉'];
+  tbody.innerHTML = rows.map((r,i) => {
+    const medal = medals[i] ? `<span class="lb-medal">${medals[i]}</span>` : '';
+    const score = r.best_score === '—' ? '—' : r.best_score + '%';
+    return `<tr>
+      <td class="lb-rank">${medal}${i>=3 ? i+1 : ''}</td>
+      <td class="lb-name">${escHtml(String(r.username))}</td>
+      <td class="lb-score">${score}</td>
+    </tr>`;
+  }).join('');
+}
+
+function escHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── LOGIN ── */
+let currentUser = localStorage.getItem('bp_username') || '';
+
+function showLoginScreen(){
+  hideAllScreens();
+  document.getElementById('login-screen').style.display = 'block';
+  setTimeout(()=>{ document.getElementById('username-input').focus(); }, 100);
+}
+
+function submitLogin(){
+  const val = document.getElementById('username-input').value.trim();
+  const err = document.getElementById('login-error');
+  if(!val){ err.textContent = 'Please enter your name.'; return; }
+  if(val.length < 2){ err.textContent = 'Name must be at least 2 characters.'; return; }
+  err.textContent = '';
+  currentUser = val;
+  localStorage.setItem('bp_username', val);
+  updateUserChips();
+  showModeScreenDirect();
+}
+
+function updateUserChips(){
+  document.querySelectorAll('.lb-username-chip, #lb-username-chip').forEach(el=>{
+    el.textContent = currentUser || '—';
+  });
+}
+
+function showLeaderboard(){
+  hideAllScreens();
+  document.getElementById('leaderboard-screen').style.display = 'block';
+  updateUserChips();
+  renderLeaderboard();
+}
+
+/* ── SCREEN HELPERS ── */
+function hideAllScreens(){
+  ['login-screen','mode-screen','leaderboard-screen','home-screen',
+   'learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen',
+   'level1-screen','level2-screen','level3-screen','level4-screen'].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.style.display = 'none';
   });
-  // Always start at mode select
+}
+
+function showModeScreenDirect(){
+  hideAllScreens();
   document.getElementById('mode-screen').style.display = 'block';
+}
+
+/* ── APP INITIALISATION — always start from mode screen ── */
+window.addEventListener('load', () => {
+  hideAllScreens();
+  // If user has a saved name go straight to mode screen, else show login
+  if(currentUser){
+    updateUserChips();
+    document.getElementById('mode-screen').style.display = 'block';
+  } else {
+    showLoginScreen();
+  }
 });
 
 /* ── SERVICE WORKER REGISTRATION ── */
