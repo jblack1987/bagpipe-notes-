@@ -3513,7 +3513,7 @@ function makeState(cfg){
     resultScoreEl:  cfg.resultScoreEl,
     current:null, lastId:null,
     score:0, questions:0, streak:0,
-    locked:false, timedMode:false, timerInterval:null
+    locked:false, timedMode:false, wasTimedSession:false, timerInterval:null
   };
 }
 
@@ -3856,10 +3856,7 @@ function startLevel(n){
 }
 
 function goHome(){
-  if(activeLevel===1){
-    if(currentUser && st1.wasTimedSession && st1.questions >= 5) submitScore(currentUser, st1.score, st1.questions);
-    document.getElementById('level1-screen').style.display='none'; resetState(st1, false);
-  }
+  if(activeLevel===1){ document.getElementById('level1-screen').style.display='none'; resetState(st1, false); }
   else if(activeLevel===2){ document.getElementById('level2-screen').style.display='none'; resetState(st2, false); }
   else if(activeLevel===3){ document.getElementById('level3-screen').style.display='none'; resetState(st3, false); }
   else if(activeLevel===4){ document.getElementById('level4-screen').style.display='none'; resetState(st4, false); }
