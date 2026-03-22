@@ -3926,18 +3926,34 @@ async function sbFetch(path, opts={}){
 async function submitScore(username, score, questions){
   if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return;
   if(!username || questions < 5) return;
-  await sbFetch(SCORES_TABLE + '?on_conflict=username', {
-    method: 'POST',
-    prefer: 'resolution=merge-duplicates',
-    body: JSON.stringify({ username, best_score: score, questions_played: questions })
-  });
+
+  // Check if user already has a higher score
+  const existing = await sbFetch(
+    SCORES_TABLE + '?username=eq.' + encodeURIComponent(username) + '&select=best_score'
+  );
+
+  if(existing && existing.length > 0){
+    // Only update if new score is higher
+    if(score <= existing[0].best_score) return;
+    await sbFetch(SCORES_TABLE + '?username=eq.' + encodeURIComponent(username), {
+      method: 'PATCH',
+      body: JSON.stringify({ best_score: score, questions_played: questions })
+    });
+  } else {
+    // New user — insert
+    await sbFetch(SCORES_TABLE, {
+      method: 'POST',
+      prefer: 'return=minimal',
+      body: JSON.stringify({ username, best_score: score, questions_played: questions })
+    });
+  }
 }
 
 /* ── Fetch top 10 scores ── */
 async function fetchLeaderboard(){
   if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return getDemoScores();
   const data = await sbFetch(
-    SCORES_TABLE + '?select=username,best_score,questions_played&order=best_score.desc&limit=10'
+    SCORES_TABLE + '?select=username,best_score,questions_played&order=best_score.desc&limit=5'
   );
   return data || getDemoScores();
 }
