@@ -341,6 +341,23 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
   text-transform:uppercase;
   text-shadow:0 0 14px rgba(62,207,142,.6);
 }
+
+.skill-btn {
+  padding:.65rem .5rem; border-radius:10px; border:2px solid #1c2e45;
+  background:#111b2a; color:var(--text); font-size:.85rem;
+  font-weight:600; cursor:pointer; transition:all .2s;
+  touch-action:manipulation; -webkit-appearance:none;
+}
+.skill-btn:hover { border-color:var(--accent); }
+.active-skill { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+
+.skill-tab {
+  padding:.55rem .5rem; border-radius:10px; border:2px solid #1c2e45;
+  background:#111b2a; color:var(--text); font-size:.82rem;
+  font-weight:600; cursor:pointer; transition:all .2s;
+  touch-action:manipulation; -webkit-appearance:none;
+}
+.active-tab { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
 </style>
 </head>
 <body>
@@ -370,31 +387,73 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
   </button>
 </div>
 
+<!-- ── SIGN-IN SCREEN ── -->
+<div id="signin-screen" style="display:none;">
+  <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.4rem;box-shadow:0 18px 40px rgba(0,0,0,.6);text-align:center;">
+    <h1 style="font-size:1.3rem;margin-bottom:.3rem;">🏆 Join the Leaderboard</h1>
+    <div class="subtitle" style="margin-bottom:1.4rem;">Enter your name and skill level to compete</div>
+
+    <input id="signin-name" type="text" placeholder="Your name" maxlength="30"
+      style="width:100%;padding:.75rem 1rem;border-radius:10px;border:2px solid #1c2e45;background:#0c1522;color:#f5f5f5;font-size:1rem;margin-bottom:.9rem;outline:none;box-sizing:border-box;"/>
+
+    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;opacity:.6;margin-bottom:.5rem;text-align:left;">Skill Level</div>
+    <div style="display:flex;gap:.6rem;margin-bottom:1.2rem;">
+      <button id="sl-learner" class="skill-btn active-skill" onclick="selectSkill('learner')" style="flex:1;">🎵 Learner</button>
+      <button id="sl-established" class="skill-btn" onclick="selectSkill('established_player')" style="flex:1;">🎼 Established Player</button>
+    </div>
+
+    <div id="signin-error" style="color:#ff5c5c;font-size:.82rem;min-height:1.2rem;margin-bottom:.5rem;"></div>
+    <button class="primary" style="width:100%;padding:.8rem;border-radius:999px;border:none;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:.6rem;" onclick="submitSignIn()">Join Leaderboard →</button>
+    <button class="level-btn" style="background:#0c1522;width:100%;" onclick="skipSignIn()">Skip for now</button>
+  </div>
+</div>
+
 <!-- ── LEADERBOARD SCREEN ── -->
 <div id="leaderboard-screen" style="display:none;">
   <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.4rem;box-shadow:0 18px 40px rgba(0,0,0,.6);text-align:center;">
-    <h1 style="font-size:1.3rem;margin-bottom:.3rem;">🏆 Leaderboard</h1>
-    <div class="subtitle" style="margin-bottom:1.2rem;">Top 5 scores per level — 30 second challenge</div>
 
-    <div style="margin-bottom:1rem;">
-      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;opacity:.5;margin-bottom:.5rem;">Level 1 — Notes &amp; Gracenotes</div>
-      <div id="lb-level1" style="background:#0c1522;border-radius:10px;padding:.6rem .8rem;"></div>
-    </div>
-    <div style="margin-bottom:1rem;">
-      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;opacity:.5;margin-bottom:.5rem;">Level 2 — Strikes &amp; Tachums</div>
-      <div id="lb-level2" style="background:#0c1522;border-radius:10px;padding:.6rem .8rem;"></div>
-    </div>
-    <div style="margin-bottom:1rem;">
-      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;opacity:.5;margin-bottom:.5rem;">Level 3 — Doublings</div>
-      <div id="lb-level4" style="background:#0c1522;border-radius:10px;padding:.6rem .8rem;"></div>
-    </div>
-    <div style="margin-bottom:1.2rem;">
-      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;opacity:.5;margin-bottom:.5rem;">Level 4 — Advanced Embellishments</div>
-      <div id="lb-level3" style="background:#0c1522;border-radius:10px;padding:.6rem .8rem;"></div>
+    <!-- Header with profile info -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+      <h1 style="font-size:1.2rem;margin:0;">🏆 Leaderboard</h1>
+      <div id="lb-profile-badge" style="font-size:.75rem;background:#111b2a;padding:.3rem .7rem;border-radius:999px;cursor:pointer;" onclick="showEditProfile()"></div>
     </div>
 
-    <button class="level-btn" style="background:#111b2a;margin-bottom:.5rem;" onclick="clearLeaderboard()">🗑 Clear All Scores</button>
-    <button class="level-btn" style="background:#0c1522;" onclick="showModeScreen()">← Back</button>
+    <div style="font-size:.72rem;opacity:.5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;">Level 1 — Notes &amp; Gracenotes · 30 sec challenge</div>
+
+    <!-- Skill tabs -->
+    <div style="display:flex;gap:.5rem;margin-bottom:1rem;">
+      <button id="tab-learner" class="skill-tab active-tab" onclick="switchTab('learner')" style="flex:1;">🎵 Learner</button>
+      <button id="tab-established" class="skill-tab" onclick="switchTab('established_player')" style="flex:1;">🎼 Established</button>
+    </div>
+
+    <!-- Scores list -->
+    <div id="lb-scores" style="background:#0c1522;border-radius:12px;padding:.7rem .9rem;min-height:80px;margin-bottom:1rem;"></div>
+
+    <!-- Your best -->
+    <div id="lb-your-best" style="background:#111b2a;border-radius:10px;padding:.5rem .9rem;font-size:.82rem;margin-bottom:1rem;text-align:left;display:none;"></div>
+
+    <button class="level-btn" style="background:#0c1522;width:100%;" onclick="showModeScreen()">← Back</button>
+  </div>
+</div>
+
+<!-- ── EDIT PROFILE SCREEN ── -->
+<div id="editprofile-screen" style="display:none;">
+  <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.4rem;box-shadow:0 18px 40px rgba(0,0,0,.6);text-align:center;">
+    <h1 style="font-size:1.2rem;margin-bottom:.3rem;">✏️ Edit Profile</h1>
+    <div class="subtitle" style="margin-bottom:1.3rem;">Update your name or skill level</div>
+
+    <input id="edit-name" type="text" placeholder="Your name" maxlength="30"
+      style="width:100%;padding:.75rem 1rem;border-radius:10px;border:2px solid #1c2e45;background:#0c1522;color:#f5f5f5;font-size:1rem;margin-bottom:.9rem;outline:none;box-sizing:border-box;"/>
+
+    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;opacity:.6;margin-bottom:.5rem;text-align:left;">Skill Level</div>
+    <div style="display:flex;gap:.6rem;margin-bottom:1.2rem;">
+      <button id="edit-sl-learner" class="skill-btn" onclick="editSelectSkill('learner')" style="flex:1;">🎵 Learner</button>
+      <button id="edit-sl-established" class="skill-btn" onclick="editSelectSkill('established_player')" style="flex:1;">🎼 Established Player</button>
+    </div>
+
+    <div id="edit-error" style="color:#ff5c5c;font-size:.82rem;min-height:1.2rem;margin-bottom:.5rem;"></div>
+    <button class="primary" style="width:100%;padding:.8rem;border-radius:999px;border:none;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:.6rem;" onclick="submitEditProfile()">Save Changes</button>
+    <button class="level-btn" style="background:#0c1522;width:100%;" onclick="showLeaderboard()">← Cancel</button>
   </div>
 </div>
 
@@ -3901,10 +3960,7 @@ function finishTimed(st){
   st.timerWrapEl.style.display='none';
   st.resultScoreEl.textContent = st.score;
   st.resultEl.style.display='flex';
-  // Save to leaderboard — determine level from state
-  const levelMap = [[st1,1],[st2,2],[st3,3],[st4,4]];
-  const found = levelMap.find(([s])=>s===st);
-  if(found) saveScore(found[1], st.score);
+  if(st.level) saveScore(st.level, st.score);
 }
 
 function endTimed(st){
@@ -3934,6 +3990,7 @@ const st1 = makeState({
   resultEl:       document.getElementById('l1-result'),
   resultScoreEl:  document.getElementById('l1-result-score')
 });
+st1.level = 1;
 
 const st2 = makeState({
   all:            L2_ALL,
@@ -3953,6 +4010,7 @@ const st2 = makeState({
   resultEl:       document.getElementById('l2-result'),
   resultScoreEl:  document.getElementById('l2-result-score')
 });
+st2.level = 2;
 
 const st3 = makeState({
   all:            L3_ALL,
@@ -3972,6 +4030,7 @@ const st3 = makeState({
   resultEl:       document.getElementById('l3-result'),
   resultScoreEl:  document.getElementById('l3-result-score')
 });
+st3.level = 3;
 
 /* Level 4 — Doublings (same draw functions as L2 doublings) */
 const L4_ALL=[
@@ -4003,6 +4062,7 @@ const st4 = makeState({
   resultEl:       document.getElementById('l4-result'),
   resultScoreEl:  document.getElementById('l4-result-score')
 });
+st4.level = 4;
 
 /* ════════════════════════════════════════════
    NAVIGATION
@@ -4010,62 +4070,243 @@ const st4 = makeState({
 let activeLevel = 0;
 
 function showModeScreen(){
-  ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen','leaderboard-screen'].forEach(id=>{
+  ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen',
+   'leaderboard-screen','signin-screen','editprofile-screen'].forEach(id=>{
     document.getElementById(id).style.display='none';
   });
   document.getElementById('mode-screen').style.display='block';
 }
 
-/* ── LEADERBOARD ── */
-function getLBKey(level){ return `bp_lb_level${level}`; }
+/* ══════════════════════════════════════════════
+   SUPABASE + LEADERBOARD
+   ══════════════════════════════════════════════ */
+const SUPA_URL  = 'https://ojqkpymnuesghibvhytx.supabase.co';
+const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qcWtweW1udWVzZ2hpYnZoeXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDQzNjYsImV4cCI6MjA4OTc4MDM2Nn0.C7ruzo17dBzQ64qEncepQ12o56P3uxhrPM2Nt81-1T4';
 
-function loadScores(level){
-  try {
-    const raw = localStorage.getItem(getLBKey(level));
-    return raw ? JSON.parse(raw) : [];
-  } catch(e){ return []; }
+const SUPA_HEADERS = {
+  'Content-Type':  'application/json',
+  'apikey':        SUPA_KEY,
+  'Authorization': 'Bearer ' + SUPA_KEY,
+  'Prefer':        'return=representation'
+};
+
+async function supaFetch(path, opts={}){
+  const res = await fetch(SUPA_URL + path, {
+    headers: SUPA_HEADERS,
+    ...opts
+  });
+  if(!res.ok) throw new Error(await res.text());
+  const txt = await res.text();
+  return txt ? JSON.parse(txt) : [];
 }
 
-function saveScore(level, score){
-  const scores = loadScores(level);
-  scores.push({ score, date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short'}) });
-  scores.sort((a,b) => b.score - a.score);
-  const top5 = scores.slice(0, 5);
-  try { localStorage.setItem(getLBKey(level), JSON.stringify(top5)); } catch(e){}
+/* ── Player profile stored in localStorage ── */
+function getProfile(){ try{ return JSON.parse(localStorage.getItem('bp_profile')||'null'); }catch(e){ return null; } }
+function setProfile(p){ localStorage.setItem('bp_profile', JSON.stringify(p)); }
+
+/* ── Skip sign-in ── */
+function skipSignIn(){
+  document.getElementById('signin-screen').style.display='none';
+  document.getElementById('mode-screen').style.display='block';
 }
 
-function renderLBPanel(elId, level){
-  const el = document.getElementById(elId);
-  const scores = loadScores(level);
-  if(!scores.length){
-    el.innerHTML = '<span style="opacity:.4;font-size:.85rem;">No scores yet — complete a timed challenge!</span>';
-    return;
-  }
-  const medals = ['🥇','🥈','🥉','4️⃣','5️⃣'];
-  el.innerHTML = scores.map((s,i) =>
-    `<div style="display:flex;justify-content:space-between;align-items:center;padding:.3rem 0;${i<scores.length-1?'border-bottom:1px solid #1c2e45;':''}">
-      <span style="font-size:.9rem;">${medals[i]} <strong style="color:var(--accent);font-size:1.05rem;">${s.score}</strong> correct</span>
-      <span style="font-size:.75rem;opacity:.5;">${s.date}</span>
-    </div>`
-  ).join('');
+/* ── Skill level selection (sign-in screen) ── */
+let _signinSkill = 'learner';
+let _signinDestination = 'leaderboard'; // 'mode' on first launch, 'leaderboard' from menu
+
+function selectSkill(v){
+  _signinSkill = v;
+  document.getElementById('sl-learner').classList.toggle('active-skill', v==='learner');
+  document.getElementById('sl-established').classList.toggle('active-skill', v==='established_player');
 }
 
+/* ── Skill level selection (edit profile screen) ── */
+let _editSkill = 'learner';
+function editSelectSkill(v){
+  _editSkill = v;
+  document.getElementById('edit-sl-learner').classList.toggle('active-skill', v==='learner');
+  document.getElementById('edit-sl-established').classList.toggle('active-skill', v==='established_player');
+}
+
+/* ── Show sign-in or leaderboard depending on profile ── */
 function showLeaderboard(){
-  document.getElementById('mode-screen').style.display='none';
-  renderLBPanel('lb-level1', 1);
-  renderLBPanel('lb-level2', 2);
-  renderLBPanel('lb-level4', 4);
-  renderLBPanel('lb-level3', 3);
-  document.getElementById('leaderboard-screen').style.display='block';
+  ['mode-screen','signin-screen','editprofile-screen'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+  const profile = getProfile();
+  if(!profile){
+    _signinSkill = 'learner';
+    _signinDestination = 'leaderboard';
+    document.getElementById('sl-learner').classList.add('active-skill');
+    document.getElementById('sl-established').classList.remove('active-skill');
+    document.getElementById('signin-name').value = '';
+    document.getElementById('signin-error').textContent = '';
+    document.getElementById('signin-screen').style.display='block';
+  } else {
+    _renderLeaderboard();
+  }
 }
 
-function clearLeaderboard(){
-  if(!confirm('Clear all leaderboard scores?')) return;
-  [1,2,3,4].forEach(l => { try{ localStorage.removeItem(getLBKey(l)); }catch(e){} });
-  renderLBPanel('lb-level1', 1);
-  renderLBPanel('lb-level2', 2);
-  renderLBPanel('lb-level4', 4);
-  renderLBPanel('lb-level3', 3);
+async function submitSignIn(){
+  const name = document.getElementById('signin-name').value.trim();
+  const errEl = document.getElementById('signin-error');
+  if(!name){ errEl.textContent = 'Please enter your name.'; return; }
+  errEl.textContent = 'Saving…';
+  try {
+    // Check if username already exists
+    const existing = await supaFetch(`/rest/v1/leaderboard?username=eq.${encodeURIComponent(name)}&select=id,username,skill_level`);
+    let profile;
+    if(existing.length){
+      // Use existing row — update skill level
+      await supaFetch(`/rest/v1/leaderboard?id=eq.${existing[0].id}`, {
+        method:'PATCH',
+        body: JSON.stringify({ skill_level: _signinSkill })
+      });
+      profile = { id: existing[0].id, username: name, skill_level: _signinSkill };
+    } else {
+      // Create new row
+      const rows = await supaFetch('/rest/v1/leaderboard', {
+        method:'POST',
+        body: JSON.stringify({ username: name, skill_level: _signinSkill, best_score: 0, questions_played: 0, game_level: 1 })
+      });
+      profile = { id: rows[0].id, username: rows[0].username, skill_level: _signinSkill };
+    }
+    setProfile(profile);
+    errEl.textContent = '';
+    document.getElementById('signin-screen').style.display='none';
+    if(_signinDestination === 'mode'){
+      document.getElementById('mode-screen').style.display = 'block';
+    } else {
+      _renderLeaderboard();
+    }
+  } catch(e){
+    errEl.textContent = 'Error saving — please try again.';
+    console.error(e);
+  }
+}
+
+/* ── Leaderboard tabs ── */
+let _activeTab = 'learner';
+function switchTab(skill){
+  _activeTab = skill;
+  document.getElementById('tab-learner').classList.toggle('active-tab', skill==='learner');
+  document.getElementById('tab-established').classList.toggle('active-tab', skill==='established_player');
+  _loadScores(skill);
+}
+
+async function _renderLeaderboard(){
+  const profile = getProfile();
+  // Profile badge
+  const badge = document.getElementById('lb-profile-badge');
+  if(profile){
+    const label = profile.skill_level === 'established_player' ? 'Established Player' : 'Learner';
+    badge.textContent = `${profile.username} · ${label} ✏️`;
+  }
+  document.getElementById('leaderboard-screen').style.display='block';
+  _activeTab = profile ? profile.skill_level : 'learner';
+  document.getElementById('tab-learner').classList.toggle('active-tab', _activeTab==='learner');
+  document.getElementById('tab-established').classList.toggle('active-tab', _activeTab==='established_player');
+  await _loadScores(_activeTab);
+}
+
+async function _loadScores(skill){
+  const el = document.getElementById('lb-scores');
+  el.innerHTML = '<span style="opacity:.4;font-size:.85rem;">Loading…</span>';
+  try {
+    const rows = await supaFetch(
+      `/rest/v1/leaderboard?skill_level=eq.${skill}&game_level=eq.1&best_score=gt.0&order=best_score.desc&limit=10&select=username,best_score,questions_played,updated_at`
+    );
+    const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+    if(!rows.length){
+      el.innerHTML = '<span style="opacity:.4;font-size:.85rem;">No scores yet — be the first!</span>';
+    } else {
+      el.innerHTML = rows.map((r,i) => {
+        const d = new Date(r.updated_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;${i<rows.length-1?'border-bottom:1px solid #1c2e45;':''}">
+          <span style="font-size:.9rem;">${medals[i]} <strong style="font-size:.95rem;">${r.username}</strong></span>
+          <span style="font-size:.9rem;color:var(--accent);font-weight:700;">${r.best_score} <span style="font-size:.7rem;opacity:.6;font-weight:400;">/ ${d}</span></span>
+        </div>`;
+      }).join('');
+    }
+    // Show personal best
+    const profile = getProfile();
+    if(profile && profile.skill_level === skill){
+      const mine = await supaFetch(`/rest/v1/leaderboard?id=eq.${profile.id}&select=best_score,questions_played`);
+      const ybEl = document.getElementById('lb-your-best');
+      if(mine.length && mine[0].best_score > 0){
+        ybEl.style.display='block';
+        ybEl.innerHTML = `⭐ Your best: <strong style="color:var(--accent);">${mine[0].best_score}</strong> correct &nbsp;·&nbsp; ${mine[0].questions_played} total questions played`;
+      } else {
+        ybEl.style.display='none';
+      }
+    } else {
+      document.getElementById('lb-your-best').style.display='none';
+    }
+  } catch(e){
+    el.innerHTML = '<span style="opacity:.4;font-size:.85rem;">Could not load scores.</span>';
+    console.error(e);
+  }
+}
+
+/* ── Save score to Supabase ── */
+async function saveScore(gameLevel, score){
+  // Always save to localStorage as backup
+  try {
+    const raw = localStorage.getItem(`bp_lb_level${gameLevel}`);
+    const scores = raw ? JSON.parse(raw) : [];
+    scores.push({ score, date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short'}) });
+    scores.sort((a,b)=>b.score-a.score);
+    localStorage.setItem(`bp_lb_level${gameLevel}`, JSON.stringify(scores.slice(0,5)));
+  } catch(e){}
+
+  // Save to Supabase if profile exists and this is level 1
+  const profile = getProfile();
+  if(!profile || gameLevel !== 1) return;
+  try {
+    const existing = await supaFetch(`/rest/v1/leaderboard?id=eq.${profile.id}&select=best_score,questions_played`);
+    if(!existing.length) return;
+    const prev = existing[0];
+    const newBest = Math.max(prev.best_score || 0, score);
+    const newQ    = (prev.questions_played || 0) + 1;
+    await supaFetch(`/rest/v1/leaderboard?id=eq.${profile.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ best_score: newBest, questions_played: newQ, updated_at: new Date().toISOString(), game_level: 1 })
+    });
+  } catch(e){ console.error('Supabase save error:', e); }
+}
+
+/* ── Edit profile ── */
+function showEditProfile(){
+  const profile = getProfile();
+  if(!profile) return;
+  document.getElementById('leaderboard-screen').style.display='none';
+  document.getElementById('edit-name').value = profile.username;
+  _editSkill = profile.skill_level;
+  document.getElementById('edit-sl-learner').classList.toggle('active-skill', _editSkill==='learner');
+  document.getElementById('edit-sl-established').classList.toggle('active-skill', _editSkill==='established_player');
+  document.getElementById('edit-error').textContent='';
+  document.getElementById('editprofile-screen').style.display='block';
+}
+
+async function submitEditProfile(){
+  const name = document.getElementById('edit-name').value.trim();
+  const errEl = document.getElementById('edit-error');
+  if(!name){ errEl.textContent='Please enter your name.'; return; }
+  errEl.textContent='Saving…';
+  const profile = getProfile();
+  try {
+    await supaFetch(`/rest/v1/leaderboard?id=eq.${profile.id}`, {
+      method:'PATCH',
+      body: JSON.stringify({ username: name, skill_level: _editSkill })
+    });
+    setProfile({ ...profile, username: name, skill_level: _editSkill });
+    errEl.textContent='';
+    document.getElementById('editprofile-screen').style.display='none';
+    _renderLeaderboard();
+  } catch(e){
+    errEl.textContent='Error saving — please try again.';
+    console.error(e);
+  }
 }
 
 function selectMode(mode){
@@ -4173,18 +4414,32 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-/* ── APP INITIALISATION — always start from mode screen ── */
+/* ── APP INITIALISATION ── */
 window.addEventListener('load', () => {
   // Hide all screens
   ['mode-screen','home-screen','learn-screen',
    'learn1-screen','learn2-screen','learn3-screen','learn4-screen',
    'level1-screen','level2-screen','level3-screen','level4-screen',
-   'leaderboard-screen'].forEach(id => {
+   'leaderboard-screen','signin-screen','editprofile-screen'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.style.display = 'none';
   });
-  // Always start at mode select
-  document.getElementById('mode-screen').style.display = 'block';
+
+  // If no profile saved — show setup screen (covers new users AND existing users without a profile)
+  const profile = getProfile();
+  if(!profile){
+    _signinSkill = 'learner';
+    document.getElementById('sl-learner').classList.add('active-skill');
+    document.getElementById('sl-established').classList.remove('active-skill');
+    document.getElementById('signin-name').value = '';
+    document.getElementById('signin-error').textContent = '';
+    // Override submit to go to mode screen instead of leaderboard
+    document.getElementById('signin-screen').style.display = 'block';
+    _signinDestination = 'mode';
+  } else {
+    document.getElementById('mode-screen').style.display = 'block';
+    _signinDestination = 'leaderboard';
+  }
 });
 
 /* ── SERVICE WORKER REGISTRATION ── */
