@@ -135,68 +135,7 @@ svg { overflow: visible !important; }
 }
 
 
-/* ── LOGIN SCREEN ── */
-#login-screen {
-  width:100%; max-width:480px;
-  background:rgba(5,10,20,.96); border-radius:16px;
-  padding:1.8rem 1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
-  text-align:center;
-}
-#login-screen h1 { font-size:1.4rem; margin-bottom:.3rem; letter-spacing:.04em; }
-#login-screen .subtitle { opacity:.7; font-size:.9rem; margin-bottom:1.6rem; }
-.login-input {
-  width:100%; padding:.8rem 1rem; border-radius:10px;
-  border:2px solid #1f3048; background:#0c1522;
-  color:var(--text); font-size:1rem; font-weight:600;
-  text-align:center; margin-bottom:1rem; outline:none;
-  transition:border-color .2s;
-}
-.login-input:focus { border-color:var(--accent); }
-.login-input::placeholder { opacity:.4; font-weight:400; }
-.login-error { color:var(--wrong); font-size:.82rem; margin-bottom:.8rem; min-height:1rem; }
-
-/* ── LEADERBOARD SCREEN ── */
-#leaderboard-screen {
-  width:100%; max-width:480px;
-  background:rgba(5,10,20,.96); border-radius:16px;
-  padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
-  text-align:center;
-}
-#leaderboard-screen h1 { font-size:1.3rem; margin-bottom:.3rem; letter-spacing:.04em; }
-.lb-subtitle { opacity:.6; font-size:.82rem; margin-bottom:1.2rem; text-transform:uppercase; letter-spacing:.08em; }
-.lb-table { width:100%; border-collapse:collapse; margin-bottom:1rem; }
-.lb-table th {
-  font-size:.72rem; text-transform:uppercase; letter-spacing:.1em;
-  opacity:.5; padding:.4rem .5rem; border-bottom:1px solid #1f3048;
-}
-.lb-table td { padding:.55rem .5rem; font-size:.92rem; border-bottom:1px solid #0c1522; }
-.lb-table tr:first-child td { color:#f5c842; font-weight:700; }
-.lb-table tr:nth-child(2) td { color:#c0c0c0; font-weight:600; }
-.lb-table tr:nth-child(3) td { color:#cd7f32; font-weight:600; }
-.lb-rank { opacity:.5; font-size:.82rem; }
-.lb-name { text-align:left; font-weight:600; }
-.lb-score { color:var(--accent); font-weight:700; text-align:right; }
-.lb-loading { opacity:.5; font-size:.88rem; padding:1.5rem 0; }
-.lb-medal { margin-right:.3rem; }
-.user-chip {
-  display:inline-flex; align-items:center; gap:.4rem;
-  background:#111b2a; border-radius:999px;
-  padding:.3rem .8rem; font-size:.8rem;
-  margin-bottom:1.2rem; opacity:.8;
-}
-.user-chip strong { color:var(--accent); }
-
-/* ── MODE SCREEN LEADERBOARD BUTTON ── */
-.lb-btn {
-  display:flex; align-items:center; justify-content:center; gap:.5rem;
-  padding:.6rem; border-radius:10px; border:1px solid #1f3048;
-  background:transparent; color:var(--text); font-size:.82rem;
-  font-weight:600; letter-spacing:.05em; cursor:pointer;
-  width:100%; margin-top:.8rem; opacity:.75; transition:opacity .2s;
-}
-.lb-btn:hover { opacity:1; }
-
-
+#mode-screen {
   background:rgba(5,10,20,.96); border-radius:16px;
   padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
   text-align:center;
@@ -410,40 +349,6 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
 
 <!-- ── HOME ── -->
 <!-- ── MODE SELECT (first screen) ── -->
-<!-- ── LOGIN SCREEN ── -->
-<div id="login-screen" style="display:none;">
-  <h1>🎵 Bagpipe Trainer</h1>
-  <div class="subtitle">Enter your name to get started</div>
-  <input id="username-input" class="login-input" type="text"
-    placeholder="Your name" maxlength="20"
-    onkeydown="if(event.key==='Enter') submitLogin()" />
-  <div class="login-error" id="login-error"></div>
-  <button class="primary" style="width:100%;padding:.8rem;border-radius:999px;border:none;font-size:1rem;font-weight:700;letter-spacing:.06em;"
-    onclick="submitLogin()">Let's Go →</button>
-</div>
-
-<!-- ── LEADERBOARD SCREEN ── -->
-<div id="leaderboard-screen" style="display:none;">
-  <h1>🏆 Leaderboard</h1>
-  <div class="lb-subtitle">Level 1 — Notes &amp; Gracenotes · Timed Test</div>
-  <div class="user-chip">Playing as <strong id="lb-username-chip">—</strong></div>
-  <div style="max-height:55vh; overflow-y:auto; border-radius:8px;">
-  <table class="lb-table">
-    <thead>
-      <tr>
-        <th style="width:2rem;position:sticky;top:0;background:#0c1522;">#</th>
-        <th style="text-align:left;position:sticky;top:0;background:#0c1522;">Name</th>
-        <th style="text-align:right;position:sticky;top:0;background:#0c1522;">Best Score</th>
-      </tr>
-    </thead>
-    <tbody id="lb-body">
-      <tr><td colspan="3" class="lb-loading">Loading scores…</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <button class="level-btn" style="background:#0c1522;margin-top:.2rem;" onclick="showModeScreen()">← Back</button>
-</div>
-
 <div id="mode-screen">
   <h1>🎵 Bagpipe Music Trainer</h1>
   <div class="subtitle" style="margin-bottom:1.4rem;">What would you like to do?</div>
@@ -457,7 +362,6 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
     Test My Knowledge
     <span class="mode-desc">Quiz yourself — identify notes and embellishments on the staff</span>
   </button>
-  <button class="lb-btn" onclick="showLeaderboard()">🏆 Leaderboard</button>
 </div>
 
 <!-- ── LEARN LEVEL SELECT ── -->
@@ -1996,6 +1900,169 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
       </div>
       <div class="tutorial-nav">
         <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('from-highg-intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('half-doubling-intro')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Half Doubling Intro -->
+    <div id="l4t-page-half-doubling-intro" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Doublings · Half Doublings</div>
+      <h2>Half Doublings</h2>
+      <div class="tutorial-body">
+        <p>When attempting to play a doubling from High A we find that the <strong>High G finger is unavailable</strong>. Therefore we can only play a <strong>half doubling</strong>.</p>
+        <br>
+        <p>To do this we simply close to the destination note and sound the <strong>2nd gracenote of the doubling</strong>. The example below shows a half doubling to Low A where we close to the Low A from High A and immediately play a <strong>D gracenote</strong> on Low A. This completes the Half Doubling on Low A.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-half-lowa-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('lowa-from-highg')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('half-doubling-b')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Half Doubling on B -->
+    <div id="l4t-page-half-doubling-b" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Half Doublings · B</div>
+      <h2>Half Doubling on B</h2>
+      <div class="tutorial-body">
+        <p>Close to <strong>B</strong> from High A and immediately play a <strong>D gracenote</strong> on B to complete the Half Doubling.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-half-b-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('half-doubling-intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('half-doubling-c')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Half Doubling on C -->
+    <div id="l4t-page-half-doubling-c" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Half Doublings · C</div>
+      <h2>Half Doubling on C</h2>
+      <div class="tutorial-body">
+        <p>Close to <strong>C</strong> from High A and immediately play a <strong>D gracenote</strong> on C to complete the Half Doubling.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-half-c-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('half-doubling-b')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('half-doubling-d')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Half Doubling on D -->
+    <div id="l4t-page-half-doubling-d" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Half Doublings · D</div>
+      <h2>Half Doubling on D</h2>
+      <div class="tutorial-body">
+        <p>Close to <strong>D</strong> from High A and immediately play an <strong>E gracenote</strong> on D to complete the Half Doubling.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-half-d-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('half-doubling-c')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('half-doubling-e')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Half Doubling on E -->
+    <div id="l4t-page-half-doubling-e" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Half Doublings · E</div>
+      <h2>Half Doubling on E</h2>
+      <div class="tutorial-body">
+        <p>Close to <strong>E</strong> from High A and immediately play an <strong>F gracenote</strong> on E to complete the Half Doubling.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-half-e-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('half-doubling-d')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('half-doubling-f')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Half Doubling on F -->
+    <div id="l4t-page-half-doubling-f" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Half Doublings · F</div>
+      <h2>Half Doubling on F</h2>
+      <div class="tutorial-body">
+        <p>Close to <strong>F</strong> from High A and immediately play an <strong>F gracenote</strong> on F to complete the Half Doubling.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l4t-half-f-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('half-doubling-e')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="l4tGoTo('doublings-finish')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Doublings — Well Done -->
+    <div id="l4t-page-doublings-finish" class="l4t-page" style="display:none;">
+      <div class="page-indicator">Doublings · Complete</div>
+      <h2>🎉 Well Done!</h2>
+      <div class="tutorial-body">
+        <p>You have now covered all the <strong>standard doublings</strong>, including doublings from High G and Half Doublings from High A.</p>
+        <br>
+        <p>Doublings are one of the most frequently used embellishments in bagpipe music. <strong>Repetition and practice</strong> with your tutor will be key to mastering them — keep returning to these pages until each doubling becomes second nature.</p>
+        <br>
+        <p>Head to <strong>Test My Knowledge</strong> to start identifying doublings on the staff.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l4tGoTo('half-doubling-f')">← Back</button>
         <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;touch-action:manipulation;" onclick="showModeScreen()">🏠 Home</button>
       </div>
     </div>
@@ -2874,6 +2941,139 @@ function drawDDoublingFromHighG(svg){
   svg.appendChild(gg3);
 }
 
+/*  HALF DOUBLING ON LOW A
+    Left main: High A (y=11.5, ledger line)
+    Centre: Low A gracenote (y=63.5) + D gracenote (y=41.5) beamed together (3 beams)
+    Right main: Low A (y=63.5)
+    Both main stems joined by single beam at bottom                */
+function drawHalfDoublingLowA(svg){
+  clearSVG(svg);
+
+  const LEFT_X  = SVG_W * 0.22;
+  const G1X     = SVG_W * 0.52;   // Low A gracenote
+  const G2X     = SVG_W * 0.60;   // D gracenote
+  const RIGHT_X = SVG_W * 0.76;
+
+  const leftCy  = yPx(11.5);   // High A
+  const rightCy = yPx(63.5);   // Low A
+  const stemBot = Math.max(yPx(85) + 18, rightCy + 55);
+
+  const leftStemX  = LEFT_X  - 13;
+  const rightStemX = RIGHT_X - 13;
+
+  // Main stems
+  svg.appendChild(svgEl('line',{x1:leftStemX,  y1:leftCy,  x2:leftStemX,  y2:stemBot, stroke:'white','stroke-width':'2'}));
+  svg.appendChild(svgEl('line',{x1:rightStemX, y1:rightCy, x2:rightStemX, y2:stemBot, stroke:'white','stroke-width':'2'}));
+  // Beam at bottom
+  svg.appendChild(svgEl('line',{x1:leftStemX, y1:stemBot, x2:rightStemX, y2:stemBot, stroke:'white','stroke-width':'3'}));
+
+  // Left — High A with ledger line
+  svg.appendChild(svgEl('line',{x1:LEFT_X-19, y1:leftCy, x2:LEFT_X+19, y2:leftCy, stroke:'white','stroke-width':'2'}));
+  const gL = svgEl('g',{transform:`rotate(-20,${LEFT_X},${leftCy})`});
+  gL.appendChild(svgEl('ellipse',{cx:LEFT_X, cy:leftCy, rx:13, ry:9, fill:'black',stroke:'white','stroke-width':'2'}));
+  svg.appendChild(gL);
+
+  // Right — Low A
+  const gR = svgEl('g',{transform:`rotate(-20,${RIGHT_X},${rightCy})`});
+  gR.appendChild(svgEl('ellipse',{cx:RIGHT_X, cy:rightCy, rx:13, ry:9, fill:'black',stroke:'white','stroke-width':'2'}));
+  svg.appendChild(gR);
+
+  // ── Two beamed gracenotes: Low A + D ──
+  const rx = 6, ry = 4;
+  const BEAM_TOP = yPx(11.5) - 38;
+
+  const g1StemX = G1X + rx;
+  const g2StemX = G2X + rx;
+  svg.appendChild(svgEl('line',{x1:g1StemX, y1:yPx(63.5), x2:g1StemX, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  svg.appendChild(svgEl('line',{x1:g2StemX, y1:yPx(41.5), x2:g2StemX, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+
+  for(let b=0;b<3;b++){
+    const by=BEAM_TOP+b*4;
+    svg.appendChild(svgEl('line',{x1:g1StemX, y1:by, x2:g2StemX, y2:by, stroke:'white','stroke-width':'2.5'}));
+  }
+
+  // Low A gracehead
+  const gg1 = svgEl('g',{transform:`rotate(-20,${G1X},${yPx(63.5)})`});
+  gg1.appendChild(svgEl('ellipse',{cx:G1X, cy:yPx(63.5), rx, ry, fill:'white'}));
+  svg.appendChild(gg1);
+
+  // D gracehead (line note — gap cover)
+  svg.appendChild(svgEl('rect',{x:G2X-rx-1, y:yPx(41.5)-2, width:(rx+1)*2, height:4, fill:'#0c1522'}));
+  const gg2 = svgEl('g',{transform:`rotate(-20,${G2X},${yPx(41.5)})`});
+  gg2.appendChild(svgEl('ellipse',{cx:G2X, cy:yPx(41.5), rx, ry, fill:'white'}));
+  svg.appendChild(gg2);
+}
+
+/* Shared helper for half doublings with TWO beamed gracenotes */
+function drawHalfDoubling(svg, grace1Y, grace1Id, grace2Y, grace2Id, rightMainY, rightId){
+  clearSVG(svg);
+
+  const LEFT_X  = SVG_W * 0.22;
+  const G1X     = SVG_W * 0.52;
+  const G2X     = SVG_W * 0.60;
+  const RIGHT_X = SVG_W * 0.76;
+
+  const leftCy  = yPx(11.5);
+  const rightCy = yPx(rightMainY);
+  // Force stemBot below the bottom staff line (85% = 119px) so beam is always outside staff
+  const stemBot = Math.max(yPx(85) + 18, Math.max(leftCy, rightCy) + 55);
+  const leftStemX  = LEFT_X  - 13;
+  const rightStemX = RIGHT_X - 13;
+
+  // Main stems + bottom beam
+  svg.appendChild(svgEl('line',{x1:leftStemX,  y1:leftCy,  x2:leftStemX,  y2:stemBot, stroke:'white','stroke-width':'2'}));
+  svg.appendChild(svgEl('line',{x1:rightStemX, y1:rightCy, x2:rightStemX, y2:stemBot, stroke:'white','stroke-width':'2'}));
+  svg.appendChild(svgEl('line',{x1:leftStemX,  y1:stemBot, x2:rightStemX, y2:stemBot, stroke:'white','stroke-width':'3'}));
+
+  // Left — High A with ledger line
+  svg.appendChild(svgEl('line',{x1:LEFT_X-19, y1:leftCy, x2:LEFT_X+19, y2:leftCy, stroke:'white','stroke-width':'2'}));
+  const gL = svgEl('g',{transform:`rotate(-20,${LEFT_X},${leftCy})`});
+  gL.appendChild(svgEl('ellipse',{cx:LEFT_X, cy:leftCy, rx:13, ry:9, fill:'black',stroke:'white','stroke-width':'2'}));
+  svg.appendChild(gL);
+
+  // Right main note
+  if(LINE_NOTES.has(rightId)){
+    svg.appendChild(svgEl('rect',{x:RIGHT_X-15, y:rightCy-2, width:30, height:4, fill:'#0c1522'}));
+  }
+  const gR = svgEl('g',{transform:`rotate(-20,${RIGHT_X},${rightCy})`});
+  gR.appendChild(svgEl('ellipse',{cx:RIGHT_X, cy:rightCy, rx:13, ry:9, fill:'black',stroke:'white','stroke-width':'2'}));
+  svg.appendChild(gR);
+
+  // Two beamed gracenotes
+  const rx = 6, ry = 4;
+  const BEAM_TOP = yPx(11.5) - 38;
+  const g1StemX = G1X + rx;
+  const g2StemX = G2X + rx;
+
+  svg.appendChild(svgEl('line',{x1:g1StemX, y1:yPx(grace1Y), x2:g1StemX, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  svg.appendChild(svgEl('line',{x1:g2StemX, y1:yPx(grace2Y), x2:g2StemX, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  for(let b=0;b<3;b++){
+    const by=BEAM_TOP+b*4;
+    svg.appendChild(svgEl('line',{x1:g1StemX, y1:by, x2:g2StemX, y2:by, stroke:'white','stroke-width':'2.5'}));
+  }
+
+  if(LINE_NOTES.has(grace1Id)){
+    svg.appendChild(svgEl('rect',{x:G1X-rx-1, y:yPx(grace1Y)-2, width:(rx+1)*2, height:4, fill:'#0c1522'}));
+  }
+  const gg1 = svgEl('g',{transform:`rotate(-20,${G1X},${yPx(grace1Y)})`});
+  gg1.appendChild(svgEl('ellipse',{cx:G1X, cy:yPx(grace1Y), rx, ry, fill:'white'}));
+  svg.appendChild(gg1);
+
+  if(LINE_NOTES.has(grace2Id)){
+    svg.appendChild(svgEl('rect',{x:G2X-rx-1, y:yPx(grace2Y)-2, width:(rx+1)*2, height:4, fill:'#0c1522'}));
+  }
+  const gg2 = svgEl('g',{transform:`rotate(-20,${G2X},${yPx(grace2Y)})`});
+  gg2.appendChild(svgEl('ellipse',{cx:G2X, cy:yPx(grace2Y), rx, ry, fill:'white'}));
+  svg.appendChild(gg2);
+}
+
+// grace1, grace1Id, grace2, grace2Id, rightMain, rightId
+function drawHalfDoublingB(svg){ drawHalfDoubling(svg, 56.5,'b',   41.5,'d',      56.5,'b'); }  // B + D → B
+function drawHalfDoublingC(svg){ drawHalfDoubling(svg, 48.5,'c',   41.5,'d',      48.5,'c'); }  // C + D → C
+function drawHalfDoublingD(svg){ drawHalfDoubling(svg, 41.5,'d',   33.5,'e',      41.5,'d'); }  // D + E → D
+function drawHalfDoublingE(svg){ drawHalfDoubling(svg, 33.5,'e',   26.5,'f',      33.5,'e'); }  // E + F → E
+function drawHalfDoublingF(svg){ drawHalfDoubling(svg, 26.5,'f',   19.5,'high_g', 26.5,'f'); }  // F + High G → F
+
 /*  E STRIKE
     - Main note E (y=33.5) on the left
     - Single gracenote Low A (y=63.5) in the centre
@@ -3354,9 +3554,7 @@ function drawBirl(svg){
 /* HALF DOUBLING TO B
    Main High A, then 2 gracenotes: B (y=56.5), D (y=41.5) bound by 3 beams,
    then main B note to the right. */
-function drawHalfDoublingB(svg){
-  clearSVG(svg);
-  const GROUP_LEFT = SVG_W / 2 - 40;
+function drawHalfDoublingBL3(svg){
   const FIRST_X = GROUP_LEFT - 38;
   const GX  = [GROUP_LEFT, GROUP_LEFT+18];
   const GPY = [56.5, 41.5];
@@ -3405,7 +3603,7 @@ const L3_ALL=[
   { id:'d_throw',          label:'D Throw',          drawFn: drawDThrow        },
   { id:'d_throw_bare',     label:'D Throw',          drawFn: drawDThrowBare    },
   { id:'birl',             label:'Birl',             drawFn: drawBirl          },
-  { id:'half_doubling_b',  label:'Half Doubling B',  drawFn: drawHalfDoublingB }
+  { id:'half_doubling_b',  label:'Half Doubling B',  drawFn: drawHalfDoublingBL3 }
   // More advanced embellishments added here
 ];
 
@@ -3515,7 +3713,7 @@ function makeState(cfg){
     resultScoreEl:  cfg.resultScoreEl,
     current:null, lastId:null,
     score:0, questions:0, streak:0,
-    locked:false, timedMode:false, wasTimedSession:false, timerInterval:null
+    locked:false, timedMode:false, timerInterval:null
   };
 }
 
@@ -3620,7 +3818,7 @@ function checkAnswer(st, id, btn){
 function resetState(st, showWaiting=true){
   st.score=0; st.questions=0; st.streak=0;
   st.current=null; st.lastId=null; st.locked=false;
-  st.timedMode=false; st.wasTimedSession=false;
+  st.timedMode=false;
   if(st.timerInterval){ clearInterval(st.timerInterval); st.timerInterval=null; }
   st.timerWrapEl.style.display='none';
   st.timerFillEl.style.width='100%';
@@ -3649,7 +3847,6 @@ function startTimed(st){
   st.resultEl.style.display='none';
   resetState(st, false);
   st.timedMode = true;
-  st.wasTimedSession = true;
 
   // Show and reset timer bar
   st.timerWrapEl.style.display='block';
@@ -3685,10 +3882,6 @@ function finishTimed(st){
   st.timerWrapEl.style.display='none';
   st.resultScoreEl.textContent = st.score;
   st.resultEl.style.display='flex';
-  // Only submit to leaderboard if this was a genuine timed session on Level 1
-  if(st === st1 && currentUser && st.wasTimedSession){
-    submitScore(currentUser, st.score, st.questions);
-  }
 }
 
 function endTimed(st){
@@ -3794,7 +3987,9 @@ const st4 = makeState({
 let activeLevel = 0;
 
 function showModeScreen(){
-  hideAllScreens();
+  ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
   document.getElementById('mode-screen').style.display='block';
 }
 
@@ -3843,6 +4038,12 @@ function l4tGoTo(pageId){
   if(pageId==='high-a-doubling') drawHighADoubling(document.getElementById('l4t-high-a-svg'));
   if(pageId==='from-highg-intro') drawLowaFromHighG(document.getElementById('l4t-fromhighg-intro-svg'));
   if(pageId==='lowa-from-highg') drawDDoublingFromHighG(document.getElementById('l4t-d-fromhighg-svg'));
+  if(pageId==='half-doubling-intro') drawHalfDoublingLowA(document.getElementById('l4t-half-lowa-svg'));
+  if(pageId==='half-doubling-b')    drawHalfDoublingB(document.getElementById('l4t-half-b-svg'));
+  if(pageId==='half-doubling-c')    drawHalfDoublingC(document.getElementById('l4t-half-c-svg'));
+  if(pageId==='half-doubling-d')    drawHalfDoublingD(document.getElementById('l4t-half-d-svg'));
+  if(pageId==='half-doubling-e')    drawHalfDoublingE(document.getElementById('l4t-half-e-svg'));
+  if(pageId==='half-doubling-f')    drawHalfDoublingF(document.getElementById('l4t-half-f-svg'));
 }
 
 function l2tGoTo(pageId){
@@ -3897,158 +4098,17 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-/* ════════════════════════════════════════════
-   SUPABASE CONFIG
-   Replace the two values below with your own
-   from supabase.com → Project Settings → API
-   ════════════════════════════════════════════ */
-const SUPABASE_URL    = 'https://ojqkpymnuesghibvhytx.supabase.co';
-const SUPABASE_ANON   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qcWtweW1udWVzZ2hpYnZoeXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDQzNjYsImV4cCI6MjA4OTc4MDM2Nn0.C7ruzo17dBzQ64qEncepQ12o56P3uxhrPM2Nt81-1T4';
-const SCORES_TABLE    = 'leaderboard';
-
-/* ── Supabase helper ── */
-async function sbFetch(path, opts={}){
-  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
-    headers:{
-      'apikey': SUPABASE_ANON,
-      'Authorization': 'Bearer ' + SUPABASE_ANON,
-      'Content-Type': 'application/json',
-      'Prefer': opts.prefer || ''
-    },
-    ...opts
-  });
-  if(!res.ok){ console.error('Supabase error', res.status, await res.text()); return null; }
-  const txt = await res.text();
-  return txt ? JSON.parse(txt) : null;
-}
-
-/* ── Submit or update a score for the current user ── */
-async function submitScore(username, score, questions){
-  if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return;
-  if(!username || questions < 5) return;
-
-  // Check if user already has a higher score
-  const existing = await sbFetch(
-    SCORES_TABLE + '?username=eq.' + encodeURIComponent(username) + '&select=best_score'
-  );
-
-  if(existing && existing.length > 0){
-    // Only update if new score is higher
-    if(score <= existing[0].best_score) return;
-    await sbFetch(SCORES_TABLE + '?username=eq.' + encodeURIComponent(username), {
-      method: 'PATCH',
-      body: JSON.stringify({ best_score: score, questions_played: questions })
-    });
-  } else {
-    // New user — insert
-    await sbFetch(SCORES_TABLE, {
-      method: 'POST',
-      prefer: 'return=minimal',
-      body: JSON.stringify({ username, best_score: score, questions_played: questions })
-    });
-  }
-}
-
-/* ── Fetch top 10 scores ── */
-async function fetchLeaderboard(){
-  if(SUPABASE_URL === 'YOUR_SUPABASE_URL') return getDemoScores();
-  const data = await sbFetch(
-    SCORES_TABLE + '?select=username,best_score,questions_played&order=best_score.desc&limit=100'
-  );
-  return data || getDemoScores();
-}
-
-/* Demo scores shown before Supabase is configured */
-function getDemoScores(){
-  return [
-    {username:'—', best_score:'—', questions_played:'—'},
-  ];
-}
-
-/* ── Render leaderboard table ── */
-async function renderLeaderboard(){
-  const tbody = document.getElementById('lb-body');
-  tbody.innerHTML = '<tr><td colspan="3" class="lb-loading">Loading…</td></tr>';
-  const rows = await fetchLeaderboard();
-  if(!rows || rows.length === 0){
-    tbody.innerHTML = '<tr><td colspan="3" class="lb-loading">No scores yet — be the first!</td></tr>';
-    return;
-  }
-  const medals = ['🥇','🥈','🥉'];
-  tbody.innerHTML = rows.map((r,i) => {
-    const medal = medals[i] ? `<span class="lb-medal">${medals[i]}</span>` : '';
-    const score = r.best_score === '—' ? '—' : r.best_score;
-    return `<tr>
-      <td class="lb-rank">${medal}${i>=3 ? i+1 : ''}</td>
-      <td class="lb-name">${escHtml(String(r.username))}</td>
-      <td class="lb-score">${score}</td>
-    </tr>`;
-  }).join('');
-}
-
-function escHtml(s){
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-/* ── LOGIN ── */
-let currentUser = localStorage.getItem('bp_username') || '';
-
-function showLoginScreen(){
-  hideAllScreens();
-  document.getElementById('login-screen').style.display = 'block';
-  setTimeout(()=>{ document.getElementById('username-input').focus(); }, 100);
-}
-
-function submitLogin(){
-  const val = document.getElementById('username-input').value.trim();
-  const err = document.getElementById('login-error');
-  if(!val){ err.textContent = 'Please enter your name.'; return; }
-  if(val.length < 2){ err.textContent = 'Name must be at least 2 characters.'; return; }
-  err.textContent = '';
-  currentUser = val;
-  localStorage.setItem('bp_username', val);
-  updateUserChips();
-  showModeScreenDirect();
-}
-
-function updateUserChips(){
-  document.querySelectorAll('.lb-username-chip, #lb-username-chip').forEach(el=>{
-    el.textContent = currentUser || '—';
-  });
-}
-
-function showLeaderboard(){
-  hideAllScreens();
-  document.getElementById('leaderboard-screen').style.display = 'block';
-  updateUserChips();
-  renderLeaderboard();
-}
-
-/* ── SCREEN HELPERS ── */
-function hideAllScreens(){
-  ['login-screen','mode-screen','leaderboard-screen','home-screen',
-   'learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen',
-   'level1-screen','level2-screen','level3-screen','level4-screen'].forEach(id=>{
+/* ── APP INITIALISATION — always start from mode screen ── */
+window.addEventListener('load', () => {
+  // Hide all screens
+  ['mode-screen','home-screen','learn-screen',
+   'learn1-screen','learn2-screen','learn3-screen','learn4-screen',
+   'level1-screen','level2-screen','level3-screen','level4-screen'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.style.display = 'none';
   });
-}
-
-function showModeScreenDirect(){
-  hideAllScreens();
+  // Always start at mode select
   document.getElementById('mode-screen').style.display = 'block';
-}
-
-/* ── APP INITIALISATION — always start from mode screen ── */
-window.addEventListener('load', () => {
-  hideAllScreens();
-  // If user has a saved name go straight to mode screen, else show login
-  if(currentUser){
-    updateUserChips();
-    document.getElementById('mode-screen').style.display = 'block';
-  } else {
-    showLoginScreen();
-  }
 });
 
 /* ── SERVICE WORKER REGISTRATION ── */
