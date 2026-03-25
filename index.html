@@ -434,7 +434,7 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
     </div>
 
     <!-- Scores list -->
-    <div id="lb-scores" style="background:#0c1522;border-radius:12px;padding:.7rem .9rem;min-height:80px;margin-bottom:1rem;"></div>
+    <div id="lb-scores" style="background:#0c1522;border-radius:12px;padding:.7rem .9rem;min-height:80px;max-height:400px;overflow-y:auto;margin-bottom:1rem;"></div>
 
     <!-- Your best -->
     <div id="lb-your-best" style="background:#111b2a;border-radius:10px;padding:.5rem .9rem;font-size:.82rem;margin-bottom:1rem;text-align:left;display:none;"></div>
@@ -4505,16 +4505,17 @@ async function _loadScores(skill, gameLevel){
   el.innerHTML = '<span style="opacity:.4;font-size:.85rem;">Loading…</span>';
   try {
     const rows = await supaFetch(
-      `/rest/v1/leaderboard?skill_level=eq.${skill}&game_level=eq.${gameLevel}&best_score=gt.0&order=best_score.desc&limit=10&select=username,best_score,questions_played,updated_at`
+      `/rest/v1/leaderboard?skill_level=eq.${skill}&game_level=eq.${gameLevel}&best_score=gt.0&order=best_score.desc&limit=100&select=username,best_score,questions_played,updated_at`
     );
-    const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+    const medals = ['🥇','🥈','🥉'];
     if(!rows.length){
       el.innerHTML = '<span style="opacity:.4;font-size:.85rem;">No scores yet — be the first!</span>';
     } else {
       el.innerHTML = rows.map((r,i) => {
         const d = new Date(r.updated_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+        const rank = i < 3 ? medals[i] : `<span style="display:inline-block;width:1.4em;text-align:center;font-size:.8rem;opacity:.6;">${i+1}</span>`;
         return `<div style="display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;${i<rows.length-1?'border-bottom:1px solid #1c2e45;':''}">
-          <span style="font-size:.9rem;">${medals[i]} <strong style="font-size:.95rem;">${r.username}</strong></span>
+          <span style="font-size:.9rem;">${rank} <strong style="font-size:.95rem;">${r.username}</strong></span>
           <span style="font-size:.9rem;color:var(--accent);font-weight:700;">${r.best_score} <span style="font-size:.7rem;opacity:.6;font-weight:400;">/ ${d}</span></span>
         </div>`;
       }).join('');
