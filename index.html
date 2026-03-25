@@ -181,12 +181,14 @@ svg { overflow: visible !important; }
 #level1-screen,
 #level2-screen,
 #level3-screen,
-#level4-screen { display:none; }
+#level4-screen,
+#level5-screen { display:none; }
 
 #level1-screen .app,
 #level2-screen .app,
 #level3-screen .app,
-#level4-screen .app { width:480px; max-width:100vw; margin:0 auto; }
+#level4-screen .app,
+#level5-screen .app { width:480px; max-width:100vw; margin:0 auto; }
 
 .app {
   background:rgba(5,10,20,.96); border-radius:16px;
@@ -418,7 +420,12 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
       <div id="lb-profile-badge" style="font-size:.75rem;background:#111b2a;padding:.3rem .7rem;border-radius:999px;cursor:pointer;" onclick="showEditProfile()"></div>
     </div>
 
-    <div style="font-size:.72rem;opacity:.5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;">Level 1 — Notes &amp; Gracenotes · 30 sec challenge</div>
+    <!-- Level tabs -->
+    <div style="display:flex;gap:.5rem;margin-bottom:.6rem;">
+      <button id="lvl-tab-1" class="skill-tab active-tab" onclick="switchLevelTab(1)" style="flex:1;">Level 1</button>
+      <button id="lvl-tab-5" class="skill-tab" onclick="switchLevelTab(5)" style="flex:1;">⭐ Master Test</button>
+    </div>
+    <div id="lb-level-desc" style="font-size:.72rem;opacity:.5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;">Level 1 — Notes &amp; Gracenotes · 30 sec challenge</div>
 
     <!-- Skill tabs -->
     <div style="display:flex;gap:.5rem;margin-bottom:1rem;">
@@ -478,6 +485,7 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
   <button class="level-btn" onclick="startLevel(2)">Level 2 — Strikes &amp; Tachums</button>
   <button class="level-btn" onclick="startLevel(4)">Level 3 — Doublings</button>
   <button class="level-btn" onclick="startLevel(3)">Level 4 — Advanced Embellishments</button>
+  <button class="level-btn" style="background:#1f3048;border:2px solid var(--accent);color:var(--accent);margin-top:.4rem;" onclick="startLevel(5)">⭐ Master Test</button>
   <button class="level-btn" style="background:#0c1522;margin-top:.4rem;" onclick="showModeScreen()">← Back</button>
 </div>
 
@@ -1705,10 +1713,149 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
 </div><!-- end learn2-screen -->
 
 <div id="learn3-screen" style="display:none;">
-  <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.4rem;box-shadow:0 18px 40px rgba(0,0,0,.6);text-align:center;">
-    <h1 style="font-size:1.2rem;margin-bottom:.8rem;">Level 3 — Advanced Embellishments</h1>
-    <p style="opacity:.7;font-size:.9rem;margin-bottom:1.2rem;">Tutorial coming soon — diagrams and descriptions will appear here.</p>
-    <button class="level-btn" style="background:#0c1522;" onclick="showLearnScreen()">← Back</button>
+  <div class="tutorial-card">
+    <button class="back" onclick="showLearnScreen()" style="position:absolute;top:12px;right:12px;">🏠 Home</button>
+
+    <!-- Intro -->
+    <div id="l3t-page-intro" class="l3t-page">
+      <div class="page-indicator">Advanced Embellishments · Introduction</div>
+      <h2>Advanced Embellishments</h2>
+      <div class="tutorial-body">
+        <p>In this section we cover four of the most important <strong>advanced embellishments</strong> used in Great Highland Bagpipe music:</p>
+        <br>
+        <p><strong>Taorluath</strong>, <strong>Grip</strong>, <strong>D Throw</strong> and <strong>Birl</strong>.</p>
+        <br>
+        <p>Each embellishment is shown with a staff diagram. Your tutor will guide you on how to play these on the practice chanter.</p>
+        <br>
+        <p>Click <strong>Next</strong> to begin.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="showLearnScreen()">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('taorluath')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Taorluath -->
+    <div id="l3t-page-taorluath" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 1 of 4</div>
+      <h2>Taorluath</h2>
+      <div class="tutorial-body">
+        <p>The <strong>Taorluath</strong> is one of the most recognised embellishments in pipe music. It consists of a <strong>Low G gracenote</strong>, a <strong>D gracenote</strong> and a <strong>Low G gracenote</strong> played in quick succession before the main note.</p>
+        <br>
+        <p>Your tutor will guide you on how to play this on the practice chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-taorluath-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('intro')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('grip')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Grip -->
+    <div id="l3t-page-grip" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 2 of 4</div>
+      <h2>Grip</h2>
+      <div class="tutorial-body">
+        <p>The <strong>Grip</strong> is played using three <strong>Low G gracenotes</strong> in quick succession before the main note. It produces a distinctive punchy sound.</p>
+        <br>
+        <p>Your tutor will guide you on how to play this on the practice chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-grip-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('taorluath')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('d-throw')">Next →</button>
+      </div>
+    </div>
+
+    <!-- D Throw -->
+    <div id="l3t-page-d-throw" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 3 of 4</div>
+      <h2>D Throw</h2>
+      <div class="tutorial-body">
+        <p>The <strong>D Throw</strong> consists of a <strong>High G gracenote</strong>, a <strong>D gracenote</strong> and a <strong>Low G gracenote</strong> played before the main note. It is commonly used when playing to or from D.</p>
+        <br>
+        <p>Your tutor will guide you on how to play this on the practice chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-dthrow-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('grip')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('birl')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Birl -->
+    <div id="l3t-page-birl" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 4 of 4</div>
+      <h2>Birl</h2>
+      <div class="tutorial-body">
+        <p>The <strong>Birl</strong> is used on <strong>Low A</strong> and consists of a <strong>Low G</strong>, <strong>Low A</strong> and another <strong>Low G gracenote</strong> between two main Low A notes. It gives a flowing, rolling sound.</p>
+        <br>
+        <p>Your tutor will guide you on how to play this on the practice chanter.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-birl-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('d-throw')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('finish')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Finish -->
+    <div id="l3t-page-finish" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · Complete</div>
+      <h2>🎉 Well Done!</h2>
+      <div class="tutorial-body">
+        <p>You have now covered the four main advanced embellishments — <strong>Taorluath</strong>, <strong>Grip</strong>, <strong>D Throw</strong> and <strong>Birl</strong>.</p>
+        <br>
+        <p>Repetition and practice with your tutor will be essential to mastering these on the chanter.</p>
+        <br>
+        <p>Head to <strong>Test My Knowledge</strong> to start identifying them on the staff.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('birl')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="showModeScreen()">🏠 Home</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -2345,6 +2492,81 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
       <div class="result-btns">
         <button class="primary"   onclick="startTimed(st4)">Try Again</button>
         <button class="secondary" onclick="endTimed(st4)">Exit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LEVEL 5 — MASTER TEST ── -->
+<div id="level5-screen" style="display:none;">
+
+  <!-- Welcome overlay -->
+  <div id="l5-welcome" class="app" style="position:relative;text-align:center;">
+    <button class="back" onclick="goHome()">← Home</button>
+    <div style="margin-top:.6rem;margin-bottom:1.2rem;">
+      <div style="font-size:2.4rem;margin-bottom:.4rem;">⭐</div>
+      <h1 style="font-size:1.3rem;letter-spacing:.06em;color:var(--accent);text-transform:uppercase;margin-bottom:.2rem;">Master Test</h1>
+      <div style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin:0 auto .8rem;"></div>
+    </div>
+    <div style="background:#0c1522;border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1rem;text-align:left;line-height:1.75;font-size:.92rem;opacity:.9;">
+      <p>Welcome to the <strong style="color:var(--accent);">Master Test</strong> which will test your knowledge on common bagpipe embellishments.</p>
+      <br>
+      <p>Be aware some embellishments are <strong style="color:#f5c842;">(bare)</strong> without preceding or following notes.</p>
+      <br>
+      <p>Please ensure you select the <strong style="color:var(--accent);">60 second timed test</strong> to record your score on the leaderboard.</p>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:center;justify-content:center;background:#111b2a;border-radius:10px;padding:.6rem .8rem;margin-bottom:1.2rem;">
+      <span style="font-size:1.1rem;">⏱</span>
+      <span style="font-size:.8rem;opacity:.7;letter-spacing:.05em;">60 SECONDS&nbsp;&nbsp;·&nbsp;&nbsp;ALL LEVELS&nbsp;&nbsp;·&nbsp;&nbsp;LEADERBOARD ENABLED</span>
+    </div>
+    <button class="primary" style="width:100%;padding:.8rem;border-radius:999px;border:none;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;" onclick="dismissL5Welcome()">Begin →</button>
+  </div>
+
+  <!-- Quiz (hidden until welcome dismissed) -->
+  <div id="l5-quiz" class="app" style="position:relative;display:none;">
+    <button class="back" onclick="goHome()">← Home</button>
+    <header>
+      <h1>⭐ Master Test</h1>
+      <div class="badge">All Notes &amp; Embellishments</div>
+    </header>
+    <div class="score-bar">
+      <span>Score: <strong id="l5-score">0</strong></span>
+      <span>Questions: <strong id="l5-q">0</strong></span>
+      <span>Streak: <strong id="l5-streak">0</strong> 🔥</span>
+    </div>
+    <div class="staff-container">
+      <div class="staff" id="l5-staff">
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div><div class="staff-line"></div>
+        <div class="staff-line"></div>
+        <div class="clef">𝄞</div>
+        <svg id="l5-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        <div class="waiting-msg" id="l5-waiting">Press Start</div>
+        <div class="correct-reveal" id="l5-correct-reveal">
+          <span class="it-was">IT WAS</span>
+          <span class="answer-label" id="l5-correct-label"></span>
+        </div>
+      </div>
+      <div id="l5-prompt" style="text-align:center;font-size:.82rem;opacity:.7;margin-top:.2rem;">Press Start to begin</div>
+    </div>
+    <div class="timer-bar-wrap" id="l5-timer-wrap">
+      <div class="timer-bar-fill" id="l5-timer-fill"></div>
+    </div>
+    <div class="answers" id="l5-answers"></div>
+    <div class="feedback" id="l5-feedback"></div>
+    <div class="controls">
+      <button class="secondary" id="l5-reset">Reset</button>
+      <button class="primary"   id="l5-start">Start</button>
+      <button class="secondary" id="l5-timed">⏱ Timed (60s)</button>
+    </div>
+    <div class="timed-result" id="l5-result">
+      <h2>⏱ TIME'S UP!</h2>
+      <div style="font-size:.8rem;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">⭐ Master Test</div>
+      <div class="big-score" id="l5-result-score">0</div>
+      <div class="sub">correct in 60 seconds</div>
+      <div class="result-btns">
+        <button class="primary"   onclick="startTimed(st5)">Try Again</button>
+        <button class="secondary" onclick="endTimed(st5)">Exit</button>
       </div>
     </div>
   </div>
@@ -3633,6 +3855,8 @@ function drawBirl(svg){
    Main High A, then 2 gracenotes: B (y=56.5), D (y=41.5) bound by 3 beams,
    then main B note to the right. */
 function drawHalfDoublingBL3(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 50;
   const FIRST_X = GROUP_LEFT - 38;
   const GX  = [GROUP_LEFT, GROUP_LEFT+18];
   const GPY = [56.5, 41.5];
@@ -3676,13 +3900,12 @@ function drawHalfDoublingBL3(svg){
 }
 
 const L3_ALL=[
-  { id:'taorluath',        label:'Taorluath',        drawFn: drawTaorluath     },
-  { id:'grip',             label:'Grip',             drawFn: drawGrip          },
-  { id:'d_throw',          label:'D Throw',          drawFn: drawDThrow        },
-  { id:'d_throw_bare',     label:'D Throw',          drawFn: drawDThrowBare    },
-  { id:'birl',             label:'Birl',             drawFn: drawBirl          },
-  { id:'half_doubling_b',  label:'Half Doubling B',  drawFn: drawHalfDoublingBL3 }
-  // More advanced embellishments added here
+  { id:'taorluath',        label:'Taorluath',          drawFn: drawTaorluath     },
+  { id:'grip',             label:'Grip',               drawFn: drawGrip          },
+  { id:'d_throw',          label:'D Throw',            drawFn: drawDThrow        },
+  { id:'d_throw_bare',     label:'D Throw (bare)',     drawFn: drawDThrowBare    },
+  { id:'birl',             label:'Birl',               drawFn: drawBirl          },
+  { id:'half_doubling_b',  label:'½ Doubling on B',   drawFn: drawHalfDoublingBL3 }
 ];
 
 /* ════════════════════════════════════════════
@@ -3886,7 +4109,11 @@ function checkAnswer(st, id, btn){
 
   const delay = (id === st.current.id) ? 0 : (st.timedMode ? 0 : 3600);
   setTimeout(()=>{
-    nextQuestion(st);
+    try {
+      nextQuestion(st);
+    } catch(e) {
+      console.error('Error generating next question:', e);
+    }
     st.locked=false;
     st.feedbackEl.textContent='';
     st.feedbackEl.className='feedback';
@@ -3916,17 +4143,13 @@ function resetState(st, showWaiting=true){
 }
 
 /* ════════════════════════════════════════════
-   TIMED MODE — 30 second challenge
+   TIMED MODE — configurable per state
    ════════════════════════════════════════════ */
-const TIMED_SECONDS = 30;
-
 function startTimed(st){
-  // Hide result overlay if showing
   st.resultEl.style.display='none';
   resetState(st, false);
   st.timedMode = true;
 
-  // Show and reset timer bar
   st.timerWrapEl.style.display='block';
   st.timerFillEl.style.width='100%';
   st.timerFillEl.style.background='var(--accent)';
@@ -3934,15 +4157,14 @@ function startTimed(st){
   nextQuestion(st);
 
   let elapsed = 0;
-  const INTERVAL = 100; // ms
-  const TOTAL = TIMED_SECONDS * 1000;
+  const INTERVAL = 100;
+  const TOTAL = (st.timedSeconds || 30) * 1000;
 
   if(st.timerInterval) clearInterval(st.timerInterval);
   st.timerInterval = setInterval(()=>{
     elapsed += INTERVAL;
     const pct = Math.max(0, 100 - (elapsed / TOTAL * 100));
     st.timerFillEl.style.width = pct + '%';
-    // Turn bar orange then red as time runs out
     if(pct < 20) st.timerFillEl.style.background = '#ff5c5c';
     else if(pct < 50) st.timerFillEl.style.background = '#f5c842';
 
@@ -4064,15 +4286,68 @@ const st4 = makeState({
 });
 st4.level = 4;
 
-/* ════════════════════════════════════════════
-   NAVIGATION
-   ════════════════════════════════════════════ */
+/* ── Level 5 — Master Test (all notes + all embellishments) ── */
+const L5_ALL = [
+  // Notes
+  ...L1_ALL,
+  // Strikes & Tachums
+  ...L2_ALL,
+  // Doublings
+  { id:'lowa_doubling',    label:'Low A Doubling',    drawFn: drawLowADoubling   },
+  { id:'b_doubling',       label:'B Doubling',        drawFn: drawBDoubling      },
+  { id:'c_doubling',       label:'C Doubling',        drawFn: drawCDoubling      },
+  { id:'d_doubling',       label:'D Doubling',        drawFn: drawDDoubling      },
+  { id:'e_doubling',       label:'E Doubling',        drawFn: drawEDoubling      },
+  { id:'f_doubling',       label:'F Doubling',        drawFn: drawFDoubling      },
+  { id:'high_g_doubling',  label:'High G Doubling',   drawFn: drawHighGDoubling  },
+  { id:'high_a_doubling',  label:'High A Doubling',   drawFn: drawHighADoubling  },
+  // Half doublings
+  { id:'half_db_lowa',     label:'½ Doubling on Low A', drawFn: drawHalfDoublingLowA },
+  { id:'half_db_b',        label:'½ Doubling on B',   drawFn: drawHalfDoublingB  },
+  { id:'half_db_c',        label:'½ Doubling on C',   drawFn: drawHalfDoublingC  },
+  { id:'half_db_d',        label:'½ Doubling on D',   drawFn: drawHalfDoublingD  },
+  { id:'half_db_e',        label:'½ Doubling on E',   drawFn: drawHalfDoublingE  },
+  { id:'half_db_f',        label:'½ Doubling on F',   drawFn: drawHalfDoublingF  },
+  // Advanced
+  { id:'taorluath_m',      label:'Taorluath',         drawFn: drawTaorluath      },
+  { id:'grip_m',           label:'Grip',              drawFn: drawGrip           },
+  { id:'d_throw_m',        label:'D Throw',           drawFn: drawDThrow         },
+  { id:'d_throw_bare_m',   label:'D Throw (bare)',    drawFn: drawDThrowBare     },
+  { id:'birl_m',           label:'Birl',              drawFn: drawBirl           },
+];
+
+const st5 = makeState({
+  all:            L5_ALL,
+  renderFn:       (note, svg) => {
+    if (note.drawFn) { note.drawFn(svg); }
+    else { l1Render(note, svg); }
+  },
+  svg:            document.getElementById('l5-svg'),
+  answersEl:      document.getElementById('l5-answers'),
+  feedbackEl:     document.getElementById('l5-feedback'),
+  promptEl:       document.getElementById('l5-prompt'),
+  waitingEl:      document.getElementById('l5-waiting'),
+  scoreEl:        document.getElementById('l5-score'),
+  qEl:            document.getElementById('l5-q'),
+  streakEl:       document.getElementById('l5-streak'),
+  correctRevealEl:document.getElementById('l5-correct-reveal'),
+  correctLabelEl: document.getElementById('l5-correct-label'),
+  timerWrapEl:    document.getElementById('l5-timer-wrap'),
+  timerFillEl:    document.getElementById('l5-timer-fill'),
+  resultEl:       document.getElementById('l5-result'),
+  resultScoreEl:  document.getElementById('l5-result-score')
+});
+st5.level = 5;
+st5.timedSeconds = 60;
 let activeLevel = 0;
 
 function showModeScreen(){
   ['home-screen','learn-screen','learn1-screen','learn2-screen','learn3-screen','learn4-screen',
    'leaderboard-screen','signin-screen','editprofile-screen'].forEach(id=>{
     document.getElementById(id).style.display='none';
+  });
+  ['level1-screen','level2-screen','level3-screen','level4-screen','level5-screen'].forEach(id=>{
+    const el = document.getElementById(id); if(el) el.style.display='none';
   });
   document.getElementById('mode-screen').style.display='block';
 }
@@ -4187,11 +4462,23 @@ async function submitSignIn(){
 
 /* ── Leaderboard tabs ── */
 let _activeTab = 'learner';
+let _activeLevel = 1;
+const LEVEL_DESCS = {
+  1: 'Level 1 — Notes & Gracenotes · 30 sec challenge',
+  5: '⭐ Master Test — All Notes & Embellishments · 60 sec challenge'
+};
 function switchTab(skill){
   _activeTab = skill;
   document.getElementById('tab-learner').classList.toggle('active-tab', skill==='learner');
   document.getElementById('tab-established').classList.toggle('active-tab', skill==='established_player');
-  _loadScores(skill);
+  _loadScores(skill, _activeLevel);
+}
+function switchLevelTab(level){
+  _activeLevel = level;
+  document.getElementById('lvl-tab-1').classList.toggle('active-tab', level===1);
+  document.getElementById('lvl-tab-5').classList.toggle('active-tab', level===5);
+  document.getElementById('lb-level-desc').textContent = LEVEL_DESCS[level] || '';
+  _loadScores(_activeTab, _activeLevel);
 }
 
 async function _renderLeaderboard(){
@@ -4206,15 +4493,19 @@ async function _renderLeaderboard(){
   _activeTab = profile ? profile.skill_level : 'learner';
   document.getElementById('tab-learner').classList.toggle('active-tab', _activeTab==='learner');
   document.getElementById('tab-established').classList.toggle('active-tab', _activeTab==='established_player');
-  await _loadScores(_activeTab);
+  document.getElementById('lvl-tab-1').classList.toggle('active-tab', _activeLevel===1);
+  document.getElementById('lvl-tab-5').classList.toggle('active-tab', _activeLevel===5);
+  document.getElementById('lb-level-desc').textContent = LEVEL_DESCS[_activeLevel] || '';
+  await _loadScores(_activeTab, _activeLevel);
 }
 
-async function _loadScores(skill){
+async function _loadScores(skill, gameLevel){
+  gameLevel = gameLevel || 1;
   const el = document.getElementById('lb-scores');
   el.innerHTML = '<span style="opacity:.4;font-size:.85rem;">Loading…</span>';
   try {
     const rows = await supaFetch(
-      `/rest/v1/leaderboard?skill_level=eq.${skill}&game_level=eq.1&best_score=gt.0&order=best_score.desc&limit=10&select=username,best_score,questions_played,updated_at`
+      `/rest/v1/leaderboard?skill_level=eq.${skill}&game_level=eq.${gameLevel}&best_score=gt.0&order=best_score.desc&limit=10&select=username,best_score,questions_played,updated_at`
     );
     const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
     if(!rows.length){
@@ -4231,7 +4522,7 @@ async function _loadScores(skill){
     // Show personal best
     const profile = getProfile();
     if(profile && profile.skill_level === skill){
-      const mine = await supaFetch(`/rest/v1/leaderboard?id=eq.${profile.id}&select=best_score,questions_played`);
+      const mine = await supaFetch(`/rest/v1/leaderboard?username=eq.${encodeURIComponent(profile.username)}&game_level=eq.${gameLevel}&select=best_score,questions_played`);
       const ybEl = document.getElementById('lb-your-best');
       if(mine.length && mine[0].best_score > 0){
         ybEl.style.display='block';
@@ -4259,19 +4550,37 @@ async function saveScore(gameLevel, score){
     localStorage.setItem(`bp_lb_level${gameLevel}`, JSON.stringify(scores.slice(0,5)));
   } catch(e){}
 
-  // Save to Supabase if profile exists and this is level 1
+  // Save to Supabase if profile exists and this is a supported level
   const profile = getProfile();
-  if(!profile || gameLevel !== 1) return;
+  if(!profile || (gameLevel !== 1 && gameLevel !== 5)) return;
   try {
-    const existing = await supaFetch(`/rest/v1/leaderboard?id=eq.${profile.id}&select=best_score,questions_played`);
-    if(!existing.length) return;
-    const prev = existing[0];
-    const newBest = Math.max(prev.best_score || 0, score);
-    const newQ    = (prev.questions_played || 0) + 1;
-    await supaFetch(`/rest/v1/leaderboard?id=eq.${profile.id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({ best_score: newBest, questions_played: newQ, updated_at: new Date().toISOString(), game_level: 1 })
-    });
+    // Look up existing row by username + game_level
+    const existing = await supaFetch(
+      `/rest/v1/leaderboard?username=eq.${encodeURIComponent(profile.username)}&game_level=eq.${gameLevel}&select=id,best_score,questions_played`
+    );
+    if(existing.length){
+      // Update existing row
+      const prev = existing[0];
+      const newBest = Math.max(prev.best_score || 0, score);
+      const newQ    = (prev.questions_played || 0) + 1;
+      await supaFetch(`/rest/v1/leaderboard?id=eq.${existing[0].id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ best_score: newBest, questions_played: newQ, updated_at: new Date().toISOString() })
+      });
+    } else {
+      // Create new row for this level
+      await supaFetch('/rest/v1/leaderboard', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: profile.username,
+          skill_level: profile.skill_level,
+          best_score: score,
+          questions_played: 1,
+          game_level: gameLevel,
+          updated_at: new Date().toISOString()
+        })
+      });
+    }
   } catch(e){ console.error('Supabase save error:', e); }
 }
 
@@ -4330,6 +4639,7 @@ function startLearn(n){
   document.getElementById(`learn${n}-screen`).style.display='block';
   if(n===1) l1tGoTo('intro');
   if(n===2) l2tGoTo('strikes-intro');
+  if(n===3) l3tGoTo('intro');
   if(n===4) l4tGoTo('intro');
 }
 
@@ -4362,6 +4672,16 @@ function l4tGoTo(pageId){
   if(pageId==='half-doubling-f')    drawHalfDoublingF(document.getElementById('l4t-half-f-svg'));
 }
 
+function l3tGoTo(pageId){
+  document.querySelectorAll('.l3t-page').forEach(p => p.style.display='none');
+  const el = document.getElementById('l3t-page-' + pageId);
+  if(el) el.style.display='block';
+  if(pageId==='taorluath') drawTaorluath(document.getElementById('l3t-taorluath-svg'));
+  if(pageId==='grip')      drawGrip(document.getElementById('l3t-grip-svg'));
+  if(pageId==='d-throw')   drawDThrow(document.getElementById('l3t-dthrow-svg'));
+  if(pageId==='birl')      drawBirl(document.getElementById('l3t-birl-svg'));
+}
+
 function l2tGoTo(pageId){
   document.querySelectorAll('.l2t-page').forEach(p => p.style.display='none');
   const el = document.getElementById('l2t-page-' + pageId);
@@ -4372,6 +4692,15 @@ function startLevel(n){
   document.getElementById('home-screen').style.display='none';
   document.getElementById(`level${n}-screen`).style.display='block';
   activeLevel=n;
+  if(n===5){
+    document.getElementById('l5-welcome').style.display='block';
+    document.getElementById('l5-quiz').style.display='none';
+  }
+}
+
+function dismissL5Welcome(){
+  document.getElementById('l5-welcome').style.display='none';
+  document.getElementById('l5-quiz').style.display='block';
 }
 
 function goHome(){
@@ -4379,6 +4708,7 @@ function goHome(){
   else if(activeLevel===2){ document.getElementById('level2-screen').style.display='none'; resetState(st2, false); }
   else if(activeLevel===3){ document.getElementById('level3-screen').style.display='none'; resetState(st3, false); }
   else if(activeLevel===4){ document.getElementById('level4-screen').style.display='none'; resetState(st4, false); }
+  else if(activeLevel===5){ document.getElementById('level5-screen').style.display='none'; resetState(st5, false); }
   document.getElementById('home-screen').style.display='block';
   activeLevel=0;
 }
@@ -4403,6 +4733,11 @@ document.getElementById('l4-start').onclick=()=>{ resetState(st4,false); nextQue
 document.getElementById('l4-reset').onclick=()=>resetState(st4,true);
 document.getElementById('l4-timed').onclick=()=>startTimed(st4);
 
+/* ── LEVEL 5 BUTTONS ── */
+document.getElementById('l5-start').onclick=()=>{ resetState(st5,false); nextQuestion(st5); };
+document.getElementById('l5-reset').onclick=()=>resetState(st5,true);
+document.getElementById('l5-timed').onclick=()=>startTimed(st5);
+
 /* ── iOS TOUCH FIX — touchend fallback for all buttons ── */
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('button').forEach(function(btn){
@@ -4419,7 +4754,7 @@ window.addEventListener('load', () => {
   // Hide all screens
   ['mode-screen','home-screen','learn-screen',
    'learn1-screen','learn2-screen','learn3-screen','learn4-screen',
-   'level1-screen','level2-screen','level3-screen','level4-screen',
+   'level1-screen','level2-screen','level3-screen','level4-screen','level5-screen',
    'leaderboard-screen','signin-screen','editprofile-screen'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.style.display = 'none';
@@ -4451,5 +4786,6 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
