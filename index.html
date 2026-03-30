@@ -4246,12 +4246,13 @@ function startTimed(st){
 }
 
 function finishTimed(st){
+  if(!st.timedMode) return; // Guard: only save scores from timed tests
   st.timedMode = false;
   st.locked = true;
   st.timerWrapEl.style.display='none';
   st.resultScoreEl.textContent = st.score;
   st.resultEl.style.display='flex';
-  if(st.level) saveScore(st.level, st.score);
+  if(st.level) saveScore(st.level, st.score, true);
 }
 
 function endTimed(st){
@@ -4611,8 +4612,9 @@ async function _loadScores(skill, gameLevel){
   }
 }
 
-/* ── Save score to Supabase ── */
-async function saveScore(gameLevel, score){
+/* ── Save score to Supabase (ONLY called from timed tests) ── */
+async function saveScore(gameLevel, score, isTimed){
+  if(!isTimed) return; // Safety: only timed test scores are saved
   // Always save to localStorage as backup
   try {
     const raw = localStorage.getItem(`bp_lb_level${gameLevel}`);
