@@ -136,6 +136,12 @@ svg { overflow: visible !important; }
 }
 
 
+#aims-screen {
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
 #mode-screen {
   background:rgba(5,10,20,.96); border-radius:16px;
   padding:1.4rem; box-shadow:0 18px 40px rgba(0,0,0,.6);
@@ -369,7 +375,29 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
 
 <!-- ── HOME ── -->
 <!-- ── MODE SELECT (first screen) ── -->
-<div id="mode-screen">
+<!-- ── TERMS & CONDITIONS ── -->
+<div id="tc-screen" style="display:flex;justify-content:center;align-items:center;min-height:100vh;padding:1rem;">
+  <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.6rem;box-shadow:0 18px 40px rgba(0,0,0,.6);text-align:center;">
+    <h1 style="font-size:1.3rem;margin-bottom:.3rem;">📜 Terms & Conditions</h1>
+    <div style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin:.5rem auto 1rem;"></div>
+    <div style="text-align:left;font-size:.88rem;line-height:1.7;opacity:.85;background:#0c1522;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;">
+      <p>By using this application, you acknowledge and agree to the following:</p>
+      <br>
+      <p>This application is provided <strong>"as-is"</strong> for educational purposes only. The developer makes no warranties, express or implied, regarding the functionality, security, or reliability of this application.</p>
+      <br>
+      <p>The developer accepts no liability for any loss, damage, data breach, security vulnerability, malware, or any other issue that may arise from the use of this application or its associated services.</p>
+      <br>
+      <p>Use of this application is entirely at your own risk. By proceeding, you agree to these terms.</p>
+    </div>
+    <label style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;cursor:pointer;font-size:.9rem;">
+      <input type="checkbox" id="tc-checkbox" onchange="document.getElementById('tc-accept-btn').disabled=!this.checked" style="width:18px;height:18px;accent-color:var(--accent);cursor:pointer;">
+      <span>I have read and agree to the Terms & Conditions</span>
+    </label>
+    <button id="tc-accept-btn" disabled class="primary" style="width:100%;padding:.8rem;border-radius:999px;border:none;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;opacity:.5;" onclick="acceptTerms()">Accept & Continue</button>
+  </div>
+</div>
+
+<div id="mode-screen" style="display:none;">
   <h1>🎵 Bagpipe Music Trainer</h1>
   <div class="subtitle" style="margin-bottom:1.4rem;">What would you like to do?</div>
   <button class="mode-btn" onclick="selectMode('learn')">
@@ -387,6 +415,31 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
     Leaderboard
     <span class="mode-desc">Top scores from 30-second timed challenges across all levels</span>
   </button>
+  <button class="mode-btn" onclick="showAims()">
+    <span class="mode-icon">📋</span>
+    App Aims and Objectives
+    <span class="mode-desc">Why we built this app and how to get in touch</span>
+  </button>
+</div>
+
+<!-- ── AIMS & OBJECTIVES SCREEN ── -->
+<div id="aims-screen" style="display:none;">
+  <div style="width:100%;max-width:480px;background:rgba(5,10,20,.96);border-radius:16px;padding:1.6rem;box-shadow:0 18px 40px rgba(0,0,0,.6);">
+    <h1 style="font-size:1.2rem;text-align:center;margin-bottom:.3rem;">📋 App Aims and Objectives</h1>
+    <div style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin:.5rem auto 1rem;"></div>
+    <div style="font-size:.9rem;line-height:1.8;opacity:.9;">
+      <p>Built by the tutors of <strong style="color:var(--accent);">Syerla Pipe Band</strong>, this app exists for one reason: bagpipers deserved better. There was a lack of bagpipe specific learning tools on the App Store to help learners crack the code of bagpipe notation — so we made it ourselves.</p>
+      <br>
+      <p>Kids today learn everything through their phones, and they're never without them. So why not put piping skills right there in their pocket?</p>
+      <br>
+      <p>From first notes to full-blown embellishments, this app gives learners the tools, confidence, and repetition they need to level up fast.</p>
+      <br>
+      <p>Whilst every effort was made to ensure all information included in this app is accurate, it may be possible that the developers have missed something or made a mistake in the notation. If any mistakes are found, users are encouraged to email us at <strong style="color:var(--accent);">sadpb1953@gmail.com</strong> so we can correct any such errors. If you would like any content added please include it on your email.</p>
+    </div>
+    <div style="margin-top:1.2rem;">
+      <button class="primary" style="width:100%;padding:.7rem;border-radius:999px;border:none;font-size:.9rem;font-weight:600;cursor:pointer;" onclick="hideAims()">← Back to Home</button>
+    </div>
+  </div>
 </div>
 
 <!-- ── SIGN-IN SCREEN ── -->
@@ -1729,13 +1782,39 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
       </div>
       <div class="tutorial-nav">
         <button class="level-btn" style="background:#0c1522;flex:1;" onclick="showLearnScreen()">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('grip')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Grip -->
+    <div id="l3t-page-grip" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 1 of 10</div>
+      <h2>Grip</h2>
+      <div class="tutorial-body">
+        <p>A <strong>Grip</strong> consists of two Low G's separated by a D gracenote. The two short Low G's should be equal in duration. You should be able to hear the two Low G's clearly when played correctly.</p>
+        <br>
+        <p>Your tutor will guide you further on this.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-grip-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('intro')">← Back</button>
         <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('taorluath')">Next →</button>
       </div>
     </div>
 
     <!-- Taorluath -->
     <div id="l3t-page-taorluath" class="l3t-page" style="display:none;">
-      <div class="page-indicator">Advanced Embellishments · 1 of 4</div>
+      <div class="page-indicator">Advanced Embellishments · 2 of 10</div>
       <h2>Taorluath</h2>
       <div class="tutorial-body">
         <p>The <strong>Taorluath</strong> is one of the most recognised embellishments in pipe music. It consists of two Low G gracenotes separated by a D gracenote followed by an E gracenote.</p>
@@ -1756,40 +1835,14 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
         </div>
       </div>
       <div class="tutorial-nav">
-        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('intro')">← Back</button>
-        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('grip')">Next →</button>
-      </div>
-    </div>
-
-    <!-- Grip -->
-    <div id="l3t-page-grip" class="l3t-page" style="display:none;">
-      <div class="page-indicator">Advanced Embellishments · 2 of 4</div>
-      <h2>Grip</h2>
-      <div class="tutorial-body">
-        <p>A <strong>Grip</strong> consists of two Low G's separated by a D gracenote. The two short Low G's should be of equal in duration. You should be able to hear the two Low G's clearly when played correctly.</p>
-        <br>
-        <p>Your tutor will guide you further on this.</p>
-      </div>
-      <div class="tutorial-staff-wrap">
-        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
-          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
-          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
-          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
-          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
-          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
-          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
-          <svg id="l3t-grip-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
-        </div>
-      </div>
-      <div class="tutorial-nav">
-        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('taorluath')">← Back</button>
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('grip')">← Back</button>
         <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('d-throw')">Next →</button>
       </div>
     </div>
 
     <!-- D Throw -->
     <div id="l3t-page-d-throw" class="l3t-page" style="display:none;">
-      <div class="page-indicator">Advanced Embellishments · 3 of 4</div>
+      <div class="page-indicator">Advanced Embellishments · 3 of 10</div>
       <h2>D Throw</h2>
       <div class="tutorial-body">
         <p>The <strong>D Throw</strong> can be played from any note but always is followed by a D. Consult your tutor on how to deliver this movement correctly as there are variances in D Throw interpretation.</p>
@@ -1813,7 +1866,7 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
 
     <!-- Birl -->
     <div id="l3t-page-birl" class="l3t-page" style="display:none;">
-      <div class="page-indicator">Advanced Embellishments · 4 of 4</div>
+      <div class="page-indicator">Advanced Embellishments · 4 of 10</div>
       <h2>Birl</h2>
       <div class="tutorial-body">
         <p>The <strong>Birl</strong> is used on <strong>Low A</strong> and consists of a <strong>Low G</strong>, <strong>Low A</strong> and another <strong>Low G gracenote</strong> between two main Low A notes. It gives a flowing, rolling sound.</p>
@@ -1833,6 +1886,153 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
       </div>
       <div class="tutorial-nav">
         <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('d-throw')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('shake-c')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Shake on C -->
+    <div id="l3t-page-shake-c" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 5 of 10</div>
+      <h2>Shake on C</h2>
+      <div class="tutorial-body">
+        <p>A shake on C is another common advanced embellishment. It is played by playing a G and E gracenote on C followed by a closed C strike. A shake is played as one rapidly flowing movement.</p>
+        <br>
+        <p>Shakes can be seen on many notes of the scale usually using the same gracenote sequence as this one. There may be slight changes as you move into higher pitched notes. Your tutor will be able to explain further.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-shake-c-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('birl')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('shake-d')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Shake on D -->
+    <div id="l3t-page-shake-d" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 6 of 10</div>
+      <h2>Shake on D</h2>
+      <div class="tutorial-body">
+        <p>The shake on D is very similar to the C variant with the only difference being the theme note. The most common shakes you will find in bagpipe light music is B, C and D.</p>
+        <br>
+        <p>Top hand variants do occur occasionally but not very often. Your tutor will be able to elaborate on other shake variants that are available.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-shake-d-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('shake-c')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('well-done')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Well Done / Transition -->
+    <div id="l3t-page-well-done" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · Light Music Complete</div>
+      <h2>🎉 Well Done!</h2>
+      <div class="tutorial-body">
+        <p>You have now completed the advanced embellishments for light bagpipe music.</p>
+        <br>
+        <p>There are many more embellishments that appear in another form of bagpipe music called <strong>Piobaireachd</strong>. There are a few embellishments that are commonly used in both forms of music.</p>
+        <br>
+        <p>In the following pages I will cover some of these briefly.</p>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('shake-d')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('dre-edre')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Dre + Edre -->
+    <div id="l3t-page-dre-edre" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 7 of 10</div>
+      <h2>Dre + Edre</h2>
+      <div class="tutorial-body">
+        <p>These movements are known as <strong>Dre</strong> if played from a note below E, or <strong>Edre</strong> if played from a note above E.</p>
+        <br>
+        <p>From time to time you can find these movements used in light bagpipe music but more commonly in Piobaireachd. Your tutor will provide guidance on how to correctly play this when you are ready.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-dre-edre-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('well-done')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('dare')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Dare -->
+    <div id="l3t-page-dare" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 8 of 10</div>
+      <h2>Dare</h2>
+      <div class="tutorial-body">
+        <p>The next movement we will cover is the <strong>Dare</strong> which is virtually a reversed E doubling then up to F.</p>
+        <br>
+        <p>This is primarily a Piobaireachd movement but will appear in more modern light music compositions.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-dare-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('dre-edre')">← Back</button>
+        <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('darodo')">Next →</button>
+      </div>
+    </div>
+
+    <!-- Darodo / Bubbly Note -->
+    <div id="l3t-page-darodo" class="l3t-page" style="display:none;">
+      <div class="page-indicator">Advanced Embellishments · 9 of 10</div>
+      <h2>Darodo / Bubbly Note</h2>
+      <div class="tutorial-body">
+        <p>The final embellishment in this section is called a <strong>Darodo</strong> or <strong>Bubbly Note</strong>. This is another Piobaireachd movement that often appears in light music especially Strathspeys.</p>
+        <br>
+        <p>Consult your tutor for guidance on delivery technique as this can evolve over time.</p>
+      </div>
+      <div class="tutorial-staff-wrap">
+        <div style="position:relative;height:140px;margin:.2rem 0 .4rem;">
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:85%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:70%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:55%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:40%;"></div>
+          <div style="position:absolute;left:8%;right:8%;height:2px;background:#2b3b55;top:25%;"></div>
+          <div style="position:absolute;left:6px;top:10px;font-size:2.2rem;opacity:.9;">𝄞</div>
+          <svg id="l3t-darodo-svg" class="note-svg" viewBox="0 0 480 140" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('dre-edre')">← Back</button>
         <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="l3tGoTo('finish')">Next →</button>
       </div>
     </div>
@@ -1840,16 +2040,16 @@ header h1 { font-size:1.05rem; letter-spacing:.04em; }
     <!-- Finish -->
     <div id="l3t-page-finish" class="l3t-page" style="display:none;">
       <div class="page-indicator">Advanced Embellishments · Complete</div>
-      <h2>🎉 Well Done!</h2>
+      <h2>🎉 Section Complete!</h2>
       <div class="tutorial-body">
-        <p>You have now covered many of the main advanced embellishments — <strong>Taorluath</strong>, <strong>Grip</strong>, <strong>D Throw</strong> and <strong>Birl</strong>.</p>
+        <p>You have now covered many of the main advanced embellishments.</p>
         <br>
         <p>Repetition and practice with your tutor will be essential to mastering these on the chanter.</p>
         <br>
         <p>Head to <strong>Test My Knowledge</strong> to start identifying them on the staff.</p>
       </div>
       <div class="tutorial-nav">
-        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('birl')">← Back</button>
+        <button class="level-btn" style="background:#0c1522;flex:1;" onclick="l3tGoTo('darodo')">← Back</button>
         <button class="primary" style="flex:1;border-radius:999px;padding:.6rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border:none;" onclick="showModeScreen()">🏠 Home</button>
       </div>
     </div>
@@ -3921,6 +4121,122 @@ function drawBirl(svg){
   drawMainNoteUnit(svg, MAIN_X, 63.5, 'low_a');
 }
 
+/* ── Shake on C: High G, C, E, C, Low G → C main note ── */
+function drawShakeOnC(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 75;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36, GROUP_LEFT+54, GROUP_LEFT+72];
+  const GPY = [19.5, 48.5, 33.5, 48.5, 71.5];
+  const MAIN_X = GROUP_LEFT + 72 + 30;
+  const BEAM_TOP = yPx(19.5) - 20;
+  const rx = 6, ry = 4;
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  });
+  const leftStemX = GX[0]+rx, rightStemX = GX[4]+rx;
+  for(let b=0;b<3;b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{x1:leftStemX, y1:by, x2:rightStemX, y2:by, stroke:'white','stroke-width':'2.5'}));
+  }
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  const lowGx = GX[4], lowGcy = yPx(71.5);
+  svg.appendChild(svgEl('line',{x1:lowGx-4, y1:lowGcy, x2:lowGx+rx+rx+4, y2:lowGcy, stroke:'#4a6a9a','stroke-width':'1.5'}));
+  drawMainNoteUnit(svg, MAIN_X, 48.5, 'c');
+}
+
+/* ── Shake on D: High G, D, E, D, Low G → D main note ── */
+function drawShakeOnD(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 75;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36, GROUP_LEFT+54, GROUP_LEFT+72];
+  const GPY = [19.5, 41.5, 33.5, 41.5, 71.5];
+  const MAIN_X = GROUP_LEFT + 72 + 30;
+  const BEAM_TOP = yPx(19.5) - 20;
+  const rx = 6, ry = 4;
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  });
+  const leftStemX = GX[0]+rx, rightStemX = GX[4]+rx;
+  for(let b=0;b<3;b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{x1:leftStemX, y1:by, x2:rightStemX, y2:by, stroke:'white','stroke-width':'2.5'}));
+  }
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  const lowGx = GX[4], lowGcy = yPx(71.5);
+  svg.appendChild(svgEl('line',{x1:lowGx-4, y1:lowGcy, x2:lowGx+rx+rx+4, y2:lowGcy, stroke:'#4a6a9a','stroke-width':'1.5'}));
+  drawMainNoteUnit(svg, MAIN_X, 41.5, 'd');
+}
+
+/* ── Dre/Edre: E, Low A, F, Low A → E main note ── */
+function drawDreEdre(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 50;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36, GROUP_LEFT+54];
+  const GPY = [33.5, 63.5, 26.5, 63.5];
+  const MAIN_X = GROUP_LEFT + 54 + 30;
+  const BEAM_TOP = yPx(26.5) - 30;
+  const rx = 6, ry = 4;
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  });
+  const leftStemX = GX[0]+rx, rightStemX = GX[3]+rx;
+  for(let b=0;b<3;b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{x1:leftStemX, y1:by, x2:rightStemX, y2:by, stroke:'white','stroke-width':'2.5'}));
+  }
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  drawMainNoteUnit(svg, MAIN_X, 33.5, 'e');
+}
+
+/* ── Darodo / Bubbly Note: Low G, D, Low G, C, Low G → B main note ── */
+function drawDarodo(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 75;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36, GROUP_LEFT+54, GROUP_LEFT+72];
+  const GPY = [71.5, 41.5, 71.5, 48.5, 71.5];
+  const MAIN_X = GROUP_LEFT + 72 + 30;
+  const BEAM_TOP = yPx(41.5) - 30;
+  const rx = 6, ry = 4;
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  });
+  const leftStemX = GX[0]+rx, rightStemX = GX[4]+rx;
+  for(let b=0;b<3;b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{x1:leftStemX, y1:by, x2:rightStemX, y2:by, stroke:'white','stroke-width':'2.5'}));
+  }
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  [0, 2, 4].forEach(i => {
+    const lowGx = GX[i], lowGcy = yPx(71.5);
+    svg.appendChild(svgEl('line',{x1:lowGx-4, y1:lowGcy, x2:lowGx+rx+rx+4, y2:lowGcy, stroke:'#4a6a9a','stroke-width':'1.5'}));
+  });
+  drawMainNoteUnit(svg, MAIN_X, 56.5, 'b');
+}
+
 /* HALF DOUBLING TO B
    Main High A, then 2 gracenotes: B (y=56.5), D (y=41.5) bound by 3 beams,
    then main B note to the right. */
@@ -3969,12 +4285,43 @@ function drawHalfDoublingBL3(svg){
   drawMainNoteUnit(svg, MAIN_X, 56.5, 'b');
 }
 
+/* ── Dare: F, E, High G, E → F main note ── */
+function drawDare(svg){
+  clearSVG(svg);
+  const GROUP_LEFT = SVG_W / 2 - 50;
+  const GX  = [GROUP_LEFT, GROUP_LEFT+18, GROUP_LEFT+36, GROUP_LEFT+54];
+  const GPY = [26.5, 33.5, 19.5, 33.5];
+  const MAIN_X = GROUP_LEFT + 54 + 30;
+  const BEAM_TOP = yPx(19.5) - 20;
+  const rx = 6, ry = 4;
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    svg.appendChild(svgEl('line',{x1:x+rx, y1:cy, x2:x+rx, y2:BEAM_TOP, stroke:'white','stroke-width':'2'}));
+  });
+  const leftStemX = GX[0]+rx, rightStemX = GX[3]+rx;
+  for(let b=0;b<3;b++){
+    const by = BEAM_TOP + b*4;
+    svg.appendChild(svgEl('line',{x1:leftStemX, y1:by, x2:rightStemX, y2:by, stroke:'white','stroke-width':'2.5'}));
+  }
+  GX.forEach((x, i) => {
+    const cy = yPx(GPY[i]);
+    const g = svgEl('g',{transform:`rotate(-20,${x},${cy})`});
+    g.appendChild(svgEl('ellipse',{cx:x, cy, rx, ry, fill:'white'}));
+    svg.appendChild(g);
+  });
+  drawMainNoteUnit(svg, MAIN_X, 26.5, 'f');
+}
+
 const L3_ALL=[
   { id:'taorluath',        label:'Taorluath',          drawFn: drawTaorluath     },
   { id:'grip',             label:'Grip',               drawFn: drawGrip          },
   { id:'d_throw',          label:'D Throw',            drawFn: drawDThrow        },
-  { id:'d_throw_bare',     label:'D Throw (bare)',     drawFn: drawDThrowBare    },
-  { id:'birl',             label:'Birl',               drawFn: drawBirl          }
+  { id:'birl',             label:'Birl',               drawFn: drawBirl          },
+  { id:'shake_c',          label:'Shake on C',         drawFn: drawShakeOnC      },
+  { id:'shake_d',          label:'Shake on D',         drawFn: drawShakeOnD      },
+  { id:'dre_edre',         label:'Dre / Edre',         drawFn: drawDreEdre       },
+  { id:'dare',             label:'Dare',               drawFn: drawDare          },
+  { id:'darodo',           label:'Darodo',             drawFn: drawDarodo        }
 ];
 
 /* ════════════════════════════════════════════
@@ -4161,6 +4508,7 @@ function checkAnswer(st, id, btn){
     playCorrect();
   } else {
     st.streak=0;
+    st.wrongCount++;
     btn.classList.add('wrong');
     btns.forEach(b=>{ if(b.dataset.id===st.current.id) b.classList.add('correct'); });
     st.feedbackEl.textContent=`✗ Wrong — it was ${st.current.label}`;
@@ -4173,6 +4521,22 @@ function checkAnswer(st, id, btn){
     const flash = document.getElementById('wrong-flash');
     flash.classList.add('flash');
     setTimeout(()=>{ flash.classList.remove('flash'); }, 500);
+
+    // End timed test early if 5 wrong answers
+    if(st.timedMode && st.wrongCount >= 5){
+      st.locked=true;
+      if(st.timerInterval){ clearInterval(st.timerInterval); st.timerInterval=null; }
+      st.timedMode=false;
+      st.timerWrapEl.style.display='none';
+      st.answersEl.innerHTML='';
+      st.feedbackEl.textContent='';
+      st.feedbackEl.className='feedback';
+      st.correctRevealEl.style.display='none';
+      st.resultScoreEl.style.fontSize='1rem';
+      st.resultScoreEl.textContent = 'Looks like you need to return to Learn the Notes';
+      st.resultEl.style.display='flex';
+      return;
+    }
   }
   updateBar(st);
 
@@ -4190,7 +4554,7 @@ function checkAnswer(st, id, btn){
 }
 
 function resetState(st, showWaiting=true){
-  st.score=0; st.questions=0; st.streak=0;
+  st.score=0; st.questions=0; st.streak=0; st.wrongCount=0;
   st.current=null; st.lastId=null; st.locked=false;
   st.timedMode=false;
   if(st.timerInterval){ clearInterval(st.timerInterval); st.timerInterval=null; }
@@ -4246,10 +4610,11 @@ function startTimed(st){
 }
 
 function finishTimed(st){
-  if(!st.timedMode) return; // Guard: only save scores from timed tests
+  if(!st.timedMode) return;
   st.timedMode = false;
   st.locked = true;
   st.timerWrapEl.style.display='none';
+  st.resultScoreEl.style.fontSize='';
   st.resultScoreEl.textContent = st.score;
   st.resultEl.style.display='flex';
   if(st.level) saveScore(st.level, st.score, true);
@@ -4384,8 +4749,12 @@ const L5_ALL = [
   { id:'taorluath_m',      label:'Taorluath',         drawFn: drawTaorluath      },
   { id:'grip_m',           label:'Grip',              drawFn: drawGrip           },
   { id:'d_throw_m',        label:'D Throw',           drawFn: drawDThrow         },
-  { id:'d_throw_bare_m',   label:'D Throw (bare)',    drawFn: drawDThrowBare     },
   { id:'birl_m',           label:'Birl',              drawFn: drawBirl           },
+  { id:'shake_c_m',        label:'Shake on C',        drawFn: drawShakeOnC       },
+  { id:'shake_d_m',        label:'Shake on D',        drawFn: drawShakeOnD       },
+  { id:'dre_edre_m',       label:'Dre / Edre',        drawFn: drawDreEdre        },
+  { id:'dare_m',           label:'Dare',              drawFn: drawDare           },
+  { id:'darodo_m',         label:'Darodo',            drawFn: drawDarodo         },
 ];
 
 const st5 = makeState({
@@ -4451,6 +4820,26 @@ async function supaFetch(path, opts={}){
 function getProfile(){ try{ return JSON.parse(localStorage.getItem('bp_profile')||'null'); }catch(e){ return null; } }
 function setProfile(p){ localStorage.setItem('bp_profile', JSON.stringify(p)); }
 
+/* ── Terms & Conditions ── */
+function acceptTerms(){
+  localStorage.setItem('bp_tc_accepted', 'true');
+  document.getElementById('tc-screen').style.display='none';
+  document.getElementById('mode-screen').style.display='block';
+}
+function checkTerms(){
+  if(localStorage.getItem('bp_tc_accepted')==='true'){
+    document.getElementById('tc-screen').style.display='none';
+    document.getElementById('mode-screen').style.display='block';
+  }
+}
+// Enable/disable accept button based on checkbox
+document.getElementById('tc-checkbox').addEventListener('change', function(){
+  const btn = document.getElementById('tc-accept-btn');
+  btn.disabled = !this.checked;
+  btn.style.opacity = this.checked ? '1' : '.5';
+});
+checkTerms();
+
 /* ── Skip sign-in ── */
 function skipSignIn(){
   document.getElementById('signin-screen').style.display='none';
@@ -4476,6 +4865,15 @@ function editSelectSkill(v){
 }
 
 /* ── Show sign-in or leaderboard depending on profile ── */
+function showAims(){
+  document.getElementById('mode-screen').style.display='none';
+  document.getElementById('aims-screen').style.display='flex';
+}
+function hideAims(){
+  document.getElementById('aims-screen').style.display='none';
+  document.getElementById('mode-screen').style.display='block';
+}
+
 function showLeaderboard(){
   ['mode-screen','signin-screen','editprofile-screen'].forEach(id=>{
     document.getElementById(id).style.display='none';
@@ -4755,6 +5153,11 @@ function l3tGoTo(pageId){
   if(pageId==='grip')      drawGrip(document.getElementById('l3t-grip-svg'));
   if(pageId==='d-throw')   drawDThrow(document.getElementById('l3t-dthrow-svg'));
   if(pageId==='birl')      drawBirl(document.getElementById('l3t-birl-svg'));
+  if(pageId==='shake-c')   drawShakeOnC(document.getElementById('l3t-shake-c-svg'));
+  if(pageId==='shake-d')   drawShakeOnD(document.getElementById('l3t-shake-d-svg'));
+  if(pageId==='dre-edre')  drawDreEdre(document.getElementById('l3t-dre-edre-svg'));
+  if(pageId==='dare')      drawDare(document.getElementById('l3t-dare-svg'));
+  if(pageId==='darodo')    drawDarodo(document.getElementById('l3t-darodo-svg'));
 }
 
 function l2tGoTo(pageId){
@@ -4861,6 +5264,5 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
